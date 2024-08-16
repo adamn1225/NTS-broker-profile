@@ -3,6 +3,7 @@ import { ThemeModeScript } from "flowbite-react";
 import "./globals.css";
 import { ReactNode } from "react";
 import NavTop from '@components/navTop';
+import Head from 'next/head';
 
 export const metadata: Metadata = {
   title: "HH Direct Leads",
@@ -16,9 +17,10 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html suppressHydrationWarning>
-      <head>
+      <Head>
+        <link href="https://fonts.googleapis.com/css2?family=Asterone&display=swap" rel="stylesheet" />
         <ThemeModeScript />
-      </head>
+      </Head>
       <body>
         <NavTop />
         {children}

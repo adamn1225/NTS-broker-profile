@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-const flowbite = require("flowbite-react/tailwind");
+import flowbite from "flowbite-react/tailwind";
 
 const config: Config = {
   content: [
@@ -8,26 +8,34 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/flowbite-react/lib/**/*.js",
     flowbite.content(),
-
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'dump-bg': "url('/two_International_DumpTrucks.jpg')", // Adjust the path to your image
+      },
+      colors: {
+        amber: {
+          400: '#fbbf24',
+        },
+        mute: {
+          200: '#e5e7eb',
+        },
+      },
       backgroundColor: {
-        'button': 'var(--tw-bg-button, theme("colors.slate.700"))',
+        'button': 'var(--tw-bg-button, theme("colors.slate.800"))',
       },
       fontFamily: {
         impact: ['Impact', 'sans-serif'],
         bebas: ['Bebas Neue', 'cursive'],
         oswald: ['Oswald', 'sans-serif'],
-        roboto: ['Roboto', 'sans-serif'],
-        montserrat: ['Montserrat', 'sans-serif'],
-        exo: ['Exo', 'sans-serif'],
-        helvetica: ['Helvetica', 'sans-serif'],
-        arial: ['Arial', 'sans-serif'],
-        openSans: ['Open Sans', 'sans-serif'],
-        staatliches: ['Staatliches', 'cursive'],
+        robotoSlab: ['Roboto Slab', 'serif'],
         anton: ['Anton', 'sans-serif'],
         russo: ['Russo One', 'sans-serif'],
+        staatliches: ['Staatliches', 'cursive'],
+        montserrat: ['Montserrat', 'sans-serif'],
+        exo: ['Exo', 'sans-serif'],
+        arialBlack: ['Arial Black', 'sans-serif'],
       },
     },
   },
@@ -35,4 +43,5 @@ const config: Config = {
     flowbite.plugin(),
   ],
 };
+
 export default config;

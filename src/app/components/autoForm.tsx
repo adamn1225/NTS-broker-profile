@@ -4,7 +4,7 @@ import { Button, Modal, Label, TextInput } from "flowbite-react";
 
 interface Props {}
 
-function FreightForm(props: Props) {
+function AutoForm(props: Props) {
   const [openModal, setOpenModal] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -22,7 +22,7 @@ function FreightForm(props: Props) {
 
   return (
     <>
-      <Button className='bg-button hover:bg-amber-400 hover:text-mute-200' onClick={() => setOpenModal(true)}>Construction Equipment/Heavy Duty Trucks</Button>
+      <Button className='bg-button' onClick={() => setOpenModal(true)}>Auto Transport</Button>
       <Modal show={openModal} size="md" onClose={onCloseModal} popup>
         <Modal.Header />
         <Modal.Body>
@@ -103,7 +103,7 @@ function FreightForm(props: Props) {
                   </div>
                 </div>
                 <div className="flex flex-row gap-2">
-                  <Button onClick={prevStep} className='px-4 bg-button hover:bg-amber-400 hover:text-mute-200'>Previous</Button>
+                  <Button onClick={prevStep} className='px-4 bg-button'>Previous</Button>
                   <Button type="submit" className='px-4 bg-button'>Submit</Button>
                 </div>
               </>
@@ -115,4 +115,4 @@ function FreightForm(props: Props) {
   );
 }
 
-export default FreightForm;
+export default AutoForm;

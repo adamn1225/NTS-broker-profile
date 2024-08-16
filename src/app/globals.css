@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -18,4 +16,41 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Custom hover styles for all buttons */
+  .btn-hover-styles {
+    @apply hover:bg-amber-400 hover:text-mute-200;
+  }
+}
+
+
+p, h1, h2, h3, h4, h5, h6 {
+  @apply font-arialBlack;
+}
+
+/* Apply the custom hover styles to all button elements, except Banner.CollapseButton */
+button:not(.banner-collapse-button) {
+  @apply btn-hover-styles;
+}
+
+.navbar-link-hover {
+  @apply text-slate-700 hover:text-slate-900;
+}
+
+/* Custom styles for button with bg-button class */
+button.bg-button {
+  background-color: var(--tw-bg-button, theme("colors.slate.800")) !important;
+}
+
+button.bg-button:hover {
+  background-color: #b18c2f !important;
+  color: #0f172a !important;
+  font-weight: bold;
+}
+
+/* Remove hover effect for Banner.CollapseButton */
+.banner-collapse-button,
+.banner-collapse-button:hover {
+  background-color: transparent !important;
+  border: none !important;
 }
