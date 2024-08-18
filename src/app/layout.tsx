@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import NavTop from '@components/navTop';
 import Head from 'next/head';
 
+
 export const metadata: Metadata = {
   title: "HH Direct Leads",
   description: "Generated SSTA",
@@ -25,6 +26,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <NavTop />
         {children}
       </body>
+
+
+
     </html>
   );
 }

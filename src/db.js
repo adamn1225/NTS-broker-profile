@@ -29,7 +29,14 @@ const createTables = async () => {
             freight VARCHAR(100),
             origin VARCHAR(100),
             destination VARCHAR(100),
-            shipment_date DATE
+            shipment_date DATE,
+            e_year VARCHAR(4),
+            e_make VARCHAR(50),
+            e_model VARCHAR(50),
+            length VARCHAR(50),
+            width VARCHAR(50),
+            height VARCHAR(50),
+            machine_weight VARCHAR(50),
         );
     `;
 
@@ -43,3 +50,20 @@ const createTables = async () => {
 
 // Call the function to create tables
 createTables();
+
+export const insertUser = async (user) => {
+    const { first_name, last_name, phone_number, email, freight, origin, destination, shipment_date } = user;
+    const text = `
+        INSERT INTO users (first_name, last_name, phone_number, email, freight, origin, destination, shipment_date)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        RETURNING *;
+    `;
+    const values = [first_name, last_name, phone_number, email, freight, origin, destination, shipment_date];
+    try {
+        const res = await pool.query(text, values);
+        return res.rows[0];
+    } catch (err) {
+        console.error('Error inserting user:', err);
+        throw err;
+    }
+};

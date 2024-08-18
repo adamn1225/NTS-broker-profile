@@ -1,7 +1,7 @@
 "use client"
 import { useState } from 'react';
 import { Button, Modal, Label, TextInput } from "flowbite-react";
-
+import LoginBanner from './LoginBanner'
 interface Props {}
 
 function AutoForm(props: Props) {
@@ -23,10 +23,11 @@ function AutoForm(props: Props) {
   return (
     <>
       <Button className='bg-button' onClick={() => setOpenModal(true)}>Auto Transport</Button>
-      <Modal show={openModal} size="md" onClose={onCloseModal} popup>
+      <Modal show={openModal} size="3xl" onClose={onCloseModal} popup>
         <Modal.Header />
-        <Modal.Body>
-          <form className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">
+         <LoginBanner />
+         <Modal.Body>
+          <form className="flex h-2/4 min-w-screen flex-col align-middle items-center justify-center gap-4">
             {currentStep === 1 && (
               <>
                 <h2 className='font-asterone font-medium underline underline-offset-8 text-slate-800 text-2xl'>Equipment/Freight Details</h2>

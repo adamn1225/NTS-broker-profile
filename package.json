@@ -10,6 +10,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.25.3",
+    "@babel/preset-react": "^7.24.7",
     "dotenv": "^16.4.5",
     "flowbite": "^2.5.1",
     "flowbite-react": "^0.10.1",
