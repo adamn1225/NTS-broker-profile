@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
@@ -22,7 +22,11 @@ const LoginPage = () => {
         if (res.ok) {
             const data = await res.json();
             if (data.authenticated) {
-                router.push('/');
+                if (data.isAdmin) {
+                    router.push('/admin/page.tsx');
+                } else {
+                    router.push('/');
+                }
             } else {
                 setError('Invalid credentials');
             }

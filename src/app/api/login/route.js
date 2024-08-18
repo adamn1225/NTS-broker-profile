@@ -9,6 +9,7 @@ export async function POST(req) {
 
     // Check if the user is already authenticated and an admin
     const cookies = req.cookies;
+    console.log('Cookies:', cookies);
     if (cookies.adminToken === 'true') {
         console.log('Admin already logged in, redirecting to admin page');
         return NextResponse.redirect('/admin/page.tsx');
@@ -33,13 +34,16 @@ export async function POST(req) {
         
                 // Set a cookie to indicate admin status if the user is an admin
                 if (user.is_admin) {
+                    console.log('Setting adminToken cookie');
                     response.cookies.set('adminToken', 'true', { httpOnly: true, path: '/' });
                 }
                 return response;
             } else {
+                console.log('Password invalid');
                 return NextResponse.json({ authenticated: false }, { status: 401 });
             }
         } else {
+            console.log('User not found');
             return NextResponse.json({ authenticated: false }, { status: 401 });
         }
     } catch (error) {
