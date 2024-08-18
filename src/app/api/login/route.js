@@ -15,7 +15,7 @@ export async function POST(req) {
     }
 
     try {
-        const queryText = 'SELECT * FROM users WHERE username = $1';
+        const queryText = 'SELECT * FROM public.users WHERE username = $1';
         console.log('Executing query:', queryText, 'with values:', [username]);
     
         const res = await query(queryText, [username]);
@@ -35,18 +35,15 @@ export async function POST(req) {
                 if (user.is_admin) {
                     response.cookies.set('adminToken', 'true', { httpOnly: true, path: '/' });
                 }
-        
                 return response;
             } else {
-                console.log('Invalid password for user:', username);
                 return NextResponse.json({ authenticated: false }, { status: 401 });
             }
         } else {
-            console.log('User not found:', username);
             return NextResponse.json({ authenticated: false }, { status: 401 });
         }
-    } catch (err) {
-        console.error('Error during login attempt:', err);
+    } catch (error) {
+        console.error('Error during login attempt:', error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }

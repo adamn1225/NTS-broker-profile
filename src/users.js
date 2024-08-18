@@ -29,7 +29,8 @@ export const createUsersTable = async () => {
         CREATE TABLE IF NOT EXISTS public.users (
             id SERIAL PRIMARY KEY,
             username VARCHAR(100) NOT NULL,
-            password VARCHAR(100) NOT NULL
+            password VARCHAR(100) NOT NULL,
+            is_admin BOOLEAN DEFAULT FALSE
         );
     `;
     try {
@@ -41,5 +42,22 @@ export const createUsersTable = async () => {
     }
 };
 
+const checkTableExists = async () => {
+    const query = `
+        SELECT to_regclass('public.users') AS table_exists;
+    `;
+    try {
+        const res = await client.query(query);
+        if (res.rows[0].table_exists) {
+            console.log('Users table exists');
+        } else {
+            console.log('Users table does not exist');
+        }
+    } catch (error) {
+        console.error('Error checking if users table exists:', error);
+    }
+};
+
 verifyConnection();
 createUsersTable();
+checkTableExists();
