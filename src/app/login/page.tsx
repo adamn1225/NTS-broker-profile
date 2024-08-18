@@ -1,47 +1,60 @@
 "use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-
-const authenticateUser = async (username: string, password: string) => {
-    // Replace this with your actual authentication logic
-    if (username === 'admin' && password === 'password') {
-        return true;
-    }
-    return false;
-};
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation'
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const router = useRouter();
 
-    const handleLogin = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const isAuthenticated = await authenticateUser(username, password);
-        if (isAuthenticated) {
-            router.push('/admin'); // Redirect to admin page on successful login
+        const res = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        });
+
+        if (res.ok) {
+            const data = await res.json();
+            if (data.authenticated) {
+                router.push('/');
+            } else {
+                setError('Invalid credentials');
+            }
         } else {
-            alert('Invalid credentials');
+            setError('Invalid credentials');
         }
     };
 
     return (
-        <form onSubmit={handleLogin}>
-            <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Username"
-            />
-            <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-            />
-            <button type="submit">Login</button>
-        </form>
+        <div>
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="unique-username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Username"
+                    autoComplete="new-username"
+                />
+                <input
+                    type="password"
+                    name="unique-password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password"
+                    autoComplete="new-password"
+                />
+                <input type="submit" value="Login" />
+            </form>
+            {error && <p>{error}</p>}
+        </div>
     );
 };
 

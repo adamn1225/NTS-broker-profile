@@ -6,7 +6,7 @@ export default function NavTop() {
   return (
     <Navbar fluid rounded className="px-24 bg-[url('https://www.heavyhaulers.com/nav-bg-new.png')]">
       <>
-        <Navbar.Brand as={Link} href="https://www.heavyhaulers.com/">
+        <Navbar.Brand as={Link} href="#">
           <img src="https://www.heavyhaulers.com/images/hh-label-icons/hh-verticle-logo-final.png" className="mr-3 h-6 sm:h-9" alt="Heavy Haulers Logo" />
         </Navbar.Brand>
         <Navbar.Toggle />

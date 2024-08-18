@@ -1,8 +1,34 @@
 "use client";
-import { useState } from 'react';
+
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { Button, Modal, Label, TextInput, Datepicker } from "flowbite-react";
 
-const MyForm = ({ currentStep, nextStep, prevStep, formData, handleChange, handleSubmit }) => {
+interface FormData {
+  e_year: string;
+  e_make: string;
+  e_model: string;
+  length: number;
+  width: number;
+  height: number;
+  machine_weight: number;
+  origin: string;
+  destination: string;
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+  email: string;
+}
+
+interface MyFormProps {
+  currentStep: number;
+  nextStep: () => void;
+  prevStep: () => void;
+  formData: FormData;
+  handleChange: (e: ChangeEvent<HTMLInputElement> | { target: { name: string, value: string } }) => void;
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
+}
+
+const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formData, handleChange, handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit} className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">
       {currentStep === 1 && (
@@ -51,32 +77,36 @@ const MyForm = ({ currentStep, nextStep, prevStep, formData, handleChange, handl
               <Label htmlFor="destination" value="ZIP destination" />
               <TextInput value={formData.destination} onChange={handleChange} name="destination" id="destination" type="text" placeholder='Zip code or city/state' />
             </div>
-            <div className="mb-1 block">
-              <Label htmlFor="ship_date" value="Shipping Date (estimating is fine)" />
-              <Datepicker name="shipment_date" value={formData.shipment_date} onChange={handleChange} id="ship_date" minDate={new Date()} />
-            </div>
+            {/* <div className="mb-1 block">
+              <Label htmlFor="shipment_date" value="Shipping Date (estimating is fine)" />
+              <Datepicker 
+    name="shipment_date" 
+    onChange={(date) => handleChange } 
+    id="shipment_date" 
+  />
+            </div> */}
           </div>
           <Button onClick={nextStep} className='px-4 bg-button'>Next</Button>
-        </>
-      )}
+          </>
+        )}
 
       {currentStep === 2 && (
         <>
           <h2 className='font-asterone font-medium underline underline-offset-8 text-slate-800 text-2xl'>Contact Details</h2>
           <div className="flex flex-row gap-2">
             <div className="mb-1 block">
-              <Label htmlFor="fname" value="Your first name" />
+              <Label htmlFor="first_name" value="Your first name" />
               <TextInput value={formData.first_name} onChange={handleChange} name="first_name" id="first_name" type="text" placeholder="John" required />
             </div>
             <div className="mb-1 block">
-              <Label htmlFor="lname" value="Your last name" />
+              <Label htmlFor="last_name" value="Your last name" />
               <TextInput value={formData.last_name} onChange={handleChange} name="last_name" id="last_name" type="text" placeholder="Doe" />
             </div>
           </div>
 
           <div className="flex flex-row gap-2">
             <div className="mb-1 block">
-              <Label htmlFor="pnumber" value="Best contact Number" />
+              <Label htmlFor="phone_number" value="Best contact Number" />
               <TextInput value={formData.phone_number} onChange={handleChange} name="phone_number" id="phone_number" type="number" placeholder="(---) --- ----" required />
             </div>
             <div className="mb-1 block">
@@ -97,15 +127,20 @@ const MyForm = ({ currentStep, nextStep, prevStep, formData, handleChange, handl
 const FreightForm = () => {
   const [openModal, setOpenModal] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
+    e_year: '',
+    e_make: '',
+    e_model: '',
+    length: 0,
+    width: 0,
+    height: 0,
+    machine_weight: 0,
+    origin: '',
+    destination: '',
     first_name: '',
     last_name: '',
     phone_number: '',
     email: '',
-    freight: '',
-    origin: '',
-    destination: '',
-    shipment_date: '',
   });
 
   const onCloseModal = () => {
@@ -120,12 +155,12 @@ const FreightForm = () => {
     setCurrentStep((prevStep) => prevStep - 1);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement> | { target: { name: string, value: string } }) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await fetch('/api/submit-form', {
@@ -151,7 +186,7 @@ const FreightForm = () => {
       <Button className='bg-button hover:bg-amber-400 hover:text-mute-200' onClick={() => setOpenModal(true)}>
         Construction Equipment/Heavy Duty Trucks
       </Button>
-      <Modal show={openModal} size="md" onClose={onCloseModal} popup>
+      <Modal show={openModal} size="3xl" onClose={onCloseModal} popup>
         <Modal.Header />
         <Modal.Body>
           <MyForm 

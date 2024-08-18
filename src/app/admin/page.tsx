@@ -1,55 +1,83 @@
-"use client";
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-
-interface User {
-    name: string;
-    // Add other fields as necessary
+interface FormData {
+    e_year: string;
+    e_make: string;
+    e_model: string;
+    length: string;
+    width: string;
+    height: string;
+    machine_weight: string;
+    origin: string;
+    destination: string;
+    first_name: string;
+    last_name: string;
+    phone_number: string;
+    email: string;
 }
 
-const AdminPage = () => {
-    const [formData, setFormData] = useState<User[]>([]);
-    const router = useRouter();
+const fetchFormData = async (): Promise<FormData[]> => {
+    const response = await fetch('http://localhost:3000/api/submit-form', {
+        cache: 'no-store',
+    });
+    const data: FormData[] = await response.json();
+    return Array.isArray(data) ? data : [];
+};
 
-    useEffect(() => {
-        const checkAdminLogin = (): boolean => {
-            // Implement your admin login check logic here
-            // For example, check a token in localStorage or a cookie
-            return true; // Replace with actual logic
-        };
+const AdminPage = async () => {
+    const adminToken = cookies().get('adminToken');
+    if (!adminToken) {
+        redirect('/login');
+    }
 
-        // Check if the user is logged in as an admin
-        const isAdmin = checkAdminLogin();
-        if (!isAdmin) {
-            router.push('/login'); // Redirect to login page if not an admin
-        } else {
-            fetchFormData();
-        }
-    }, [router]);
-
-    const fetchFormData = async () => {
-        try {
-            const response = await fetch('/api/form-data');
-            const data = await response.json();
-            if (Array.isArray(data)) {
-                setFormData(data);
-            } else {
-                console.error('Fetched data is not an array:', data);
-            }
-        } catch (error) {
-            console.error('Failed to fetch form data:', error);
-        }
-    };
+    const formData = await fetchFormData();
 
     return (
         <div>
-            {/* Render your admin page content here */}
             <h1>Admin Page</h1>
-            {/* Render form data */}
-            {formData.map((item, index) => (
-                <div key={index}>{item.name}</div>
-            ))}
+            {formData.length > 0 ? (
+                <table>
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th>Year</th>
+                            <th>Make</th>
+                            <th>Model</th>
+                            <th>Length</th>
+                            <th>Width</th>
+                            <th>Height</th>
+                            <th>Weight</th>
+                            <th>Origin</th>
+                            <th>Destination</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {formData.map((item, index) => (
+                            <tr key={index}>
+                                <td>{item.first_name}</td>
+                                <td>{item.last_name}</td>
+                                <td>{item.phone_number}</td>
+                                <td>{item.email}</td>
+                                <td>{item.e_year}</td>
+                                <td>{item.e_make}</td>
+                                <td>{item.e_model}</td>
+                                <td>{item.length}</td>
+                                <td>{item.width}</td>
+                                <td>{item.height}</td>
+                                <td>{item.machine_weight}</td>
+                                <td>{item.origin}</td>
+                                <td>{item.destination}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            ) : (
+                <p>No data available</p>
+            )}
         </div>
     );
 };

@@ -1,23 +1,52 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { query } from '../../../db';
 import bcrypt from 'bcrypt'; // Assuming passwords are hashed
 
-export async function POST(req: NextRequest) {
+export async function POST(req) {
     const { username, password } = await req.json();
 
-    try {
-        const res = await query('SELECT * FROM users WHERE username = $1', [username]);
-        const user = res.rows[0];
+    console.log('Login attempt for username:', username);
 
-        if (user && await bcrypt.compare(password, user.password)) {
-            // Password matches
-            return NextResponse.json({ authenticated: true }, { status: 200 });
+    // Check if the user is already authenticated and an admin
+    const cookies = req.cookies;
+    if (cookies.adminToken === 'true') {
+        console.log('Admin already logged in, redirecting to admin page');
+        return NextResponse.redirect('/admin/page.tsx');
+    }
+
+    try {
+        const queryText = 'SELECT * FROM users WHERE username = $1';
+        console.log('Executing query:', queryText, 'with values:', [username]);
+    
+        const res = await query(queryText, [username]);
+        const user = res.rows[0];
+        
+        console.log('User found:', user);
+        
+        if (user) {
+            const isPasswordValid = await bcrypt.compare(password, user.password);
+            console.log('Password valid:', isPasswordValid);
+        
+            if (isPasswordValid) {
+                // Password matches
+                const response = NextResponse.json({ authenticated: true, isAdmin: user.is_admin }, { status: 200 });
+        
+                // Set a cookie to indicate admin status if the user is an admin
+                if (user.is_admin) {
+                    response.cookies.set('adminToken', 'true', { httpOnly: true, path: '/' });
+                }
+        
+                return response;
+            } else {
+                console.log('Invalid password for user:', username);
+                return NextResponse.json({ authenticated: false }, { status: 401 });
+            }
         } else {
-            // Invalid credentials
+            console.log('User not found:', username);
             return NextResponse.json({ authenticated: false }, { status: 401 });
         }
     } catch (err) {
-        console.error('Error during authentication:', err); // Log the error for debugging
-        return NextResponse.json({ error: 'Failed to authenticate' }, { status: 500 });
+        console.error('Error during login attempt:', err);
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }
