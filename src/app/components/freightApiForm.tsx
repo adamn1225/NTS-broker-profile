@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent } from 'react';
-import { Button, Modal, Label, TextInput } from "flowbite-react";
+import { Button, Modal, Label, TextInput, Datepicker } from "flowbite-react";
 import emailjs from 'emailjs-com';
 
 interface FormData {
@@ -18,7 +18,6 @@ interface FormData {
   last_name: string;
   phone_number: string;
   email: string;
-  company: string;
 }
 
 interface MyFormProps {
@@ -27,13 +26,14 @@ interface MyFormProps {
   prevStep: () => void;
   formData: FormData;
   handleChange: (e: ChangeEvent<HTMLInputElement> | { target: { name: string, value: string } }) => void;
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }
 
-const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formData, handleChange }) => {
+const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formData, handleChange, handleSubmit }) => {
   const sendEmail = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_6gziuve', 'template_3h9ecks', e.currentTarget, 'rrWtzpNKcD6Y5952J')
+    emailjs.sendForm('service_6gziuve', 'template_3h9ecks', e.currentTarget, 'adam@exacttransport.com')
       .then((result) => {
         console.log(result.text);
         alert('Form submitted successfully!');
@@ -42,9 +42,8 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
         alert('Failed to submit the form.');
       });
   };
-
   return (
-    <form onSubmit={sendEmail} className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">
+    <form onSubmit={(e) => { handleSubmit(e); sendEmail(e); }} className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">
       {currentStep === 1 && (
         <>
           <h2 className='font-asterone font-medium underline underline-offset-8 text-slate-800 text-2xl'>Equipment/Freight Details</h2>
@@ -91,10 +90,18 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
               <Label htmlFor="destination" value="ZIP destination" />
               <TextInput value={formData.destination} onChange={handleChange} name="destination" id="destination" type="text" placeholder='Zip code or city/state' />
             </div>
+            {/* <div className="mb-1 block">
+              <Label htmlFor="shipment_date" value="Shipping Date (estimating is fine)" />
+              <Datepicker 
+    name="shipment_date" 
+    onChange={(date) => handleChange } 
+    id="shipment_date" 
+  />
+            </div> */}
           </div>
           <Button onClick={nextStep} className='px-4 bg-button'>Next</Button>
-        </>
-      )}
+          </>
+        )}
 
       {currentStep === 2 && (
         <>
@@ -107,10 +114,6 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
             <div className="mb-1 block">
               <Label htmlFor="last_name" value="Your last name" />
               <TextInput value={formData.last_name} onChange={handleChange} name="last_name" id="last_name" type="text" placeholder="Doe" />
-            </div>
-            <div className="mb-1 block">
-              <Label htmlFor="company" value="Company name (optional)" />
-              <TextInput value={formData.last_name} onChange={handleChange} name="company" id="company" type="text" placeholder="Your company name inc" />
             </div>
           </div>
 
@@ -134,7 +137,7 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
   );
 };
 
-const FreightForm = () => {
+const FreightApiForm = () => {
   const [openModal, setOpenModal] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
@@ -151,7 +154,6 @@ const FreightForm = () => {
     last_name: '',
     phone_number: '',
     email: '',
-    company: '',
   });
 
   const onCloseModal = () => {
@@ -171,6 +173,27 @@ const FreightForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+      if (result.success) {
+        console.log('User inserted:', result.user);
+      } else {
+        console.error('Error inserting user:', result.error);
+      }
+    } catch (err) {
+      console.error('Error submitting form:', err);
+    }
+  };
+
   return (
     <>
       <Button className='bg-button hover:bg-amber-400 hover:text-mute-200' onClick={() => setOpenModal(true)}>
@@ -185,6 +208,7 @@ const FreightForm = () => {
             prevStep={prevStep}
             formData={formData}
             handleChange={handleChange}
+            handleSubmit={handleSubmit}
           />
         </Modal.Body>
       </Modal>
@@ -192,4 +216,4 @@ const FreightForm = () => {
   );
 };
 
-export default FreightForm;
+export default FreightApiForm;
