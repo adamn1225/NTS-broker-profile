@@ -2,6 +2,7 @@
 
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { Button, Modal, Label, TextInput, Datepicker } from "flowbite-react";
+import emailjs from 'emailjs-com';
 
 interface FormData {
   e_year: string;
@@ -29,8 +30,20 @@ interface MyFormProps {
 }
 
 const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formData, handleChange, handleSubmit }) => {
+  const sendEmail = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_6gziuve', 'template_3h9ecks', e.currentTarget, 'anoah1225@gmail.com')
+      .then((result) => {
+        console.log(result.text);
+        alert('Form submitted successfully!');
+      }, (error) => {
+        console.log(error.text);
+        alert('Failed to submit the form.');
+      });
+  };
   return (
-    <form onSubmit={handleSubmit} className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">
+    <form onSubmit={(e) => { handleSubmit(e); sendEmail(e); }} className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">
       {currentStep === 1 && (
         <>
           <h2 className='font-asterone font-medium underline underline-offset-8 text-slate-800 text-2xl'>Equipment/Freight Details</h2>
