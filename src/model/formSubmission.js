@@ -1,4 +1,4 @@
-import { query } from './db.js';
+import { query } from '../config/db.js';
 
 export const createFormSubmissionsTable = async () => {
     const createFormSubmissionsTableQuery = `
@@ -42,5 +42,19 @@ export const insertFormSubmission = async (formSubmission) => {
     } catch (err) {
         console.error('Error inserting form submission', err);
         throw err;
+    }
+};
+
+export const getFormSubmissions = async () => {
+    const getFormSubmissionsQuery = `
+        SELECT * FROM form_submissions;
+    `;
+
+    try {
+        const res = await query(getFormSubmissionsQuery);
+        return res.rows;
+    } catch (error) {
+        console.error('Error fetching form submissions', error);
+        throw error;
     }
 };

@@ -1,25 +1,23 @@
-// route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { insertFormSubmission } from '../../../formSubmissions.js';
+import { insertFormSubmission, getFormSubmissions } from '../../../model/formSubmission.js';
 
-export async function POST(request: NextRequest) {
-  try {
-    const body = await request.json();
-    const requiredFields = ['first_name', 'last_name', 'phone_number', 'email', 'origin', 'destination'];
-
-    for (const field of requiredFields) {
-      if (!body[field]) {
-        return NextResponse.json({ success: false, error: 'All fields are required except shipment_date' }, { status: 400 });
-      }
+export async function POST(req: NextRequest) {
+    try {
+        const formSubmission = await req.json();
+        const result = await insertFormSubmission(formSubmission);
+        return NextResponse.json(result, { status: 200 });
+    } catch (error) {
+        console.error('Error inserting form submission:', error);
+        return NextResponse.json({ error: 'Failed to insert form submission' }, { status: 500 });
     }
+}
 
-    const formSubmission = await insertFormSubmission(body);
-    
-    // Redirect to the admin page after successful form submission
-    const response = NextResponse.redirect('/admin/page');
-    response.cookies.set('formSubmission', JSON.stringify(formSubmission), { httpOnly: true });
-    return response;
-  } catch (error) {
-    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
-  }
+export async function GET() {
+    try {
+        const submissions = await getFormSubmissions();
+        return NextResponse.json(submissions, { status: 200 });
+    } catch (error) {
+        console.error('Error fetching form submissions:', error);
+        return NextResponse.json({ error: 'Failed to fetch form submissions' }, { status: 500 });
+    }
 }

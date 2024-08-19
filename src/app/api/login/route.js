@@ -1,53 +1,38 @@
+import { query } from '../../../config/db.js';
+import bcrypt from 'bcrypt';
 import { NextResponse } from 'next/server';
-import { query } from '../../../db';
-import bcrypt from 'bcrypt'; // Assuming passwords are hashed
+import envConfig from '../../../../config.js'; // Adjusted path to the new configuration file
 
 export async function POST(req) {
     const { username, password } = await req.json();
-
-    console.log('Login attempt for username:', username);
-
-    // Check if the user is already authenticated and an admin
     const cookies = req.cookies;
-    console.log('Cookies:', cookies);
+
     if (cookies.adminToken === 'true') {
         console.log('Admin already logged in, redirecting to admin page');
-        return NextResponse.redirect('/admin/page.tsx');
+        return NextResponse.json({ authenticated: true, isAdmin: true });
     }
 
     try {
-        const queryText = 'SELECT * FROM public.users WHERE username = $1';
-        console.log('Executing query:', queryText, 'with values:', [username]);
-    
-        const res = await query(queryText, [username]);
-        const user = res.rows[0];
-        
-        console.log('User found:', user);
-        
-        if (user) {
-            const isPasswordValid = await bcrypt.compare(password, user.password);
-            console.log('Password valid:', isPasswordValid);
-        
-            if (isPasswordValid) {
-                // Password matches
-                const response = NextResponse.json({ authenticated: true, isAdmin: user.is_admin }, { status: 200 });
-        
-                // Set a cookie to indicate admin status if the user is an admin
-                if (user.is_admin) {
-                    console.log('Setting adminToken cookie');
-                    response.cookies.set('adminToken', 'true', { httpOnly: true, path: '/' });
-                }
+        // Special case for xp_12
+        if (username === 'xp_12') {
+            const xp12Password = envConfig.XP_12_PASSWORD;
+            const isMatch = await bcrypt.compare(password, xp12Password);
+
+            if (isMatch) {
+                console.log('Password match for xp_12');
+                const response = NextResponse.json({ authenticated: true, isAdmin: true });
+                response.cookies.set('adminToken', 'true', { httpOnly: true });
+                response.cookies.set('username', 'xp_12', { httpOnly: true });
                 return response;
             } else {
-                console.log('Password invalid');
                 return NextResponse.json({ authenticated: false }, { status: 401 });
             }
-        } else {
-            console.log('User not found');
-            return NextResponse.json({ authenticated: false }, { status: 401 });
         }
+
+        // Add logic for other users if needed
+
     } catch (error) {
-        console.error('Error during login attempt:', error);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+        console.error('Error during login:', error);
+        return NextResponse.json({ authenticated: false, error: 'Internal server error' }, { status: 500 });
     }
 }

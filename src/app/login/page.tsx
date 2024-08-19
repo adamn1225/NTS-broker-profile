@@ -9,31 +9,32 @@ const LoginPage = () => {
     const [error, setError] = useState('');
     const router = useRouter();
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const res = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, password }),
-        });
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+    });
 
-        if (res.ok) {
-            const data = await res.json();
-            if (data.authenticated) {
-                if (data.isAdmin) {
-                    router.push('/admin/page.tsx');
-                } else {
-                    router.push('/');
-                }
+    if (res.ok) {
+        const data = await res.json();
+        console.log('Response Data:', data); // Add this line to log the response data
+        if (data.authenticated) {
+            if (data.isAdmin) {
+                router.push('/admin');
             } else {
-                setError('Invalid credentials');
+                router.push('/');
             }
         } else {
             setError('Invalid credentials');
         }
-    };
+    } else {
+        setError('Invalid credentials');
+    }
+};
 
     return (
         <div>

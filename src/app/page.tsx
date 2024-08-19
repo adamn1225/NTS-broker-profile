@@ -3,6 +3,7 @@ import FreightForm from "@components/freightForm";
 import AutoForm from "@components/autoForm";
 import LtlForm from '@components/ltlForm';
 import NavBanner from './components/NavBanner';
+import NavTop from '@components/navTop';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <div className="absolute inset-0 bg-dump-bg bg-cover bg-center opacity-50"></div>
       <div className="absolute inset-0 bg-gray-950 opacity-70"></div>
       <div className="relative z-10 flex flex-col h-1/2">
+      <NavTop />
         <NavBanner />
          
           <div className="flex flex-col gap-10 justify-center items-center flex-1 ">
