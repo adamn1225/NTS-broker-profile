@@ -6,12 +6,13 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "es2020",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"

@@ -1,11 +1,30 @@
 "use client";
 import Cookies from 'js-cookie';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const AdminPageClient = () => {
-    const [formSubmissions, setFormSubmissions] = useState([]);
-    const [error, setError] = useState(null);
-    const username = 'Admin'; // Replace with username logic
+// Define the type for form submission data
+interface FormSubmission {
+    user_id: string;
+    username: string;
+    phone_number: string;
+    freight: string;
+    origin: string;
+    destination: string;
+    e_year: string;
+    e_make: string;
+    e_model: string;
+    length: string;
+    // Add other properties as needed
+}
+
+// Define the props for AdminPageClient
+interface AdminPageClientProps {
+    username: string;
+}
+
+const AdminPageClient: React.FC<AdminPageClientProps> = ({ username }) => {
+    const [formSubmissions, setFormSubmissions] = useState<FormSubmission[]>([]);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchFormSubmissions = async () => {
@@ -16,10 +35,14 @@ const AdminPageClient = () => {
                 if (!response.ok) {
                     throw new Error(`Failed to fetch form submissions: ${response.statusText}`);
                 }
-                const data = await response.json();
+                const data: FormSubmission[] = await response.json();
                 setFormSubmissions(data);
             } catch (error) {
-                setError(error.message);
+                if (error instanceof Error) {
+                    setError(error.message);
+                } else {
+                    setError('An unknown error occurred');
+                }
             }
         };
 
@@ -32,9 +55,9 @@ const AdminPageClient = () => {
 
     return (
         <div>
-            <h1>Welcome, {username}</h1>
-            <h1>Form Submissions</h1>
-            <table className="min-w-full border-collapse border border-gray-800/40">
+            <h1 className='text-slate-700 text-3xl mb-12'>Welcome, {username}</h1>
+            <h1 className='text-slate-700 text-xl mb-2'>Form Submissions</h1>
+            <table className="min-w-full border-collapse border border-gray-800/40 text-slate-700">
                 <thead>
                     <tr>
                         <th className="border border-gray-800/40 px-4 py-2">User ID</th>

@@ -1,4 +1,4 @@
-import { query } from '../../../config/db.js';
+import { query } from '../../../../config/db.js';
 import bcrypt from 'bcrypt';
 import { NextResponse } from 'next/server';
 

@@ -7,7 +7,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-const storedHash = process.env.XP_12_PASSWORD;
+const storedHash = process.env.NOAH_PASSWORD;
 
 app.post('/api/login', (req, res) => {
     const { password } = req.body;

@@ -1,26 +1,20 @@
-// verifyPassword.js
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const password = 'Adam123';
-const hashedPassword = process.env.XP_12_PASSWORD;
+const password = process.argv[2]; // Pass the password as a command-line argument
+const hashedPassword = process.env.NOAH_PASSWORD;
 
-if (!hashedPassword) {
-    console.error('XP_12_PASSWORD environment variable is not set');
+if (!password) {
+    console.error('Please provide a password to verify.');
     process.exit(1);
 }
 
-bcrypt.compare(password, hashedPassword, (err, result) => {
+bcrypt.compare(password, hashedPassword, function(err, result) {
     if (err) {
-        console.error('Error comparing password:', err);
-        process.exit(1);
-    }
-
-    if (result) {
-        console.log('Password matches the hash');
+        console.error('Error verifying password:', err);
     } else {
-        console.log('Password does not match the hash');
+        console.log('Password match:', result);
     }
 });
