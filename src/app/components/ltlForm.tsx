@@ -5,7 +5,7 @@ import { Button, Modal, Label, TextInput } from "flowbite-react";
 import emailjs from 'emailjs-com';
 
 interface FormData {
-  count: number;
+  count: string;
   commodity: string;
   ltl_value: number;
   length: number;
@@ -47,14 +47,14 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
       {currentStep === 1 && (
         <>
           <h2 className='font-asterone font-medium underline underline-offset-8 text-slate-800 text-2xl'>Shipment Details</h2>
-          <div className="flex flex-row gap-2">
+          <div className="flex md:flex-row flex-col gap-2 w-full border-b border-slate-700/40 pb-3">
             <div className="mb-1 block">
-              <Label htmlFor="count" value="Pallet/Crate Ct." />
-              <TextInput value={formData.count} onChange={handleChange} name="e_year" id="e_year" type="number" placeholder="0" required />
+              <Label htmlFor="count" value="Unit Ct." />
+              <TextInput value={formData.count} onChange={handleChange} name="count" id="count" type="text" placeholder="11 Pallets, Crates, etc." />
             </div>
             <div className="mb-1 block">
               <Label htmlFor="Commodity" value="Commodity" />
-              <TextInput value={formData.commodity} onChange={handleChange} name="commodity" id="commodity" type="text" placeholder="Electronic parts" required />
+              <TextInput value={formData.commodity} onChange={handleChange} name="commodity" id="commodity" type="text" placeholder="Electronic parts" />
             </div>
             <div className="mb-1 block">
               <Label htmlFor="freight_value" value="Freight value (for LTL insurance)" />
@@ -62,17 +62,26 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
             </div>
           </div>
 
-          <div className="flex flex-row gap-2 border-b border-slate-700/40 pb-3">
+
+        <div className="flex flex-col">
+
+        <div className="text-slate-800 md:px-3 mb-2 border-b border-slate-700/40">
+          <h2 className="md:text-center"><strong>For FTL</strong> - Provide estimated dimensions of van/flatbed space needed</h2>
+          <h3 className="md:text-center"><strong>For LTL</strong> - Provide estimated dimensions of each unit - fine to average if each unit's different</h3>
+        </div>
+        
+          <div className="flex md:flex-row flex-col gap-2 ">
+
             <div className="mb-1 block">
-              <Label htmlFor="length" value="Length (in)" />
-              <TextInput value={formData.length} onChange={handleChange} name="length" id="length" type="number" placeholder="48" required />
+              <Label htmlFor="length" value="Length (ft, in)" />
+              <TextInput value={formData.length} onChange={handleChange} name="length" id="length" type="number" placeholder="48" />
             </div>
             <div className="mb-1 block">
-              <Label htmlFor="width" value="Width (in)" />
-              <TextInput value={formData.width} onChange={handleChange} name="width" id="width" type="number" placeholder="48" required />
+              <Label htmlFor="width" value="Width (ft, in)" />
+              <TextInput value={formData.width} onChange={handleChange} name="width" id="width" type="number" placeholder="48" />
             </div>
             <div className="mb-1 block">
-              <Label htmlFor="height" value="Height (in)" />
+              <Label htmlFor="height" value="Height (ft, in)" />
               <TextInput value={formData.height} onChange={handleChange} name="height" id="height" type="number" placeholder='60' />
             </div>
             <div className="block">
@@ -80,8 +89,17 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
               <TextInput value={formData.machine_weight} onChange={handleChange} name="machine_weight" id="weight" type="number" placeholder='800' />
             </div>
           </div>
-          
-          <div className="flex flex-row gap-2">
+            <div className='flex flex-col text-center my-2 text-slate-800 border border-slate-700/40 p-3'>
+              <h3 className='text-md px-0'>Straight Dry Van <strong>Interior</strong>  Dimensions:</h3>
+              <h2 className='text-sm'><strong>Length:</strong> 52'8"-53'</h2>
+              <h2 className='text-sm'><strong>Width:</strong> 98-102.36 in</h2>
+              <h2 className='text-sm'><strong>Height:</strong> 108-111 in</h2>
+            </div>
+          </div>
+
+
+
+          <div className="flex flex-row gap-2 align-middle justify-center">
             <div className="mb-1 block">
               <Label htmlFor="origin" value="ZIP origin" />
               <TextInput value={formData.origin} onChange={handleChange} name="origin" id="origin" type="text" placeholder="Zip code or city/state" required />
@@ -103,6 +121,7 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
               <Label htmlFor="first_name" value="Your first name" />
               <TextInput value={formData.first_name} onChange={handleChange} name="first_name" id="first_name" type="text" placeholder="John" required />
             </div>
+           
             <div className="mb-1 block">
               <Label htmlFor="last_name" value="Your last name" />
               <TextInput value={formData.last_name} onChange={handleChange} name="last_name" id="last_name" type="text" placeholder="Doe" />
@@ -111,7 +130,7 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
 
           <div className="flex flex-row gap-2">
             <div className="mb-1 block">
-              <Label htmlFor="phone_number" value="Best contact Number" />
+              <Label htmlFor="phone_number" value="Best Number" />
               <TextInput value={formData.phone_number} onChange={handleChange} name="phone_number" id="phone_number" type="number" placeholder="(---) --- ----" required />
             </div>
             <div className="mb-1 block">
@@ -133,7 +152,7 @@ const LtlForm = () => {
   const [openModal, setOpenModal] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
-    count: 0,
+    count: '',
     commodity: '',
     ltl_value: 0,
     length: 0,
@@ -168,7 +187,7 @@ const LtlForm = () => {
   return (
     <>
       <Button className='bg-button hover:bg-amber-400 hover:text-mute-200' onClick={() => setOpenModal(true)}>
-        Construction Equipment/Heavy Duty Trucks
+        LTL/FTL
       </Button>
       <Modal show={openModal} size="3xl" onClose={onCloseModal} popup>
         <Modal.Header />

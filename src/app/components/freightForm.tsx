@@ -111,7 +111,7 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
 
           <div className="flex flex-row gap-2">
             <div className="mb-1 block">
-              <Label htmlFor="phone_number" value="Best contact Number" />
+              <Label htmlFor="phone_number" value="Best Number" />
               <TextInput value={formData.phone_number} onChange={handleChange} name="phone_number" id="phone_number" type="number" placeholder="(---) --- ----" required />
             </div>
             <div className="mb-1 block">

@@ -42,24 +42,24 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
     <form onSubmit={sendEmail} className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">
       {currentStep === 1 && (
         <>
-          <h2 className='font-asterone font-medium underline underline-offset-8 text-slate-800 text-2xl'>Equipment/Freight Details</h2>
-          <div className="flex flex-row gap-2">
+          <h2 className='font-asterone w-full underline underline-offset-8 text-slate-800 text-lg font-bold text-center md:text-2xl'>Equipment/Freight Details</h2>
+          <div className="flex flex-col md:flex-row gap-2">
             <div className="mb-1 block">
               <Label htmlFor="year" value="Year (optional)" />
-              <TextInput value={formData.e_year} onChange={handleChange} name="e_year" id="e_year" type="text" placeholder="2004" required />
+              <TextInput value={formData.e_year} onChange={handleChange} name="e_year" id="e_year" type="text" placeholder="2020" required />
             </div>
             <div className="mb-1 block">
               <Label htmlFor="make" value="Make" />
-              <TextInput value={formData.e_make} onChange={handleChange} name="e_make" id="e_make" type="text" placeholder="Caterpillar" required />
+              <TextInput value={formData.e_make} onChange={handleChange} name="e_make" id="e_make" type="text" placeholder="Infiniti" required />
             </div>
             <div className="mb-1 block">
               <Label htmlFor="model" value="Model" />
-              <TextInput value={formData.e_model} onChange={handleChange} name="e_model" id="e_model" type="text" placeholder='D8T'/>
+              <TextInput value={formData.e_model} onChange={handleChange} name="e_model" id="e_model" type="text" placeholder='Q50'/>
             </div>
           </div>
 
           
-          <div className="flex flex-row gap-2">
+          <div className="flex flex-col md:flex-row gap-2">
             <div className="mb-1 block">
               <Label htmlFor="origin" value="ZIP origin" />
               <TextInput value={formData.origin} onChange={handleChange} name="origin" id="origin" type="text" placeholder="Zip code or city/state" required />
@@ -89,7 +89,7 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
 
           <div className="flex flex-row gap-2">
             <div className="mb-1 block">
-              <Label htmlFor="phone_number" value="Best contact Number" />
+              <Label htmlFor="phone_number" value="Best Number" />
               <TextInput value={formData.phone_number} onChange={handleChange} name="phone_number" id="phone_number" type="number" placeholder="(---) --- ----" required />
             </div>
             <div className="mb-1 block">
@@ -142,7 +142,7 @@ const AutoForm = () => {
   return (
     <>
       <Button className='bg-button hover:bg-amber-400 hover:text-mute-200' onClick={() => setOpenModal(true)}>
-        Construction Equipment/Heavy Duty Trucks
+        Auto Transport
       </Button>
       <Modal show={openModal} size="3xl" onClose={onCloseModal} popup>
         <Modal.Header />

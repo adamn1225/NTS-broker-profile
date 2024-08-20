@@ -28,7 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </Head>
       <body className="flex flex-col min-h-screen">
         <NavTop />
-        <NavBanner />
+        {/* <NavBanner /> */}
         <main className="flex-grow relative max-h-max w-screen">
           {children}
         </main>

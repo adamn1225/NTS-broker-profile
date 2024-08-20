@@ -10,11 +10,7 @@ html, body {
   overflow-x: hidden;
 }
 
-#root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -48,7 +44,7 @@ button:not(.banner-collapse-button) {
 }
 
 .navbar-link-hover {
-  @apply text-slate-700 hover:text-slate-900;
+  @apply text-slate-700 hover:text-slate-900 !important;
 }
 
 /* Custom styles for button with bg-button class */
