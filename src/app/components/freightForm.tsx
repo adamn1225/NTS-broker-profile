@@ -18,7 +18,6 @@ interface FormData {
   last_name: string;
   phone_number: string;
   email: string;
-  company: string;
 }
 
 interface MyFormProps {
@@ -108,10 +107,6 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
               <Label htmlFor="last_name" value="Your last name" />
               <TextInput value={formData.last_name} onChange={handleChange} name="last_name" id="last_name" type="text" placeholder="Doe" />
             </div>
-            <div className="mb-1 block">
-              <Label htmlFor="company" value="Company name (optional)" />
-              <TextInput value={formData.company} onChange={handleChange} name="company" id="company" type="text" placeholder="Your company name inc" />
-            </div>
           </div>
 
           <div className="flex flex-row gap-2">
@@ -151,7 +146,6 @@ const FreightForm = () => {
     last_name: '',
     phone_number: '',
     email: '',
-    company: '',
   });
 
   const onCloseModal = () => {
