@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -54,3 +68,18 @@ button.bg-button:hover {
   background-color: transparent !important;
   border: none !important;
 }
+
+.footer-button {
+  max-width: 100%;
+  @apply hover:bg-slate-800 text-gray-400 font-bold w-1/12;
+  white-space: nowrap;
+}
+
+.footer-links {
+  @apply text-mute-200;
+}
+
+main {
+  flex: 1;
+}
+
