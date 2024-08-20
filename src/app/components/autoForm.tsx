@@ -28,7 +28,7 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
   const sendEmail = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_6gziuve', 'template_3h9ecks', e.currentTarget, 'rrWtzpNKcD6Y5952J')
+    emailjs.sendForm('service_6gziuve', 'template_01cuvab', e.currentTarget, 'rrWtzpNKcD6Y5952J')
       .then((result) => {
         console.log(result.text);
         alert('Form submitted successfully!');
