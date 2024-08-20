@@ -110,7 +110,7 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
             </div>
             <div className="mb-1 block">
               <Label htmlFor="company" value="Company name (optional)" />
-              <TextInput value={formData.last_name} onChange={handleChange} name="company" id="company" type="text" placeholder="Your company name inc" />
+              <TextInput value={formData.company} onChange={handleChange} name="company" id="company" type="text" placeholder="Your company name inc" />
             </div>
           </div>
 

@@ -27,11 +27,11 @@ export default function PageFooter() {
         />
       </div>
       <Footer.LinkGroup className="flex flex-wrap">
-        <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="#">Blog</Footer.Link>
-        <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="#">Portfolio</Footer.Link>
-        <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="#">NTS Profile</Footer.Link>
-        <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="#">LinkedIn</Footer.Link>
-        <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:pr-4" href="#">GitHub</Footer.Link>
+        {/* <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="#">Blog</Footer.Link>
+        <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="#">Portfolio</Footer.Link> */}
+        <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="https://ntslogistics.com/team/adam-noah/">NTS Profile</Footer.Link>
+        <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="https://www.linkedin.com/in/adam-m-noah/">LinkedIn</Footer.Link>
+        <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:pr-4" href="https://github.com/adamn1225">GitHub</Footer.Link>
       </Footer.LinkGroup>
     </div>
     <Footer.Divider />
