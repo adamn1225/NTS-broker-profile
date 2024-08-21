@@ -1,6 +1,6 @@
 "use client";
-import Cookies from 'js-cookie';
-import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie.js';
+import React, { useState, useEffect } from 'react.js';
 
 // Define the type for form submission data
 interface FormSubmission {

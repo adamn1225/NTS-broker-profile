@@ -1,9 +1,7 @@
 "use client";
-
-import { ReactNode, useEffect, useState } from "react";
-import Head from 'next/head';
+import React, { useState, useEffect, ReactNode } from 'react';
 import PageFooter from "@components/PageFooter";
-import NavTop from '@components/navTop';
+import NavTop from '@/app/components/navTop';
 import { metadata } from './metadata'; // Import metadata
 
 interface RootLayoutProps {
@@ -19,11 +17,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="en">
-      <Head>
+      <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+      </head>
       <body className="flex flex-col min-h-screen">
         <NavTop />
         <main className="flex-grow relative max-h-max w-screen">

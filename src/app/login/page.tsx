@@ -1,66 +1,36 @@
 "use client";
-
+import '../globals.css';
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import BrokerLogin from './brokerLogin';
+import { Button, Modal, Label, TextInput } from "flowbite-react";
+import BrokerRegister from './brokerRegister';
 
 const LoginPage = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const router = useRouter();
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
 
-const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const res = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-    });
+  const handleLoginClick = () => {
+    setShowLogin(true);
+    setShowRegister(false);
+  };
 
-    if (res.ok) {
-        const data = await res.json();
-        console.log('Response Data:', data); // Add this line to log the response data
-        if (data.authenticated) {
-            if (data.isAdmin) {
-                router.push('/admin');
-            } else {
-                router.push('/');
-            }
-        } else {
-            setError('Invalid credentials');
-        }
-    } else {
-        setError('Invalid credentials');
-    }
-};
+  const handleRegisterClick = () => {
+    setShowRegister(true);
+    setShowLogin(false);
+  };
 
-    return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="unique-username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder="Username"
-                    autoComplete="new-username"
-                />
-                <input
-                    type="password"
-                    name="unique-password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                    autoComplete="new-password"
-                />
-                <input type="submit" value="Login" />
-            </form>
-            {error && <p>{error}</p>}
-        </div>
-    );
+  return (
+<div className=" w-full h-full flex flex-col justify-center items-center">
+  <div className="flex flex-row gap-4">
+    <Button className='bg-button' onClick={handleLoginClick}>Login</Button>
+    <Button className='bg-button' onClick={handleRegisterClick}>Register</Button>
+  </div>
+  <div className="flex flex-col">
+    {showLogin && <BrokerLogin />}
+    {showRegister && <BrokerRegister />}
+  </div>
+</div>
+  );
 };
 
 export default LoginPage;

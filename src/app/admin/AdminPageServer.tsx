@@ -1,10 +1,10 @@
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
-import AdminPageClient from './AdminPageClient';
+import { cookies } from 'next/headers.js';
+import { redirect } from 'next/navigation.js';
+import AdminPageClient from './AdminPageClient.js';
 import '../globals.css';
-import AdminLayout from './AdminLayout'; // Adjust the import path as necessary
+import AdminLayout from './AdminLayout.js'; // Adjust the import path as necessary
 
-import React from 'react';
+import React from 'react.js';
 
 const AdminPageServer = async () => {
     const adminToken = cookies().get('adminToken');

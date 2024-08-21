@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import AdminNav from '@components/AdminNav';
-import Head from 'next/head';
+import AdminNav from '@components/AdminNav.js';
+import Head from 'next/head.js';
 
 interface AdminLayoutProps {
   children: ReactNode;

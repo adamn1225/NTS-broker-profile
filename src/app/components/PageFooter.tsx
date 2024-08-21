@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Navbar, Button } from "flowbite-react";
 import { Footer } from "flowbite-react";
+import BrokerRegister from '../login/brokerRegister';
 
 export default function PageFooter() {
   return (
@@ -36,8 +37,9 @@ export default function PageFooter() {
     </div>
     <Footer.Divider />
     <div className="px-4 flex md:flex-row flex-col justify-center items-center">
-      <Button href="/login" className="md:bg-gray-600 bg-transparent md:w-1/6 w-1/2 text-gray-300 footer-button hover:bg-slate-800 hover:text-mute-200">Admin Login</Button>
+      <Button href="/login" className="md:bg-gray-600 bg-transparent md:w-1/6 w-1/2 text-gray-300 footer-button hover:bg-slate-800 hover:text-mute-200">Broker Login/Register</Button>
     </div>
+    
     <Footer.Copyright by="SSTA & NTS Logistics LLC" year={2024} />
   </div>
 </Footer>

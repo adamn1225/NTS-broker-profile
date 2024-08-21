@@ -1,4 +1,4 @@
-import { query } from '../config/db.js';
+import { query } from '../config/db';
 import bcrypt from 'bcrypt';
 
 const insertUser = async (username, password, isAdmin = false) => {

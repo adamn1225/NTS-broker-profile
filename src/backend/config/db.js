@@ -14,3 +14,12 @@ const pool = new Pool({
 });
 
 export const query = (text, params) => pool.query(text, params);
+
+export const connectDB = async () => {
+    try {
+        await pool.connect();
+        console.log('Connected to the database');
+    } catch (err) {
+        console.error('Database connection error', err.stack);
+    }
+};

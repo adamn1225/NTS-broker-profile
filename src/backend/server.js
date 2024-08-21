@@ -1,12 +1,18 @@
 import bcrypt from 'bcrypt';
 import express from 'express';
 import dotenv from 'dotenv';
+import articlesRouter from './routes/articles.js';
+import { connectDB, query } from './config/db.js'; // Corrected the import path
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 
+// Connect to the database
+connectDB();
+
+// Login route
 const storedHash = process.env.NOAH_PASSWORD;
 
 app.post('/api/login', (req, res) => {
@@ -26,7 +32,10 @@ app.post('/api/login', (req, res) => {
     });
 });
 
-const PORT = process.env.PORT || 4000;
+// Use the articles router
+app.use('/api/articles', articlesRouter);
+
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });

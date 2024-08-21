@@ -13,6 +13,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'dump-bg': "url('/two_International_DumpTrucks.jpg')", // Adjust the path to your image
+        'hero-bg': "url('https://www.heavyhaulers.com/alabama.jpg')", 
       },
       colors: {
         amber: {

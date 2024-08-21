@@ -1,4 +1,4 @@
-import { query } from '../config/db.js';
+import { query } from '../config/db';
 
 export const createLtlFormTable = async () => {
     const createLtlFormTableQuery = `

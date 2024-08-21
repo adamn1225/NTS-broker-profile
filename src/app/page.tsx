@@ -3,7 +3,7 @@ import FreightForm from "@components/freightForm";
 import AutoForm from "@components/autoForm";
 import LtlForm from '@components/ltlForm';
 import NavBanner from './components/NavBanner';
-import NavTop from '@components/navTop';
+import NavTop from '@/app/components/navTop';
 import RootLayout from './layout';
 
 export default function Home() {

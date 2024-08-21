@@ -1,9 +1,4 @@
-export type Metadata = {
-    title: string;
-    description: string;
-  };
-  
-  export const metadata: Metadata = {
-    title: "HH Noah Profile",
-    description: "NTS Logistics",
-  };
+export const metadata = {
+  title: "My App",
+  description: "This is my app description"
+};
