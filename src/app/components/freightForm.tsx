@@ -1,19 +1,20 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent } from 'react';
-import { Button, Modal, Label, TextInput } from "flowbite-react";
-import emailjs from 'emailjs-com';
+import { Button, Modal, Label, TextInput, Datepicker } from "flowbite-react";
+import DatepickerWrapper from './Datepickerwrapper';
 
 interface FormData {
   e_year: string;
   e_make: string;
   e_model: string;
-  length: number;
-  width: number;
-  height: number;
-  machine_weight: number;
+  length: string;
+  width: string;
+  height: string;
+  machine_weight: string;
   origin: string;
   destination: string;
+  date: string;
   first_name: string;
   last_name: string;
   phone_number: string;
@@ -29,17 +30,46 @@ interface MyFormProps {
 }
 
 const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formData, handleChange }) => {
-  const sendEmail = (e: FormEvent<HTMLFormElement>) => {
+  const formatEmailContent = (data: FormData) => {
+    return `
+      New LTL/FTL Lead Form Submission:
+
+      Count: ${data.e_year}
+      Commodity: ${data.e_make}
+      LTL Value: ${data.e_model}
+      Dimensions (LxWxH): ${data.length} x ${data.width} x ${data.height}
+      Machine Weight: ${data.machine_weight}
+      Origin: ${data.origin}
+      Destination: ${data.destination}
+      First Name: ${data.first_name}
+      Last Name: ${data.last_name}
+      Phone Number: ${data.phone_number}
+      Email: ${data.email}
+    `;
+  };
+
+  const sendEmail = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_6gziuve', 'template_3h9ecks', e.currentTarget, 'rrWtzpNKcD6Y5952J')
-      .then((result) => {
-        console.log(result.text);
-        alert('Form submitted successfully!');
-      }, (error) => {
-        console.log(error.text);
-        alert('Failed to submit the form.');
+    const emailContent = formatEmailContent(formData);
+
+    try {
+      const response = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ formData: emailContent }),
       });
+
+      if (response.ok) {
+        console.log('Email sent successfully');
+      } else {
+        console.error('Failed to send email');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
   };
 
   return (
@@ -91,6 +121,19 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
               <TextInput value={formData.destination} onChange={handleChange} name="destination" id="destination" type="text" placeholder='Zip code or city/state' />
             </div>
           </div>
+
+          <div className="flex flex-col md:flex-row gap-2">
+            <div className="mb-1 block">
+              <Label htmlFor="date" value="Shipping Date" />
+              <DatepickerWrapper
+                onChange={handleChange}
+                name="date"
+                minDate={new Date()} // Minimum selectable date is today
+                maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))} // Maximum selectable date is one year from today
+              />
+            </div>
+          </div>
+
           <Button onClick={nextStep} className='px-4 bg-button'>Next</Button>
         </>
       )}
@@ -136,12 +179,13 @@ const FreightForm = () => {
     e_year: '',
     e_make: '',
     e_model: '',
-    length: 0,
-    width: 0,
-    height: 0,
-    machine_weight: 0,
+    length: '',
+    width: '',
+    height: '',
+    machine_weight: '',
     origin: '',
     destination: '',
+    date: '',
     first_name: '',
     last_name: '',
     phone_number: '',

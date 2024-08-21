@@ -2,16 +2,16 @@
 
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { Button, Modal, Label, TextInput } from "flowbite-react";
-import emailjs from 'emailjs-com';
+import DatepickerWrapper from './Datepickerwrapper';
 
 interface FormData {
   count: string;
   commodity: string;
-  ltl_value: number;
-  length: number;
-  width: number;
-  height: number;
-  machine_weight: number;
+  ltl_value: string;
+  length: string;
+  width: string;
+  height: string;
+  machine_weight: string;
   origin: string;
   destination: string;
   first_name: string;
@@ -29,17 +29,46 @@ interface MyFormProps {
 }
 
 const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formData, handleChange }) => {
-  const sendEmail = (e: FormEvent<HTMLFormElement>) => {
+  const formatEmailContent = (data: FormData) => {
+    return `
+      New LTL/FTL Lead Form Submission:
+
+      Count: ${data.count}
+      Commodity: ${data.commodity}
+      LTL Value: ${data.ltl_value}
+      Dimensions (LxWxH): ${data.length} x ${data.width} x ${data.height}
+      Machine Weight: ${data.machine_weight}
+      Origin: ${data.origin}
+      Destination: ${data.destination}
+      First Name: ${data.first_name}
+      Last Name: ${data.last_name}
+      Phone Number: ${data.phone_number}
+      Email: ${data.email}
+    `;
+  };
+
+  const sendEmail = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_6gziuve', 'template_3h9ecks', e.currentTarget, 'rrWtzpNKcD6Y5952J')
-      .then((result) => {
-        console.log(result.text);
-        alert('Form submitted successfully!');
-      }, (error) => {
-        console.log(error.text);
-        alert('Failed to submit the form.');
+    const emailContent = formatEmailContent(formData);
+
+    try {
+      const response = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ formData: emailContent }),
       });
+
+      if (response.ok) {
+        console.log('Email sent successfully');
+      } else {
+        console.error('Failed to send email');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
   };
 
   return (
@@ -62,33 +91,30 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
             </div>
           </div>
 
-
-        <div className="flex flex-col">
-
-        <div className="text-slate-800 md:px-3 mb-2 border-b border-slate-700/40">
-          <h2 className="md:text-center"><strong>For FTL</strong> - Provide estimated dimensions of van/flatbed space needed</h2>
-          <h3 className="md:text-center"><strong>For LTL</strong> - Provide estimated dimensions of each unit - fine to average if each unit's different</h3>
-        </div>
-        
-          <div className="flex md:flex-row flex-col gap-2 ">
-
-            <div className="mb-1 block">
-              <Label htmlFor="length" value="Length (ft, in)" />
-              <TextInput value={formData.length} onChange={handleChange} name="length" id="length" type="number" placeholder="48" />
+          <div className="flex flex-col">
+            <div className="text-slate-800 md:px-3 mb-2 border-b border-slate-700/40">
+              <h2 className="md:text-center"><strong>For FTL</strong> - Provide estimated dimensions of van/flatbed space needed</h2>
+              <h3 className="md:text-center"><strong>For LTL</strong> - Provide estimated dimensions of each unit - fine to average if each unit's different</h3>
             </div>
-            <div className="mb-1 block">
-              <Label htmlFor="width" value="Width (ft, in)" />
-              <TextInput value={formData.width} onChange={handleChange} name="width" id="width" type="number" placeholder="48" />
+            
+            <div className="flex md:flex-row flex-col gap-2 ">
+              <div className="mb-1 block">
+                <Label htmlFor="length" value="Length (ft, in)" />
+                <TextInput value={formData.length} onChange={handleChange} name="length" id="length" type="number" placeholder="48" />
+              </div>
+              <div className="mb-1 block">
+                <Label htmlFor="width" value="Width (ft, in)" />
+                <TextInput value={formData.width} onChange={handleChange} name="width" id="width" type="number" placeholder="48" />
+              </div>
+              <div className="mb-1 block">
+                <Label htmlFor="height" value="Height (ft, in)" />
+                <TextInput value={formData.height} onChange={handleChange} name="height" id="height" type="number" placeholder='60' />
+              </div>
+              <div className="block">
+                <Label htmlFor="weight" value="Weight (lbs)" />
+                <TextInput value={formData.machine_weight} onChange={handleChange} name="machine_weight" id="weight" type="number" placeholder='800' />
+              </div>
             </div>
-            <div className="mb-1 block">
-              <Label htmlFor="height" value="Height (ft, in)" />
-              <TextInput value={formData.height} onChange={handleChange} name="height" id="height" type="number" placeholder='60' />
-            </div>
-            <div className="block">
-              <Label htmlFor="weight" value="Weight (lbs)" />
-              <TextInput value={formData.machine_weight} onChange={handleChange} name="machine_weight" id="weight" type="number" placeholder='800' />
-            </div>
-          </div>
             <div className='flex flex-col text-center my-2 text-slate-800 border border-slate-700/40 p-3'>
               <h3 className='text-md px-0'>Straight Dry Van <strong>Interior</strong>  Dimensions:</h3>
               <h2 className='text-sm'><strong>Length:</strong> 52'8"-53'</h2>
@@ -96,8 +122,6 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
               <h2 className='text-sm'><strong>Height:</strong> 108-111 in</h2>
             </div>
           </div>
-
-
 
           <div className="flex flex-row gap-2 align-middle justify-center">
             <div className="mb-1 block">
@@ -107,6 +131,17 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
             <div className="mb-1 block">
               <Label htmlFor="destination" value="ZIP destination" />
               <TextInput value={formData.destination} onChange={handleChange} name="destination" id="destination" type="text" placeholder='Zip code or city/state' />
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row gap-2">
+            <div className="mb-1 block">
+              <Label htmlFor="date" value="Shipping Date" />
+              <DatepickerWrapper
+                onChange={handleChange}
+                name="date"
+                minDate={new Date()} // Minimum selectable date is today
+                maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))} // Maximum selectable date is one year from today
+              />
             </div>
           </div>
           <Button onClick={nextStep} className='px-4 bg-button'>Next</Button>
@@ -154,11 +189,11 @@ const LtlForm = () => {
   const [formData, setFormData] = useState<FormData>({
     count: '',
     commodity: '',
-    ltl_value: 0,
-    length: 0,
-    width: 0,
-    height: 0,
-    machine_weight: 0,
+    ltl_value: '',
+    length: '',
+    width: '',
+    height: '',
+    machine_weight: '',
     origin: '',
     destination: '',
     first_name: '',

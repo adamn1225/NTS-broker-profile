@@ -16,7 +16,7 @@ export default function NavTop() {
             <Navbar.Link href="#" className="text-lg text-center font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4">Portfolio</Navbar.Link>
             <Navbar.Link href="https://ntslogistics.com/team/adam-noah/" className="text-lg text-center font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4">My Company Profile</Navbar.Link>
             <Navbar.Link href="tel:1-954-495-8184" className="text-lg font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4">954-495-8184</Navbar.Link>
-            <Button href="/login" className="bg-button hover:bg-slate-800 hover:text-mute-200">Register</Button>
+            {/* <Button href="/login" className="bg-button hover:bg-slate-800 hover:text-mute-200">Register</Button> */}
             </div>
         </Navbar.Collapse>
           </div>
