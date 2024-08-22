@@ -18,8 +18,8 @@ export default function Home() {
       <div className="relative z-10 flex flex-col items-center gap-10">
         <h1 className='text-3xl sm:text-center sm:mt-40 text-center text-mute-200 font-extrabold font-arialBlack tracking-wider'>What are you shipping?</h1>
         <div className="flex md:flex-row flex-col gap-4">
-          <FreightForm />
           <LtlForm />
+          <FreightForm />
           <AutoForm />
         </div>
       </div>
