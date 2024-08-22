@@ -1,4 +1,4 @@
 export const metadata = {
-  title: "My App",
-  description: "This is my app description"
+  title: "NTS Logistics",
+  description: "Get a Shipping Quote from Noah",
 };
