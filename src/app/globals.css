@@ -79,3 +79,19 @@ main {
   flex: 1;
 }
 
+
+.flowbite-datepicker button:hover {
+  /* Hover state */
+  @apply bg-stone-700;
+}
+
+.flowbite-datepicker button:active {
+  /* Active state */
+  @apply bg-stone-700;
+}
+
+.flowbite-datepicker button.selected,
+.flowbite-datepicker button.bg-cyan-700 {
+  /* Selected state */
+  @apply bg-stone-700 !important;
+}

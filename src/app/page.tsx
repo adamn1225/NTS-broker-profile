@@ -16,7 +16,7 @@ export default function Home() {
     <div className="relative flex flex-col rounded-md drop-shadow-xl md:mt-20 md:pb-36 md:mx-96 md:gap-6 gap-10 justify-start items-center flex-1">
       <div className="absolute inset-0"></div> {/* Dark overlay */}
       <div className="relative z-10 flex flex-col items-center gap-10">
-        <h1 className='text-3xl sm:text-center sm:mt-40 text-center text-mute-200 font-extrabold font-arialBlack'>What are you shipping?</h1>
+        <h1 className='text-3xl sm:text-center sm:mt-40 text-center text-mute-200 font-extrabold font-arialBlack tracking-wider'>What are you shipping?</h1>
         <div className="flex md:flex-row flex-col gap-4">
           <FreightForm />
           <LtlForm />
@@ -26,11 +26,11 @@ export default function Home() {
     </div>
   </div>
 </div>
-<article className='flex flex-col text-center bg-stone-100 mt-1 px-28 py-12'>
+<article className='flex flex-col text-center bg-stone-100 mt-1 px-2 md:px-28 py-12'>
 <div className="absolute inset-0 bg-black opacity-10"></div> 
-<h1 className='text-slate-800 text-4xl font-exo font-semibold mb-12'>Recent Transports</h1>
-<div className='grid grid-cols-3 gap-5 md:gap-12 items-center'>
-  <div className='flex flex-col justify-center items-center gap-3 bg-stone-800 py-10 rounded-md drop-shadow-xl'>
+<h1 className='text-slate-800 text-4xl font-exo font-semibold mb-12 tracking-wider'>RECENT TRANSPORTS</h1>
+<div className='grid md:grid-cols-3 gap-5 md:gap-12 items-center'>
+  <div className='flex flex-col px-2 justify-center items-center gap-3 bg-stone-800 py-10 rounded-md drop-shadow-xl'>
     <img className='rounded-md drop-shadow-lg w-96 h-80 object-cover' src='https://ntslogistics.com/wp-content/uploads/2023/05/thumbnail_20_ft_wide_pool_1.jpg' />
     <h1 className='text-stone-100 text-xl font-exo font-semibold'>Title about load</h1>
     <h2 className='text-stone-100 font-semibold text-lg'>FAIRFIELD, NJ to BAKERSFIELD, CA</h2>
@@ -41,7 +41,7 @@ export default function Home() {
       <li>Weight: 83,776lbs</li>
     </ul>
   </div>
-  <div className='flex flex-col justify-center items-center gap-3 bg-stone-800 py-10 rounded-md drop-shadow-xl'>
+  <div className='flex flex-col px-2 justify-center items-center gap-3 bg-stone-800 py-10 rounded-md drop-shadow-xl'>
     <img className='rounded-md drop-shadow-lg w-96 h-80 object-cover' src='https://ntslogistics.com/wp-content/uploads/2023/05/Komatsu-D61PX-12-Crawler-Tractor.png' />
     <h1 className='text-stone-100 text-xl font-exo font-semibold'>Title about load</h1>
     <h2 className='text-stone-100 font-semibold text-lg'>FAIRFIELD, NJ to BAKERSFIELD, CA</h2>
@@ -52,7 +52,7 @@ export default function Home() {
       <li>Weight: 83,776lbs</li>
     </ul>
   </div>
-  <div className='flex flex-col justify-center items-center gap-3 bg-stone-800 py-10 rounded-md drop-shadow-xl'>
+  <div className='flex flex-col px-2 justify-center items-center gap-3 bg-stone-800 py-10 rounded-md drop-shadow-xl'>
     <img className='rounded-md drop-shadow-lg w-96 h-80 object-cover' src='https://ntslogistics.com/wp-content/uploads/2023/05/Caterpillar-PM565B-Cold-Planer.png' />
     <h1 className='text-stone-100 text-xl font-exo font-semibold'>Caterpillar PM565B Cold Planer</h1>
     <h2 className='text-stone-100 font-semibold text-lg'>FAIRFIELD, NJ to BAKERSFIELD, CA</h2>

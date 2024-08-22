@@ -31,6 +31,7 @@ interface DatepickerWrapperProps {
         maxDate={maxDate}
         onChange={handleChange}
         name={name}
+        className="flowbite-datepicker"
         inline
       />
     );

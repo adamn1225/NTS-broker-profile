@@ -72,7 +72,7 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
     <form onSubmit={sendEmail} className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">
       {currentStep === 1 && (
         <>
-          <h2 className='font-asterone w-full underline underline-offset-8 text-slate-800 text-lg font-bold text-center md:text-2xl'>Equipment/Freight Details</h2>
+          <h2 className='font-asterone w-full underline underline-offset-8 text-slate-800 text-lg font-bold text-center md:text-2xl mt-4'>Equipment/Freight Details</h2>
           <div className="flex flex-col md:flex-row gap-2">
             <div className="mb-1 block">
               <Label htmlFor="year" value="Year (optional)" />
@@ -100,14 +100,14 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-2">
-            <div className="mb-1 block">
+          <div className="flex flex-col md:flex-row gap-2 items-center justify-center">
+            <div className="mb-1 block text-center">
               <Label htmlFor="date" value="Shipping Date" />
               <DatepickerWrapper
                 onChange={handleChange}
                 name="date"
                 minDate={new Date()} // Minimum selectable date is today
-                maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))} // Maximum selectable date is one year from today
+                maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
               />
             </div>
           </div>
@@ -186,9 +186,9 @@ const AutoForm = () => {
       <Button className='bg-button hover:bg-amber-400 hover:text-mute-200' onClick={() => setOpenModal(true)}>
         Auto Transport
       </Button>
-      <Modal show={openModal} size="3xl" onClose={onCloseModal} popup>
-        <Modal.Header />
-        <Modal.Body>
+      <Modal show={openModal} size="3xl" className='bg-stone-600' onClose={onCloseModal} popup>
+        <Modal.Header className='bg-stone-100'/>
+        <Modal.Body className='bg-stone-100'>
           <MyForm 
             currentStep={currentStep}
             nextStep={nextStep}

@@ -5,9 +5,9 @@ import { Navbar, Button } from "flowbite-react";
 export default function NavTop() {
   return (
     <Navbar fluid rounded className="md:px-24 w-full bg-stone-800">
-      <div className="flex flex-col gap-6 justify-center w-full md:flex-row md:justify-between items-center md:gap-4 md:align-middle">
+      <div className="flex flex-col gap-2 justify-center w-full md:flex-row md:justify-between items-center md:gap-4 md:align-middle">
         <Navbar.Brand as={Link} href="/">
-          <img src="https://www.heavyhaulers.com/images/hh-label-icons/hh-verticle-logo-final.png" className="mr-3 h-6 sm:h-9" alt="Heavy Haulers Logo" />
+          <img src="https://www.heavyhaulers.com/images/hh-label-icons/hh-verticle-logo-final.png" className="md:mr-3 h-10 md:h-6" alt="Heavy Haulers Logo" />
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
