@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent } from 'react';
-import { Button, Modal, Label, TextInput } from "flowbite-react";
+import { Button, Modal, Label, TextInput, Datepicker } from "flowbite-react";
 import DatepickerWrapper from './Datepickerwrapper';
 
 interface FormData {
@@ -26,12 +26,13 @@ interface MyFormProps {
   prevStep: () => void;
   formData: FormData;
   handleChange: (e: ChangeEvent<HTMLInputElement> | { target: { name: string, value: string } }) => void;
+  setIsSubmitted: (value: boolean) => void; // Add setIsSubmitted prop
 }
 
-const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formData, handleChange }) => {
+const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formData, handleChange, setIsSubmitted }) => {
   const formatEmailContent = (data: FormData) => {
     return `
-      New LTL/FTL Lead Form Submission:
+      New LTL/FTL Lead from NTS-Broker-Profile:
 
       Count: ${data.count}
       Commodity: ${data.commodity}
@@ -63,6 +64,7 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
 
       if (response.ok) {
         console.log('Email sent successfully');
+        setIsSubmitted(true); // Set isSubmitted to true upon successful submission
       } else {
         console.error('Failed to send email');
       }
@@ -186,6 +188,7 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
 const LtlForm = () => {
   const [openModal, setOpenModal] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     count: '',
     commodity: '',
@@ -222,18 +225,28 @@ const LtlForm = () => {
   return (
     <>
       <Button className='bg-button hover:bg-amber-400 hover:text-mute-200' onClick={() => setOpenModal(true)}>
-        LTL/FTL Shipment
+        Construction/Heavy/Oversize Equipment
       </Button>
       <Modal show={openModal} size="3xl" className='bg-stone-600' onClose={onCloseModal} popup>
         <Modal.Header className='bg-stone-100'/>
         <Modal.Body className='bg-stone-100'>
-          <MyForm 
-            currentStep={currentStep}
-            nextStep={nextStep}
-            prevStep={prevStep}
-            formData={formData}
-            handleChange={handleChange}
-          />
+          {isSubmitted ? (
+            <div className='flex flex-col items-center justify-center gap-3'>
+              <h2 className='font-asterone w-full underline underline-offset-8 text-slate-800 text-lg font-bold text-center md:text-2xl'>Thanks! I'll get working on it!</h2>
+              <h3 className='font-asterone w-full text-slate-800 text-lg font-bold text-center md:text-xl'>I'll get the shipping rate you requested ASAP </h3>
+              <h3 className='font-asterone w-full text-slate-800 text-lg font-bold text-center md:text-xl'> Need faster? Call or text me at 954-495-8184</h3>
+              <h3 className='font-asterone w-full text-slate-800 text-lg font-bold text-center md:text-xl'> You can also email me at noah@ntslogistics.com</h3>
+              </div>
+          ) : (
+            <MyForm 
+              currentStep={currentStep}
+              nextStep={nextStep}
+              prevStep={prevStep}
+              formData={formData}
+              handleChange={handleChange}
+              setIsSubmitted={setIsSubmitted} // Pass setIsSubmitted as a prop
+            />
+          )}
         </Modal.Body>
       </Modal>
     </>

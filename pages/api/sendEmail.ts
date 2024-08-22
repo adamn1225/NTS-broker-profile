@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: 'noah@ntslogistics.com', // Recipient email address
-      subject: 'New LTL/FTL Lead Form Submission',
+      subject: 'New Transport Lead from NTS-Broker-Profile',
       text: formData, // Use the formatted email content
     };
 
