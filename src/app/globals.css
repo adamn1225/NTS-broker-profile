@@ -29,7 +29,7 @@ body {
 
   /* Custom hover styles for all buttons */
   .btn-hover-styles {
-    @apply hover:bg-amber-400 hover:text-mute-200;
+    @apply  hover:text-stone-400;
   }
 }
 
@@ -44,12 +44,12 @@ button:not(.banner-collapse-button) {
 }
 
 .navbar-link-hover {
-  @apply text-slate-700 hover:text-slate-900 !important;
+  @apply text-stone-400 hover:text-yellow-400 !important;
 }
 
 /* Custom styles for button with bg-button class */
 button.bg-button {
-  background-color: var(--tw-bg-button, theme("colors.slate.800")) !important;
+  background-color: var(--tw-bg-button, theme("colors.stone.800")) !important;
 }
 
 button.bg-button:hover {
@@ -67,12 +67,12 @@ button.bg-button:hover {
 
 .footer-button {
   max-width: 100%;
-  @apply hover:bg-slate-800 text-gray-400 font-bold w-1/12;
+  @apply hover:bg-stone-800 text-stone-200 font-bold w-1/12;
   white-space: nowrap;
 }
 
 .footer-links {
-  @apply text-mute-200;
+  @apply text-stone-100;
 }
 
 main {

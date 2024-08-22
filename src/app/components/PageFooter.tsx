@@ -6,7 +6,7 @@ import BrokerRegister from '../login/brokerRegister';
 
 export default function PageFooter() {
   return (
-<Footer container className="bg-gray-800 footer">
+<Footer container className="bg-stone-800 footer">
   <div className="w-full text-start">
     <h2 className="md:text-start text-center underline underline-offset-4 md:mb-4 font-bold text-3xl text-mute-200 mb-2">OUR BRANDS</h2>
     <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
@@ -37,7 +37,7 @@ export default function PageFooter() {
     </div>
     <Footer.Divider />
     <div className="px-4 flex md:flex-row flex-col justify-center items-center">
-      <Button href="/login" className="md:bg-gray-600 bg-transparent md:w-1/6 w-1/2 text-gray-300 footer-button hover:bg-slate-800 hover:text-mute-200">Broker Login/Register</Button>
+      <Button href="/login" className="md:bg-stone-600 bg-transparent md:w-1/6 w-1/2 text-gray-300 footer-button hover:bg-stone-700 hover:text-mute-200">Broker Login/Register</Button>
     </div>
     
     <Footer.Copyright by="SSTA & NTS Logistics LLC" year={2024} />

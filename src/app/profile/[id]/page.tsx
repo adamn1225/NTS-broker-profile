@@ -1,9 +1,10 @@
-import React from 'react.js';
-import { getBrokerById } from '../../lib/brokers.js'; // Adjust the path as needed
-import { Broker } from '../types.js'; // Adjust the path as needed
-import AutoForm from'../../components/autoForm';
-import LtlForm from '../../components/ltlForm.js';
-import FreightForm from '../../components/freightForm.js';
+"use client";
+import React from 'react';
+import { getBrokerById } from '../../lib/brokers'; // Adjust the path as needed
+import { Broker } from '../types'; // Adjust the path as needed
+import AutoForm from'@components/autoForm';
+import LtlForm from '@components/ltlForm';
+import FreightForm from '@components/freightForm';
 
 interface BrokerPageProps {
   params: {
