@@ -29,7 +29,7 @@ interface MyFormProps {
 const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formData, handleChange, setIsSubmitted }) => {
   const formatEmailContent = (data: FormData) => {
     return `
-      New Auto Transport Lead From NTS-Broker-Profile:
+      New Auto Transport Lead From NTS-Broker-Profile - https://nts-noah.netlify.app/::
 
       Year: ${data.e_year}
       Make: ${data.e_make}
@@ -187,7 +187,7 @@ const AutoForm = () => {
   return (
     <>
       <Button className='bg-button hover:bg-amber-400 hover:text-mute-200' onClick={() => setOpenModal(true)}>
-        Construction/Heavy/Oversize Equipment
+        Auto Transport
       </Button>
       <Modal show={openModal} size="3xl" className='bg-stone-600' onClose={onCloseModal} popup>
         <Modal.Header className='bg-stone-100'/>
