@@ -1,5 +1,5 @@
 // createTable.js
-import { createFormSubmissionsTable } from './model/formSubmissions.js';
+import { createFormSubmissionsTable } from './models/formSubmissions.js';
 
 const createTable = async () => {
     try {

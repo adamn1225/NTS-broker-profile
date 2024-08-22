@@ -1,6 +1,6 @@
+// src/app/profile/[id]/page.tsx
 "use client";
 import React, { useEffect, useState } from 'react';
-import { getBrokerById } from '../../lib/brokers'; // Adjust the path as needed
 import { Broker } from '../types'; // Adjust the path as needed
 import AutoForm from '@components/autoForm';
 import LtlForm from '@components/ltlForm';
@@ -17,7 +17,8 @@ const BrokerPage: React.FC<BrokerPageProps> = ({ params }) => {
 
   useEffect(() => {
     const fetchBroker = async () => {
-      const brokerData = await getBrokerById(params.id);
+      const response = await fetch(`/api/broker/${params.id}`);
+      const brokerData = await response.json();
       setBroker(brokerData);
     };
 

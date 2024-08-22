@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import AdminPageClient from './AdminPageClient';
 import '../globals.css';
-import AdminLayout from './AdminLayout.js'; // Adjust the import path as necessary
+import AdminLayout from './AdminLayout'; // Adjust the import path as necessary
 
 import React from 'react';
 

@@ -1,6 +1,5 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { findUserByUsername, insertUser } from '../models/userModel.js';
 import { insertBroker, getAllBrokers, updateBrokerToken } from '../models/brokers.js';
 
 const JWT_SECRET = 'your_jwt_secret'; // Replace with your actual secret
@@ -10,7 +9,7 @@ export const registerUser = async (req, res) => {
 
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        await insertUser(username, hashedPassword);
+        await insertBroker(username, hashedPassword);
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
         console.error('Error registering user:', error);

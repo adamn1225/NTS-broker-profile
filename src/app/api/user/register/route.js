@@ -1,5 +1,6 @@
-import { registerBroker, getBrokers } from '@controllers/userController';
+import { registerBroker, getBrokers } from '../../../../backend/controllers/userController';
 
+// Your route handler code
 export async function POST(req, res) {
     await registerBroker(req, res);
 }

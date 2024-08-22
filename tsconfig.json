@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,22 +23,36 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@components/*": ["./src/app/components/*"],
-      "@controllers/*": ["./src/backend/controllers/*"],
-      "@model/*": ["./src/backend/model/*"],
-      "@routes/*": ["./src/backend/routes/*"],
-      "@config/*": ["./src/backend/config/*"],
-      "@utils/*": ["./src/backend/utils/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@components/*": [
+        "./src/app/components/*"
+      ],
+      "@controllers/*": [
+        "./src/backend/controllers/*"
+      ],
+      "@model/*": [
+        "src/backend/models/*"
+      ],
+      "@routes/*": [
+        "./src/backend/routes/*"
+      ],
+      "@config/*": [
+        "./src/backend/config/*"
+      ],
+      "@utils/*": [
+        "./src/backend/utils/*"
+      ]
     }
   },
-    "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.js",
-    "**/*.jsx",
-    ".next/types/**/*.ts"
+  "exclude": [
+    "node_modules"
   ],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }

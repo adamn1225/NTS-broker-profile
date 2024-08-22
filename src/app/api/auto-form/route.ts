@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAutoFormSubmissions, insertAutoFormSubmission } from '@model/autoForm';
+import { getAutoFormSubmissions, insertAutoFormSubmission } from '@/backend/models/autoForm';
 
 export async function POST(req: NextRequest) {
     try {

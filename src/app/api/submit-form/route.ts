@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { insertFormSubmission, getFormSubmissions } from '@model/formSubmission';
+import { insertFormSubmission, getFormSubmissions } from '@/backend/models/formSubmission';
 
 export async function POST(req: NextRequest) {
     try {
