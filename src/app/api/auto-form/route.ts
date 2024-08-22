@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server.js';
-import { getAutoFormSubmissions, insertAutoFormSubmission } from '@model/autoForm.js';
+import { NextRequest, NextResponse } from 'next/server';
+import { getAutoFormSubmissions, insertAutoFormSubmission } from '@model/autoForm';
 
 export async function POST(req: NextRequest) {
     try {

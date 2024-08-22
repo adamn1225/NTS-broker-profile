@@ -1,3 +1,3 @@
-import AdminPageServer from './AdminPageServer.js';
+import AdminPageServer from './AdminPageServer';
 
 export default AdminPageServer;

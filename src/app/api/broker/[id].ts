@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next.js';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { getBrokerById } from '../../lib/brokers.js';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

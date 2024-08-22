@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server.js';
-import { insertFormSubmission, getFormSubmissions } from '@model/formSubmission.js';
+import { NextRequest, NextResponse } from 'next/server';
+import { insertFormSubmission, getFormSubmissions } from '@model/formSubmission';
 
 export async function POST(req: NextRequest) {
     try {

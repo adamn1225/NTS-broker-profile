@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { NextResponse } from 'next/server';
-import envConfig from '../../../../config.js'; // Adjusted path to the new configuration file
+import envConfig from '../../../../config'; // Adjusted path to the new configuration file
 
 export async function POST(req) {
     const { username, password } = await req.json();
