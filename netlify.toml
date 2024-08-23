@@ -1,0 +1,6 @@
+[build]
+  publish = "build"
+  command = "npm run build"
+
+[context.production.environment]
+  GO_VERSION = "1.19.1"  # Specify a valid Go version
