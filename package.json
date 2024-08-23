@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "tspath && node dist/index.js",
+    "start": "tspath && node dist/index",
     "start-server": "node src/backend/server.js"
   },
   "dependencies": {
