@@ -1,15 +1,14 @@
-import { Pool } from 'pg';
-
-// Create a new pool instance
-const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-});
-
-export const getBrokerById = async (id) => {
-  const result = await pool.query('SELECT * FROM brokers WHERE id = $1', [id]);
-  return result.rows[0] || null;
-};
+// lib/brokers.js
+export async function getBrokerById() {
+  if (process.env.NODE_ENV === 'production') {
+    // Use mock data during the build process
+    return ['1', '2', '3'];
+  } else {
+    const response = await fetch('http://localhost:5000/brokers');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const brokers = await response.json();
+    return brokers.map((broker) => broker.id.toString());
+  }
+}
