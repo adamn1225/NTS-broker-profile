@@ -32,24 +32,24 @@ export default function Home() {
 <div className='grid md:grid-cols-3 gap-5 md:gap-12 items-center'>
   <div className='flex flex-col px-2 justify-center items-center gap-3 bg-stone-800 py-10 rounded-md drop-shadow-xl'>
     <img className='rounded-md drop-shadow-lg w-96 h-80 object-cover' src='https://ntslogistics.com/wp-content/uploads/2023/05/thumbnail_20_ft_wide_pool_1.jpg' />
-    <h1 className='text-stone-100 text-xl font-exo font-semibold'>Title about load</h1>
-    <h2 className='text-stone-100 font-semibold text-lg'>FAIRFIELD, NJ to BAKERSFIELD, CA</h2>
+    <h1 className='text-stone-100 text-xl font-exo font-semibold'>Rectangle 20' Wide Plastic Pool Plus Two Modules</h1>
+    <h2 className='text-stone-100 font-semibold text-lg'>Rozet, WY, 82727 to Baltimore, MD, 21224</h2>
     <ul className='text-stone-100 font-semibold text-md'>
-      <li>Length: 47'58ft</li>
-      <li>Width: 10'34ft</li>
-      <li>Height: 10'50ft</li>
-      <li>Weight: 83,776lbs</li>
+      <li>Length: 45 ft</li>
+      <li>Width: 20 ft</li>
+      <li>Height: 10 ft</li>
+      <li>Weight: 30,000 lbs</li>
     </ul>
   </div>
   <div className='flex flex-col px-2 justify-center items-center gap-3 bg-stone-800 py-10 rounded-md drop-shadow-xl'>
     <img className='rounded-md drop-shadow-lg w-96 h-80 object-cover' src='https://ntslogistics.com/wp-content/uploads/2023/05/Komatsu-D61PX-12-Crawler-Tractor.png' />
-    <h1 className='text-stone-100 text-xl font-exo font-semibold'>Title about load</h1>
-    <h2 className='text-stone-100 font-semibold text-lg'>FAIRFIELD, NJ to BAKERSFIELD, CA</h2>
+    <h1 className='text-stone-100 text-xl font-exo font-semibold'>BOKEELIA, FL to PORTSMOUTH, VA</h1>
+    <h2 className='text-stone-100 font-semibold text-lg'>HARVEY, LA to INDIANTOWN, FL</h2>
     <ul className='text-stone-100 font-semibold text-md'>
-      <li>Length: 47'58ft</li>
-      <li>Width: 10'34ft</li>
-      <li>Height: 10'50ft</li>
-      <li>Weight: 83,776lbs</li>
+      <li>Length: 36'75 ft</li>
+      <li>Width: 11.10 ft</li>
+      <li>Height: 11.92 ft</li>
+      <li>Weight: 79,700 lbs</li>
     </ul>
   </div>
   <div className='flex flex-col px-2 justify-center items-center gap-3 bg-stone-800 py-10 rounded-md drop-shadow-xl'>
@@ -57,10 +57,10 @@ export default function Home() {
     <h1 className='text-stone-100 text-xl font-exo font-semibold'>Caterpillar PM565B Cold Planer</h1>
     <h2 className='text-stone-100 font-semibold text-lg'>FAIRFIELD, NJ to BAKERSFIELD, CA</h2>
     <ul className='text-stone-100 font-semibold text-md'>
-      <li>Length: 47'58ft</li>
-      <li>Width: 10'34ft</li>
-      <li>Height: 10'50ft</li>
-      <li>Weight: 83,776lbs</li>
+      <li>Length: 47'58 ft</li>
+      <li>Width: 10'34 ft</li>
+      <li>Height: 10'50 ft</li>
+      <li>Weight: 83,776 lbs</li>
     </ul>
   </div>
 </div>
