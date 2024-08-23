@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && tsc",
-    "start": "tspath && node dist/index",
+    "build": "next build",
+    "start": "tspath && node dist/index.js",
     "start-server": "node src/backend/server.js"
   },
   "dependencies": {
