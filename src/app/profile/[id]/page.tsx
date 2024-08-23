@@ -97,7 +97,7 @@ export async function generateStaticParams() {
     ];
   } else {
     try {
-      const response = await fetch('http://localhost:4000/brokers');
+      const response = await fetch('http://localhost:5000/brokers');
       
       // Check if the response is OK (status code 200-299)
       if (!response.ok) {
