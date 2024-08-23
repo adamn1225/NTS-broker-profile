@@ -67,7 +67,7 @@ button.bg-button:hover {
 
 .footer-button {
   max-width: 100%;
-  @apply hover:bg-stone-800 text-stone-200 font-bold w-1/12;
+  @apply hover:bg-stone-800 bg-stone-700 text-stone-200 font-bold !important;
   white-space: nowrap;
 }
 

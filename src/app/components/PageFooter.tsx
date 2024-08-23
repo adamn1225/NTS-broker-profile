@@ -36,8 +36,8 @@ export default function PageFooter() {
       </Footer.LinkGroup>
     </div>
     <Footer.Divider />
-    <div className="px-4 flex md:flex-row flex-col justify-center items-center">
-      <Button href="/login" className="md:bg-stone-600 bg-transparent md:w-1/6 w-1/2 text-gray-300 footer-button hover:bg-stone-700 hover:text-mute-200">Broker Login/Register</Button>
+    <div className=" flex md:flex-row flex-col justify-stretch w-full items-center">
+      <Button href="/login" className="md:bg-stone-800 b-stone-800 footer-button md:w-1/6 w-full text-gray-300 hover:bg-stone-700 hover:text-mute-200">Broker Login/Register</Button>
     </div>
     
     <Footer.Copyright by="SSTA & NTS Logistics LLC" year={2024} />

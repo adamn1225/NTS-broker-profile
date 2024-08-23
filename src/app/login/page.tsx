@@ -21,11 +21,11 @@ const LoginPage = () => {
 
   return (
 <div className=" w-full h-full flex flex-col justify-center items-center">
-  <div className="flex flex-row gap-4">
+  <div className="flex flex-row gap-4 m-8">
     <Button className='bg-button' onClick={handleLoginClick}>Login</Button>
     <Button className='bg-button' onClick={handleRegisterClick}>Register</Button>
   </div>
-  <div className="flex flex-col">
+  <div className="flex flex-col mb-12 mx-5">
     {showLogin && <BrokerLogin />}
     {showRegister && <BrokerRegister />}
   </div>
