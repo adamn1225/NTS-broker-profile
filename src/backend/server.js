@@ -35,7 +35,7 @@ app.post('/api/login', (req, res) => {
 // Use the articles router
 app.use('/api/articles', articlesRouter);
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
