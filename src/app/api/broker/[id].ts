@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getBrokerById } from '../../lib/brokers';
+import { getAllBrokerIds } from '../../lib/brokers';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
 
   try {
-    const broker = await getBrokerById(id as string);
+    const broker = await getAllBrokerIds(id as string);
     if (!broker) {
       console.log(`No broker found for id: ${id}`);
       return res.status(404).json({ message: 'Broker not found' });
