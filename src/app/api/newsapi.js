@@ -2,17 +2,15 @@ import axios from 'axios';
 
 const fetchNews = async (retries = 3, delay = 1000) => {
     try {
-        const response = await axios.get('https://real-time-web-search.p.rapidapi.com/search', {
+        const response = await axios.get('https://newsapi90.p.rapidapi.com/search', {
             params: {
-                q: 'construction construction',
-                num: 10,
-                start: 0,
-                gl: 'us',
-                hl: 'en'
+                query: 'logistics',
+                language: 'en-US',
+                region: 'US'
             },
             headers: {
                 'x-rapidapi-key': '1537912f93mshb0d055e825ceddep1fd5aejsnccf76c759fbf',
-                'x-rapidapi-host': 'real-time-web-search.p.rapidapi.com'
+                'x-rapidapi-host': 'newsapi90.p.rapidapi.com'
             }
         });
         console.log('API response:', response.data); // Log the response data

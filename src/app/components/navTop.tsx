@@ -12,6 +12,7 @@ export default function NavTop() {
         <Navbar.Toggle />
         <Navbar.Collapse>
           <div className="block text-center md:flex flex-row">
+          <Navbar.Link href="/trending-news" className="text-lg text-center font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4">Logistics News</Navbar.Link>
             <Navbar.Link href="/portfolio" className="text-lg text-center font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4">Portfolio</Navbar.Link>
             <Navbar.Link href="https://ntslogistics.com/team/adam-noah/" className="text-lg text-center font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4">My Company Profile</Navbar.Link>
             <Navbar.Link href="tel:1-954-495-8184" className="text-lg underline-offset-4 underline font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4">954-495-8184</Navbar.Link>

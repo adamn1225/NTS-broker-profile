@@ -1,12 +1,13 @@
 "use client";
 import '../globals.css';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import fetchNews from '../api/newsapi.js';
 
 interface NewsArticle {
   title: string;
   snippet: string;
   url: string;
+  image?: string;
 }
 
 const ConstructionNews: React.FC = () => {
@@ -42,18 +43,22 @@ const ConstructionNews: React.FC = () => {
   return (
     <div className="md:px-20 px-4 pb-12 bg-stone-100">
       <h1 className="text-stone-800 text-center font-bold text-4xl mb-2 pt-12">Construction News</h1>
-      <div className="border border-stone-800/80 my-3 mx-48 flex items-center justify-center"> </div>
-         <ul className="w-full grid grid-cols-2 justify-items-center items-stretch gap-2">
-           {data.map((article, index) => (
-             <li className="border p-6 border-stone-800 w-full h-full max-h-[350px] drop-shadow-2xl" key={index}>
-               <h2 className="text-justify font-semibold">{article.title}</h2>
-               
-               <p className="text-justify font-light">{article.snippet}</p>
-               <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
-             </li>
-           ))}
-         </ul>
- </div>
+      <div className="border border-stone-800/80 my-3 md:mx-80 flex items-center justify-center"> </div>
+      <ul className="flex flex-wrap w-full justify-items-center md:mx-72 items-stretch gap-2">
+        {data.map((article, index) => (
+          <li className="border flex flex-col justify-center w-1/3 p-4 border-stone-800 h-full min-h-[200px] shadow-xl" key={index}>
+            <h2 className="text-justify font-semibold">{article.title}</h2>
+            {article.image ? (
+              <img src={article.image} alt={article.title} />
+            ) : (
+              <div>No image available</div> // Placeholder or icon
+            )}
+            <p className="text-justify font-light">{article.snippet}</p>
+            <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

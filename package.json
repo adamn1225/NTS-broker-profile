@@ -29,6 +29,7 @@
     "react": "^18.3.1",
     "react-datepicker": "^7.3.0",
     "react-dom": "^18.3.1",
+    "react-input-mask": "^2.0.4",
     "tsconfig-paths": "^4.2.0",
     "tspath": "^2.6.8"
   },
@@ -45,6 +46,7 @@
     "@types/pg": "^8.11.6",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18",
+    "@types/react-input-mask": "^3.0.5",
     "@types/sinon": "^17.0.3",
     "babel-jest": "^29.7.0",
     "chai": "^5.1.1",

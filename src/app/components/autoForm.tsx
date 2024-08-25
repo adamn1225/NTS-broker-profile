@@ -1,15 +1,16 @@
 "use client";
 
-import { useState, ChangeEvent, FormEvent } from 'react';
-import { Button, Modal, Label, TextInput, Datepicker } from "flowbite-react";
+import { useState, ChangeEvent, FormEvent, JSX, RefAttributes, useEffect } from 'react';
+import { Button, Modal, Label, TextInput, Datepicker, TextInputProps } from "flowbite-react";
+import InputMask from 'react-input-mask';
 import DatepickerWrapper from './Datepickerwrapper';
 
 interface FormData {
   e_year: string;
   e_make: string;
   e_model: string;
-  origin: string;
-  destination: string;
+  origin_zip: string;
+  destination_zip: string;
   date: string;
   first_name: string;
   last_name: string;
@@ -35,8 +36,8 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
       Make: ${data.e_make}
       Model: ${data.e_model}
       date: ${data.date}
-      Origin: ${data.origin}
-      Destination: ${data.destination}
+      Origin: ${data.origin_zip}
+      Destination: ${data.destination_zip}
       First Name: ${data.first_name}
       Last Name: ${data.last_name}
       Phone Number: ${data.phone_number}
@@ -69,6 +70,8 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
     }
   };
 
+
+
   return (
     <form onSubmit={sendEmail} className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">
       {currentStep === 1 && (
@@ -92,12 +95,12 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
           
           <div className="flex flex-col md:flex-row gap-2">
             <div className="mb-1 block">
-              <Label htmlFor="origin" value="ZIP origin" />
-              <TextInput value={formData.origin} onChange={handleChange} name="origin" id="origin" type="text" placeholder="Zip code or city/state" required />
+              <Label htmlFor="origin_zip" value="Origin ZIP Code" />
+              <TextInput value={formData.origin_zip} onChange={handleChange} name="origin_zip" id="origin_zip" type="text" placeholder="ZIP Code" required />
             </div>
             <div className="mb-1 block">
-              <Label htmlFor="destination" value="ZIP destination" />
-              <TextInput value={formData.destination} onChange={handleChange} name="destination" id="destination" type="text" placeholder='Zip code or city/state' />
+              <Label htmlFor="destination_zip" value="Destination ZIP Code" />
+              <TextInput value={formData.destination_zip} onChange={handleChange} name="destination_zip" id="destination_zip" type="text" placeholder="ZIP Code" required />
             </div>
           </div>
 
@@ -109,6 +112,7 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
                 name="date"
                 minDate={new Date()} // Minimum selectable date is today
                 maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
+                
               />
             </div>
           </div>
@@ -131,13 +135,29 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
           </div>
 
           <div className="flex flex-row gap-2">
-            <div className="mb-1 block">
+          <div className="mb-1 block">
               <Label htmlFor="phone_number" value="Best Number" />
-              <TextInput value={formData.phone_number} onChange={handleChange} name="phone_number" id="phone_number" type="number" placeholder="(---) --- ----" required />
+              <InputMask
+                mask="(999) 999-9999"
+                value={formData.phone_number}
+                onChange={handleChange}
+              >
+                {/* @ts-ignore */}
+                {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
+                  <TextInput
+                    {...inputProps}
+                    name="phone_number"
+                    id="phone_number"
+                    type="text"
+                    placeholder="(---) --- ----"
+                    required
+                  />
+                )}
+              </InputMask>
             </div>
             <div className="mb-1 block">
               <Label htmlFor="email" value="Best email" />
-              <TextInput value={formData.email} onChange={handleChange} name="email" id="email" type="email" placeholder="Doe" />
+              <TextInput value={formData.email} onChange={handleChange} name="email" id="email" type="email" placeholder="Doe" required/>
             </div>
           </div>
           <div className="flex flex-row gap-2">
@@ -158,8 +178,8 @@ const AutoForm = () => {
     e_year: '',
     e_make: '',
     e_model: '',
-    origin: '',
-    destination: '',
+    origin_zip: '',
+    destination_zip: '',
     date: '',
     first_name: '',
     last_name: '',
@@ -183,6 +203,34 @@ const AutoForm = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  const fetchCityAndState = async (zipCode: string, type: 'origin' | 'destination') => {
+    if (zipCode.length === 5) {
+      try {
+        const response = await fetch(`https://api.zippopotam.us/us/${zipCode}`);
+        if (response.ok) {
+          const data = await response.json();
+          const { 'place name': city, 'state abbreviation': state } = data.places[0];
+          setFormData((prevData) => ({
+            ...prevData,
+            [`${type}_zip`]: `${zipCode} - ${city}, ${state}`
+          }));
+        }
+      } catch (error) {
+        console.error('Error fetching city and state:', error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const zipCode = formData.origin_zip.split(' - ')[0]; // Extract the ZIP code part
+    fetchCityAndState(zipCode, 'origin');
+  }, [formData.origin_zip]);
+
+  useEffect(() => {
+    const zipCode = formData.destination_zip.split(' - ')[0]; // Extract the ZIP code part
+    fetchCityAndState(zipCode, 'destination');
+  }, [formData.destination_zip]);
 
   return (
     <>
