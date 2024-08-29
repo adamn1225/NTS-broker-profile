@@ -18,9 +18,9 @@ export default function Home() {
   <div className="relative z-10 flex flex-col md:h-1/2 py-28 md:py-0">
     <div className="relative flex flex-col rounded-md drop-shadow-xl md:mt-20 md:pb-36 md:mx-96 md:gap-6 gap-10 justify-start items-center flex-1">
       <div className="absolute inset-0"></div> {/* Dark overlay */}
-      <div className="relative z-10 flex flex-col items-center gap-10">
+      <div className="relative z-10 flex flex-col items-center gap-10 w-full">
               <h1 className='text-3xl sm:text-center sm:mt-40 text-center text-mute-200 font-extrabold font-mono tracking-wider'>What are you shipping?</h1>
-        <div className="flex md:flex-row flex-col gap-4">
+        <div className="flex w-full md:flex-row flex-col gap-4">
           <LtlForm />
           <FreightForm />
           <AutoForm />
@@ -104,7 +104,9 @@ export default function Home() {
             </ul>
           </div>
 </div>
-<div className='flex justify-center w-full items-center mt-10'><ScrollToTopButton /></div>
+<div className='flex justify-center w-full items-center mt-10'>
+  <ScrollToTopButton />
+  </div>
 </article>
 </main>
   );

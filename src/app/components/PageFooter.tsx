@@ -10,9 +10,9 @@ export default function PageFooter() {
   return (
     <Footer container className="bg-stone-950 footer">
   <div className="w-full text-start">
-        <h2 className="md:text-start text-center underline underline-offset-4 md:mb-4 font-bold text-3xl text-mute-200 mb-2 tracking-wider">OUR BRANDS</h2>
+        <h2 className="md:text-start text-center underline underline-offset-4 md:mb-4 font-bold text-3xl text-mute-200 mb-7 tracking-wider">OUR BRANDS</h2>
     <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
-      <div className="flex md:flex-row flex-col items-center gap-2">
+      <div className="flex md:flex-row flex-col items-center md:gap-2">
         <Footer.Brand
           href="https://www.heavyhaulers.com"
           src="https://www.heavyhaulers.com/images/hh-label-icons/hh-verticle-logo-final.png"
@@ -28,16 +28,20 @@ export default function PageFooter() {
           src="https://www.tractortransport.com/images/tractor-transport-transparent-logo.png"
           alt="Heavy Haulers Logo"
         />
+            <Footer.Divider className="md:hidden block"/>
       </div>
-      <Footer.LinkGroup className="flex md:flex-wrap flex-row justify-center items-stretch">
-            <Footer.Link className="text-3xl underline underline-offset-8 footer-links flex items-center font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="https://ntslogistics.com/team/adam-noah/">NTS PROFILE</Footer.Link>
-            <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="https://www.linkedin.com/in/adam-m-noah/"><FaLinkedin className="h-16 w-16"/> </Footer.Link>
-            <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:pr-4" href="https://github.com/adamn1225"><FaSquareGithub className="h-16 w-16"/></Footer.Link>
+          
+      <Footer.LinkGroup className="flex md:flex-wrap md:flex-row flex-col justify-center items-center gap-2">
+            <Footer.Link className="text-3xl underline underline-offset-8 footer-links m-0 font-bold navbar-link-hover md:border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="https://ntslogistics.com/team/adam-noah/">NTS PROFILE</Footer.Link>
+<div className="flex gap-2">
+              <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="https://www.linkedin.com/in/adam-m-noah/"><FaLinkedin className="h-16 w-16"/> </Footer.Link>
+              <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:pr-4" href="https://github.com/adamn1225"><FaSquareGithub className="h-16 w-16"/></Footer.Link>
+</div>
       </Footer.LinkGroup>
     </div>
     <Footer.Divider />
     <div className=" flex md:flex-row flex-col md:justify-center md:mb-2 justify-stretch w-full items-center">
-      <Button href="/login" className="md:bg-stone-800 b-stone-800 footer-button md:w-1/6 w-full text-gray-300 hover:bg-stone-700 hover:text-mute-200">Broker Login/Register</Button>
+      <Button href="/login" className="md:bg-stone-800 footer-button md:w-1/6 w-full text-gray-300 hover:bg-stone-700 hover:text-mute-200">Broker Login/Register</Button>
     </div>
     
     <Footer.Copyright by="SSTA & NTS Logistics LLC" year={2024} />

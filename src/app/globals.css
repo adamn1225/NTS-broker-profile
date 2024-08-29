@@ -9,6 +9,9 @@ body {
   height: 100%;
   overflow-x: hidden;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   color: rgb(var(--foreground-rgb));

@@ -1,16 +1,14 @@
+
 import React from 'react'
 import { FaHandPointRight } from "react-icons/fa";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { FaCheckDouble } from "react-icons/fa";
 import { GiArrowDunk } from "react-icons/gi";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
-import ScrollToTopButton from './ScrollToTopButton';
+import { FaAnglesUp } from "react-icons/fa6";
+import BackToTopButton from './ScrollCta'
 
-interface Props {}
-
-function AboutBroker(props: Props) {
-    const {} = props
-
+function AboutBroker() {
     return (
         <>
         <article className='bg-stone-950 py-12'>
@@ -19,12 +17,12 @@ function AboutBroker(props: Props) {
                         
                 <GiArrowDunk style={{ color: '#b18c2f', width: '80px', height: 'auto', position: 'relative', left: '50' }} />
                  <img className='w-52 h-auto self-center' src="/nts-pro-profile.png" alt="" />
-                        <h3 className='text-3xl text-center font-bold font-mono tracking-wider'>MEET NOAH</h3>
+                    <h3 className='text-3xl text-center font-bold font-mono tracking-wider'>MEET NOAH</h3>
                         <div className='my-2' style={{ border: 'solid', borderColor: '#b18c2f', borderRight: 'none', borderLeft: 'none', borderWidth: '1px'}}></div>
-                    <ul className='px-2 flex flex-col items-center justify-center gap-2'>
-    <li className='flex gap-1 text-md font-semibold'><FaCheckDouble style={{ color: '#b18c2f' }} />Over 10 years experience in logistics </li>
-    <li className='flex gap-1 text-md font-semibold'><FaCheckDouble style={{ color: '#b18c2f' }} />Handles all freight types/sizes</li>
-    <li className='flex gap-1 text-md font-semibold'><FaCheckDouble style={{ color: '#b18c2f' }} />Knowledgable - problem solver</li>
+                    <ul className='flex flex-col w-full items-center place-content-center justify-items-center gap-2'>
+    <li className='flex gap-1 place-content-center text-wrap text-md font-semibold'><FaCheckDouble style={{ color: '#b18c2f' }} />Over 10 years logistics experience </li>
+    <li className='flex gap-1 text-wrap text-md font-semibold'><FaCheckDouble style={{ color: '#b18c2f' }} />Handles all freight types/sizes</li>
+    <li className='flex gap-1 text-wrap text-md font-semibold'><FaCheckDouble style={{ color: '#b18c2f' }} />Knowledgable - problem solver</li>
     <li></li>
         </ul>
                 </div>
@@ -35,7 +33,9 @@ function AboutBroker(props: Props) {
                         <div className='flex justify-end items-end'><FaQuoteRight style={{ color: '#b18c2f' }} /></div>
                 </div>
             </div>
-                <div className='flex justify-center items-center mt-8'><ScrollToTopButton /></div>
+                <div className='flex justify-center items-center mt-8'>       
+                    <BackToTopButton />
+                </div>
         </article>
         </>
     )

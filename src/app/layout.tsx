@@ -3,7 +3,7 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import PageFooter from "@components/PageFooter";
 import NavTop from '@/app/components/navTop';
 import { metadata } from './metadata'; // Import metadata
-
+import ScrollToTopButton from './components/ScrollToTopButton';
 interface RootLayoutProps {
   children: ReactNode;
 }
