@@ -234,8 +234,8 @@ const AutoForm = () => {
 
   return (
     <>
-      <Button className='bg-button hover:bg-amber-400 hover:text-mute-200' onClick={() => setOpenModal(true)}>
-        Auto Transport
+      <Button className='bg-button hover:bg-amber-400  hover:text-mute-200' onClick={() => setOpenModal(true)}>
+        <span className='text-2xl font-bold font-mono'> AUTO TRANSPORT</span>  
       </Button>
       <Modal show={openModal} size="3xl" className='bg-stone-600' onClose={onCloseModal} popup>
         <Modal.Header className='bg-stone-100'/>

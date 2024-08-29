@@ -8,9 +8,9 @@ import { FaSquareGithub } from "react-icons/fa6";
 
 export default function PageFooter() {
   return (
-<Footer container className="bg-stone-800 footer">
+    <Footer container className="bg-stone-950 footer">
   <div className="w-full text-start">
-    <h2 className="md:text-start text-center underline underline-offset-4 md:mb-4 font-bold text-3xl text-mute-200 mb-2">OUR BRANDS</h2>
+        <h2 className="md:text-start text-center underline underline-offset-4 md:mb-4 font-bold text-3xl text-mute-200 mb-2 tracking-wider">OUR BRANDS</h2>
     <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
       <div className="flex md:flex-row flex-col items-center gap-2">
         <Footer.Brand

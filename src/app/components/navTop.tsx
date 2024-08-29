@@ -6,7 +6,7 @@ import { MdPermPhoneMsg, MdEmail } from "react-icons/md";
 
 export default function NavTop() {
   return (
-    <Navbar fluid rounded className="md:px-24 w-full bg-stone-800">
+    <Navbar fluid rounded className="md:px-24 w-full bg-stone-950">
       <div className="flex md:flex-col gap-2 justify-between px-2 w-full md:justify-between items-center md:gap-4 md:align-middle">
         <Navbar.Brand as={Link} href="/">
           <img src="https://www.heavyhaulers.com/images/hh-label-icons/hh-verticle-logo-final.png" className="md:mr-3 h-10 md:h-6" alt="Heavy Haulers Logo" />

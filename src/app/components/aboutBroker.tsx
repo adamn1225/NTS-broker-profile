@@ -19,7 +19,7 @@ function AboutBroker(props: Props) {
                         
                 <GiArrowDunk style={{ color: '#b18c2f', width: '80px', height: 'auto', position: 'relative', left: '50' }} />
                  <img className='w-52 h-auto self-center' src="/profile-bg-removed.png" alt="" />
-                        <h3 className='text-3xl text-center font-bold font-robotoSlab tracking-wider'>MEET NOAH</h3>
+                        <h3 className='text-3xl text-center font-bold font-mono tracking-wider'>MEET NOAH</h3>
                         <div className='my-2' style={{ border: 'solid', borderColor: '#b18c2f', borderRight: 'none', borderLeft: 'none', borderWidth: '1px'}}></div>
                     <ul className='px-2 flex flex-col items-center justify-center gap-2'>
     <li className='flex gap-1 text-md font-semibold'><FaCheckDouble style={{ color: '#b18c2f' }} />Over 10 years experience in logistics </li>
