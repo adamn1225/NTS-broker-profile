@@ -5,6 +5,7 @@ import LtlForm from '@components/ltlForm';
 import NavBanner from './components/NavBanner';
 import NavTop from '@/app/components/navTop';
 import RootLayout from './layout';
+import AboutBroker from './components/aboutBroker';
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
     </div>
   </div>
 </div>
+      <AboutBroker />
 <article className='flex flex-col text-center bg-stone-100 mt-1 px-2 md:px-28 py-12'>
 <div className="absolute inset-0 bg-black opacity-10"></div> 
 <h1 className='text-slate-800 text-4xl font-exo font-semibold mb-12 tracking-wider'>RECENT TRANSPORTS</h1>
@@ -63,6 +65,42 @@ export default function Home() {
       <li>Weight: 83,776 lbs</li>
     </ul>
   </div>
+          <div className='flex flex-col px-2 justify-center items-center gap-3 bg-stone-800 py-10 rounded-md drop-shadow-xl'>
+            <img className='rounded-md drop-shadow-lg w-96 h-80 object-cover' src='https://ntslogistics.com/wp-content/uploads/2023/05/Hydrema-912G-HM.png' />
+            <h1 className='text-stone-100 text-xl font-exo font-semibold'>Hydrema 912G-HM
+</h1>
+            <h2 className='text-stone-100 font-semibold text-lg'>Norman, OK to Snellville, GA</h2>
+            <ul className='text-stone-100 font-semibold text-md'>
+              <li>Length: 19.5 ft</li>
+              <li>Width: 19.4 ft</li>
+              <li>Height: 12.5 ft</li>
+              <li>Weight: 20,776 lbs</li>
+            </ul>
+          </div>
+          <div className='flex flex-col px-2 justify-center items-center gap-3 bg-stone-800 py-10 rounded-md drop-shadow-xl'>
+            <img className='rounded-md drop-shadow-lg w-96 h-80 object-cover' src='https://ntslogistics.com/wp-content/uploads/2023/05/Caterpillar-330d-L-Hydraulic-Excavator.png' />
+            <h1 className='text-stone-100 text-xl font-exo font-semibold'>Caterpillar 330d L Hydraulic Excavator
+            </h1>
+            <h2 className='text-stone-100 font-semibold text-lg'>BOKEELIA, FL to PORTSMOUTH, VA</h2>
+            <ul className='text-stone-100 font-semibold text-md'>
+              <li>Length: 36.75 ft</li>
+              <li>Width: 11'10" ft</li>
+              <li>Height: 11'10" ft</li>
+              <li>Weight: 79,844 lbs</li>
+            </ul>
+          </div>
+          <div className='flex flex-col px-2 justify-center items-center gap-3 bg-stone-800 py-10 rounded-md drop-shadow-xl'>
+            <img className='rounded-md drop-shadow-lg w-96 h-80 object-cover' src='https://ntslogistics.com/wp-content/uploads/2023/05/image-9.png' />
+            <h1 className='text-stone-100 text-xl font-exo font-semibold'>John Deere 544k Wheel Loader
+            </h1>
+            <h2 className='text-stone-100 font-semibold text-lg'>Columbus, OH to DE KALB, TX</h2>
+            <ul className='text-stone-100 font-semibold text-md'>
+              <li>Length: 18ft ft</li>
+              <li>Width: 7.03 ft</li>
+              <li>Height: 10.22ft</li>
+              <li>Weight: 39,244 lbs</li>
+            </ul>
+          </div>
 </div>
 </article>
 </main>
