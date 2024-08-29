@@ -4,6 +4,7 @@ import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { FaCheckDouble } from "react-icons/fa";
 import { GiArrowDunk } from "react-icons/gi";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
+import ScrollToTopButton from './ScrollToTopButton';
 
 interface Props {}
 
@@ -34,6 +35,7 @@ function AboutBroker(props: Props) {
                         <div className='flex justify-end items-end'><FaQuoteRight style={{ color: '#b18c2f' }} /></div>
                 </div>
             </div>
+                <div className='flex justify-center items-center mt-8'><ScrollToTopButton /></div>
         </article>
         </>
     )

@@ -2,24 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow-x: hidden;
 }
 
-
-
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
@@ -29,12 +24,17 @@ body {
 
   /* Custom hover styles for all buttons */
   .btn-hover-styles {
-    @apply  hover:text-stone-400;
+    @apply hover:text-stone-400;
   }
 }
 
-
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   @apply font-arialBlack;
 }
 
@@ -78,7 +78,6 @@ button.bg-button:hover {
 main {
   flex: 1;
 }
-
 
 .flowbite-datepicker button:hover {
   /* Hover state */

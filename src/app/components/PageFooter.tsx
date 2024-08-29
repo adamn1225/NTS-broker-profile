@@ -29,16 +29,14 @@ export default function PageFooter() {
           alt="Heavy Haulers Logo"
         />
       </div>
-      <Footer.LinkGroup className="flex md:flex-wrap md:flex-row flex-col justify-center items-stretch">
-        {/* <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="#">Blog</Footer.Link>
-        <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="#">Portfolio</Footer.Link> */}
-        <Footer.Link className="text-lg footer-links flex items-center font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="https://ntslogistics.com/team/adam-noah/">NTS Profile</Footer.Link>
+      <Footer.LinkGroup className="flex md:flex-wrap flex-row justify-center items-stretch">
+            <Footer.Link className="text-3xl underline underline-offset-8 footer-links flex items-center font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="https://ntslogistics.com/team/adam-noah/">NTS PROFILE</Footer.Link>
             <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4" href="https://www.linkedin.com/in/adam-m-noah/"><FaLinkedin className="h-16 w-16"/> </Footer.Link>
             <Footer.Link className="text-lg footer-links font-bold navbar-link-hover border-gray-200 md:mb-0 md:pr-4" href="https://github.com/adamn1225"><FaSquareGithub className="h-16 w-16"/></Footer.Link>
       </Footer.LinkGroup>
     </div>
     <Footer.Divider />
-    <div className=" flex md:flex-row flex-col justify-stretch w-full items-center">
+    <div className=" flex md:flex-row flex-col md:justify-center md:mb-2 justify-stretch w-full items-center">
       <Button href="/login" className="md:bg-stone-800 b-stone-800 footer-button md:w-1/6 w-full text-gray-300 hover:bg-stone-700 hover:text-mute-200">Broker Login/Register</Button>
     </div>
     

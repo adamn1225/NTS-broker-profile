@@ -6,6 +6,8 @@ import NavBanner from './components/NavBanner';
 import NavTop from '@/app/components/navTop';
 import RootLayout from './layout';
 import AboutBroker from './components/aboutBroker';
+import ScrollToTopButton from './components/ScrollToTopButton';
+
 
 export default function Home() {
   return (
@@ -102,6 +104,7 @@ export default function Home() {
             </ul>
           </div>
 </div>
+<div className='flex justify-center w-full items-center mt-10'><ScrollToTopButton /></div>
 </article>
 </main>
   );
