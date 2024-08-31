@@ -15,8 +15,10 @@ function BrokerTestimonials() {
                 <div className='flex text-stone-950 text-center mx-10 flex-col gap-2'>
                     <h3 className='text-3xl text-stone-950 text-center font-bold font-mono tracking-wider'>CLIENTS SAY</h3>
                         <div className='my-2' style={{ border: 'solid', borderColor: '#b18c2f', borderRight: 'none', borderLeft: 'none', borderWidth: '1px'}}></div>
-                        <h3 className='text-stone-950 font-semibold'>Noah is the best!</h3>
-                        <p className='text-stone-950 font-semibold'>He helped me with my shipment and made it easy and stress free. I would recommend him to anyone!</p>
+                        <h3 className='text-stone-950 font-semibold'>Joyce M.</h3>
+                        <p className='text-stone-950 font-semibold'>Hey, my experience has been great!! It’s been a smooth transport. They have transported 5 of our cars and there’s  no hidden fees.
+                              We received our cars fast with great communication!!
+                             I would recommend this company to anyone who ask. Thank you again for such great service</p>
                 </div>
 
             </div>
