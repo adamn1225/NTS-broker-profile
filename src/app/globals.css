@@ -13,13 +13,19 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow-x: hidden;
-  @apply bg-slate-100 !important;
+  background-color: white;
+
 }
 
 body {
+  background-color: white !important;
   scroll-behavior: smooth;
-  padding: 20px; /* Use padding instead of margin */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto; 
+}
+
+main {
+  background-color: white !important;
 }
 
 li {
@@ -49,15 +55,6 @@ p, h1, h2, h3, h4, h5, h6, button, span, a, li {
   }
 }
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-arialBlack;
-}
 
 /* Apply the custom hover styles to all button elements, except Banner.CollapseButton */
 button:not(.banner-collapse-button) {

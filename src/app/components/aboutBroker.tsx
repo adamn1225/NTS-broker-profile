@@ -6,7 +6,7 @@ import { FaCheckDouble } from "react-icons/fa";
 import { GiArrowDunk } from "react-icons/gi";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 import { FaAnglesUp } from "react-icons/fa6";
-import BackToTopButton from './ScrollCta'
+import ScrollCta from './ScrollCta'
 
 function AboutBroker() {
     return (
@@ -38,8 +38,8 @@ function AboutBroker() {
                         <div className='flex justify-end items-end'><FaQuoteRight style={{ color: '#b18c2f' }} /></div>
                 </div>
             </div>
-                <div className='flex justify-center items-center mt-8'>       
-                    <BackToTopButton />
+                <div className='flex justify-center items-center mt-8 z-50'>       
+                   <ScrollCta />
                 </div>
         </article>
         </>
