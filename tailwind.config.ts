@@ -12,26 +12,15 @@ const config: Config = {
   theme: {
     screens: {
       'xs': '576px',
-      // => @media (min-width: 576px) { ... }
-
       'sm': '640px',
-      // => @media (min-width: 640px) { ... }
-
       'md': '768px',
-      // => @media (min-width: 768px) { ... }
-
       'lg': '1024px',
-      // => @media (min-width: 1024px) { ... }
-
       'xl': '1280px',
-      // => @media (min-width: 1280px) { ... }
-
       '2xl': '1536px',
-      // => @media (min-width: 1536px) { ... }
     },
     extend: {
       backgroundImage: {
-        'dump-bg': "url('/two_International_DumpTrucks.jpg')", // Adjust the path to your image
+        'dump-bg': "url('/two_International_DumpTrucks.jpg')",
         'hero-bg': "url('https://www.heavyhaulers.com/alabama.jpg')",
         'form-bg': "url('/empty-road-bg.jpg')",
         'concrete': "url('/concrete.png')",
@@ -43,6 +32,7 @@ const config: Config = {
         mute: {
           200: '#e5e7eb',
         },
+        'secondary-y': '#b18c2f',
       },
       backgroundColor: {
         'button': 'var(--tw-bg-button, theme("colors.slate.800"))',
@@ -59,7 +49,6 @@ const config: Config = {
         exo: ['Exo', 'sans-serif'],
         arialBlack: ['Arial Black', 'sans-serif'],
       },
-      
     },
   },
   plugins: [require('flowbite/plugin')],

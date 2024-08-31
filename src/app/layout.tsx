@@ -4,6 +4,7 @@ import PageFooter from "@components/PageFooter";
 import NavTop from '@/app/components/navTop';
 import { metadata } from './metadata'; // Import metadata
 import ScrollToTopButton from './components/ScrollToTopButton';
+
 interface RootLayoutProps {
   children: ReactNode;
 }
@@ -23,11 +24,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="flex flex-col min-h-screen">
-        <NavTop />
-        <main className="flex-grow relative max-h-max w-screen">
-          {children}
-        </main>
-        <PageFooter />
+          <NavTop />
+          <main className="flex-grow relative max-h-max max-w-fit">
+            {children}
+          </main>
+          <PageFooter />
       </body>
     </html>
   );
