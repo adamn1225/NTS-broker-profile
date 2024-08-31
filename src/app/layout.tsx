@@ -22,7 +22,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <meta name="description" content={metadata.description} />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className="flex flex-col min-h-screen md:py-6 md:px-10">
+      <body className="flex flex-col min-h-screen ">
         <NavTop />
         <main className="flex-grow relative">
           {children}
