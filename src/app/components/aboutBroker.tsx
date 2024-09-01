@@ -11,7 +11,7 @@ import ScrollCta from './ScrollCta'
 function AboutBroker() {
     return (
         <>
-        <article className='bg-stone-950 py-12'>
+            <article className='xxs:px-4 bg-stone-950 py-12'>
             <div className='flex flex-col md:flex-row md:justify-evenly justify-center items-center text-mute-200'>
                 <div className='flex flex-col gap-2'>
                         

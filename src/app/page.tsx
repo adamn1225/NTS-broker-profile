@@ -8,11 +8,11 @@ import RootLayout from './layout';
 import AboutBroker from './components/aboutBroker';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import BrokerTestimonials from './components/BrokerTestimonials';
-
+import CreditApp from './components/CreditApp';
 
 export default function Home() {
   return (
-    <main className="max-w-fit">
+    <main className="max-w-max">
 <div className="relative h-1/2">
   <div className="absolute inset-0 bg-form-bg bg-cover bg-center opacity-50"></div>
   <div className="absolute inset-0 bg-gray-950 opacity-70"></div>
@@ -75,7 +75,7 @@ export default function Home() {
 </div>
 </article>
  <BrokerTestimonials />
-
+<CreditApp />
 <div className='flex justify-center w-full items-center my-10 z-50'>
   <ScrollToTopButton />
   </div>

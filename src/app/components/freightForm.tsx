@@ -259,17 +259,17 @@ const FreightForm = () => {
   return (
     <>
       <Button className='bg-button hover:bg-amber-400 hover:text-mute-200' onClick={() => setOpenModal(true)}>
-        <span className='md:text-2xl text-lg font-bold font-mono text-nowrap flex items-center'> REGULAR/HEAVY/OVERSIZE EQUIPMENT</span>
+        <span className='xxs:text-sm  md:text-2xl text-lg font-bold font-mono text-nowrap flex items-center'> REGULAR/HEAVY/OVERSIZE EQUIPMENT</span>
       </Button>
       <Modal show={openModal} size="3xl" className='bg-stone-600' onClose={onCloseModal} popup>
         <Modal.Header className='bg-stone-100'/>
         <Modal.Body className='bg-stone-100'>
           {isSubmitted ? (
             <div className='flex flex-col items-center justify-center gap-3'>
-              <h2 className='font-asterone w-full underline underline-offset-8 text-slate-800 text-lg font-bold text-center md:text-2xl'>Thanks! I'll get working on it!</h2>
-              <h3 className='font-asterone w-full text-slate-800 text-lg font-bold text-center md:text-xl'>I'll get the shipping rate you requested ASAP </h3>
-              <h3 className='font-asterone w-full text-slate-800 text-lg font-bold text-center md:text-xl'> Need faster? Call or text me at 954-495-8184</h3>
-              <h3 className='font-asterone w-full text-slate-800 text-lg font-bold text-center md:text-xl'> You can also email me at noah@ntslogistics.com</h3>
+              <h2 className=' w-full underline underline-offset-8 text-slate-800 text-lg font-bold text-center md:text-2xl'>Thanks! I'll get working on it!</h2>
+              <h3 className=' w-full text-slate-800 text-lg font-bold text-center md:text-xl'>I'll get the shipping rate you requested ASAP </h3>
+              <h3 className=' w-full text-slate-800 text-lg font-bold text-center md:text-xl'> Need faster? Call or text me at 954-495-8184</h3>
+              <h3 className=' w-full text-slate-800 text-lg font-bold text-center md:text-xl'> You can also email me at noah@ntslogistics.com</h3>
               </div>
           ) : (
             <MyForm 

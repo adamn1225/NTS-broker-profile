@@ -11,6 +11,7 @@ const config: Config = {
   ],
   theme: {
     screens: {
+      'xxs': '320px',
       'xs': '576px',
       'sm': '640px',
       'md': '768px',
