@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout</title>
+    <style>
+        .calc-input {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: end;
+            gap: 4em;
+            height: 100%;
+            padding: 0 1em;
+
+        }
+        #principal, #percentage {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #0369A1;
+            border-radius: 4px;
+        }
+
+        .calculate-button {
+                width: 100%;
+                max-width: 12%;
+                min-width: 100px;
+                background-color: #0369A1;
+                border: 1px solid #0369A1;
+                border-radius: 10px;
+                color: white;
+                padding: 5px;
+                cursor: pointer;
+            }
+
+        .calculate-button:hover {
+            background-color: #034e7dd0;
+            border: 1px solid #034e7d33;
+        }
+
+        .display-results {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 1em;
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            justify-content:center;
+        }
+
+        .calc-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1em 1em 0 1em;
+        }
+
+        .total-pay {
+            display: flex;
+            flex-direction:column;
+            justify-content: center;
+            align-items: center;
+            margin: 3em 0 3em;
+        }
+
+        .option-results {
+            display: flex;
+            align-content: center;
+            gap: 4px;
+            justify-content: start;
+            border-bottom: 2px solid #0369A1;
+            padding: 5px 12px 2px 12px;
+        }
+
+        h1, h2, h3, span {
+            margin: 0;
+            padding: 0;
+        }
+        @media screen and (max-width: 600px) {
+
+            h1, h2, h3, span {
+            margin: 0;
+            padding: 0;
+        }
+
+            .calc-input {
+                flex-direction: column;
+                gap: 20px !important;
+                justify-content: start;
+                align-items: center;
+                height: 100%;
+                margin-top:20px;
+            }
+
+            .display-results {
+            gap:25px;
+            text-align: center;
+           }
+
+
+           .item {
+            display: flex;
+            flex-direction: column;
+            justify-content:start;
+            }
+
+            .total-pay {
+            display: flex;
+            flex-direction:column;
+            gap:2px;
+            justify-content: center;
+            align-content: center;
+            width: 100%;
+           }
+
+           .total-results { 
+            display: flex;
+            align-content: center;
+            gap: 6px;
+            justify-content: start;
+            border-bottom: 2px solid #0369A1;
+            width:100%;
+            padding: 5px 12px 2px 8px;
+            margin-top:10px;
+            }
+
+
+            .calc-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1em 1em 0 1em;
+           }
+
+            .option-results {
+            display: flex;
+            align-content: center;
+            gap: 6px;
+            justify-content: start;
+            border-bottom: 2px solid #0369A1;
+            width:100%;
+            padding: 5px 12px 2px 12px;
+        }
+
+            input {
+                width: 100%;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+
+
+<section style="border-style: solid;border-width: 5px; padding: 25px">
+
+    <h1 style="text-align:center;color:#0369A1;">Debt Pay Off Calculator</h1>
+    <div class="calc-input" >
+            <label style="font-size: 16px;font-weight: 600;" for="principal">Principal Amount:<br />
+            <input type="number" id="principal" placeholder="Enter principal amount"></label>
+        
+            <label style="font-size: 16px;font-weight: 600;" for="percentage">Percentage to Add :<br>
+                <input type="number" id="percentage" value="12" placeholder="Enter percentage"></label>
+        
+    </div>
+    <div class="calc-button">
+    <button class="calculate-button" onclick="calculate()">Calculate</button>
+   </div>
+    <div class="ultimate-results">
+    
+    <div class="total-pay">
+    <h2>Total pay off amount:<span class="total-results">$<span style="font-weight:normal; color:rgb(123, 134, 155);" id="result">0.00</span></h2></span>
+    </div>
+    
+    <div class="display-results">
+    
+    <div class="item">
+    <h2 style="font-weight:600;">Pay in one year:</h2>
+    <h3>Per Month Payment:<span class="option-results">$<span style="font-weight: normal;color:rgb(123, 134, 155);" id="twelveResults">0.00</span></h3></span>
+    </div>
+    
+    <div class="item">
+    <h2 style="font-weight:600;">Pay in 24 months:</h2>
+    <h3>Per Month Payment: <span class="option-results">$<span style="font-weight: normal;color:rgb(123, 134, 155);" id="twoYearResults">0.00</span></h3></span>
+    </div>
+    
+    <div class="item">
+    <h2 style="font-weight:600;">Pay in 36 months:</h2>
+    <h3>Per Month Payment: <span class="option-results">$<span style="font-weight: normal;color:rgb(123, 134, 155);" id="threeYearResults">0.00</span></h3></span>
+    </div>
+
+    </div>
+    
+    </div>
+    </section>
