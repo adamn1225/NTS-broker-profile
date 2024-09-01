@@ -1,7 +1,7 @@
 "use client";
-import React, { useState, useEffect, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import PageFooter from "@components/PageFooter";
-import NavTop from '@/app/components/navTop';
+import NavTop from '@/app/components/NavTop';
 import { metadata } from './metadata';
 
 interface RootLayoutProps {
@@ -9,12 +9,6 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
   return (
     <html lang="en">
       <head>

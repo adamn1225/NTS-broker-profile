@@ -81,9 +81,9 @@ const CreditApp = () => {
         <article className='bg-stone-300 py-12 '>
             <div className='flex flex-col md:flex-row md:justify-evenly justify-center items-center text-mute-200'>
                 <div className=' flex text-stone-950 flex-col gap-2 '>
-                    <h3 className='xxs:px-0 text-center xxs:items-center xxs:justify-center text-3xl flex md:gap-2 text-stone-950 md:text-center font-bold font-mono'>
+                    <span className='xxs:px-0 text-center xxs:items-center xxs:justify-center text-3xl flex md:gap-2 text-stone-950 md:text-center font-bold font-mono'>
                         <FaAnglesRight className='xxs:h-6' style={{ color: '#b18c2f', }} /><h4 className='xxs:text-base xxs:text-center md:text-lg  text-stone-950'>ATTENTION FREQUENT SHIPPERS</h4>
-                    </h3>
+                    </span>
                     <div className='xxs:p-0 xxs:flex justify-center items-center my-2' style={{ border: 'solid', borderColor: '#b18c2f', borderRight: 'none', borderLeft: 'none', borderWidth: '1px' }}></div>
                     <h3 className='text-stone-950 text-center font-semibold'>Does your business need reliable shipping often?</h3>
                     <p className='text-stone-950 text-center font-semibold'>Request a credit application</p>
