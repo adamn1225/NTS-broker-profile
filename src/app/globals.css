@@ -62,7 +62,7 @@ button:not(.banner-collapse-button) {
 }
 
 .navbar-link-hover {
-  @apply text-stone-400 hover:text-yellow-400 !important;
+  @apply text-stone-400 hover:text-secondary-y !important;
 }
 
 /* Custom styles for button with bg-button class */
