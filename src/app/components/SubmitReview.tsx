@@ -43,7 +43,7 @@ const SubmitReview: React.FC<SubmitReviewProps> = ({ addReview }) => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const apiUrl = process.env.NODE_ENV === 'development'
-            ? 'http://localhost:8888/.netlify/functions/add-review' // Adjust this URL if needed
+            ? 'http://localhost:8888/.netlify/functions/add-review'
             : '/.netlify/functions/add-review';
 
         try {
@@ -75,7 +75,7 @@ const SubmitReview: React.FC<SubmitReviewProps> = ({ addReview }) => {
                     setCompanyName('');
                     setImage(null);
                     setFileName(null);
-                    setIsSubmitted(true); // Set form as submitted
+                    setIsSubmitted(true);
                 };
             } else {
                 const response = await axios.post(apiUrl, { name, text, imageUrl, companyName, jobTitle });
@@ -87,7 +87,7 @@ const SubmitReview: React.FC<SubmitReviewProps> = ({ addReview }) => {
                 setCompanyName('');
                 setImage(null);
                 setFileName(null);
-                setIsSubmitted(true); // Set form as submitted
+                setIsSubmitted(true);
             }
         } catch (error) {
             console.error('Error adding review:', error);
@@ -95,7 +95,7 @@ const SubmitReview: React.FC<SubmitReviewProps> = ({ addReview }) => {
     };
 
     if (!isClient) {
-        return null; // Render nothing on the server
+        return null;
     }
 
     if (isSubmitted) {
