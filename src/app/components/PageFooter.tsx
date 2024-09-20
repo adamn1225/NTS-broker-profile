@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { Navbar, Button } from "flowbite-react";
 import { Footer } from "flowbite-react";
-import BrokerRegister from '../login/brokerRegister';
 import { FaLinkedin, FaLink } from "react-icons/fa";
 import { FaSquareGithub } from "react-icons/fa6";
 
