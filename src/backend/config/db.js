@@ -11,10 +11,7 @@ const pool = new Pool({
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
-    awsAccessKeyId: process.env.MY_AWS_ACCESS_KEY_ID,
-    awsSecretAccessKey: process.env.MY_AWS_SECRET_ACCESS_KEY,
-    awsRegion: process.env.MY_AWS_REGION,
-    awsS3BucketName: process.env.MY_AWS_S3_BUCKET_NAME,
+    
 });
 
 export const query = (text, params) => pool.query(text, params);
