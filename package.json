@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "tspath && node dist/index.js",
-    "start-server": "node src/backend/server.js"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@babel/preset-react": "^7.24.7",
+    "@supabase/supabase-js": "^2.46.1",
     "@types/express": "^4.17.21",
     "autoprefixer": "^10.4.20",
     "aws-sdk": "^2.1687.0",

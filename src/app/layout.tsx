@@ -1,27 +1,32 @@
 "use client";
-import React, { ReactNode } from 'react';
-import PageFooter from "@components/PageFooter";
-import NavTop from '@/app/components/NavTop';
-import { metadata } from './metadata';
+
+import React, { ReactNode, useEffect } from 'react';
+import Head from 'next/head';
 
 interface RootLayoutProps {
   children: ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  useEffect(() => {
+    // Remove extra attributes added by browser extensions or client-side scripts
+    document.body.removeAttribute('data-new-gr-c-s-check-loaded');
+    document.body.removeAttribute('data-gr-ext-installed');
+  }, []);
+
   return (
-    <html lang="en">
-      <head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
+    <html lang="en" data-lt-installed="true">
+      <Head>
+        <title>Your App Title</title>
+        <meta name="description" content="Your App Description" />
         <link rel="icon" href="/favicon.ico" />
-      </head>
-      <body className="flex flex-col min-h-screen ">
-        <NavTop />
+      </Head>
+      <body suppressHydrationWarning={true} className="flex flex-col min-h-screen ">
+        <header>stuff</header>
         <main className="flex-grow relative">
           {children}
         </main>
-        <PageFooter />
+        <footer>other stuff</footer>
       </body>
     </html>
   );

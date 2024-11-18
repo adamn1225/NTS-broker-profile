@@ -1,28 +1,28 @@
-// LtlForm.tsx
 "use client";
-import React, { ChangeEvent, FormEvent } from 'react';
+
+import { ChangeEvent, FormEvent } from 'react';
 import { Button, Label, TextInput } from "flowbite-react";
 import InputMask from 'react-input-mask';
 import DatepickerWrapper from './Datepickerwrapper';
-import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 interface FormData {
-  count: string | null;
-  commodity: string | null;
-  ltl_value: string | null;
+  e_year: string | null;
+  e_make: string | null;
+  e_model: string | null;
   length: string | null;
   width: string | null;
   height: string | null;
   machine_weight: string | null;
   origin_zip: string | null;
   destination_zip: string | null;
+  date: string | null;
   first_name: string | null;
   last_name: string | null;
   phone_number: string | null;
   email: string | null;
 }
 
-interface LtlFormProps {
+interface EquipmentFormProps {
   currentStep: number;
   nextStep: () => void;
   prevStep: () => void;
@@ -31,14 +31,14 @@ interface LtlFormProps {
   setIsSubmitted: (value: boolean) => void;
 }
 
-const LtlForm: React.FC<LtlFormProps> = ({ currentStep, nextStep, prevStep, formData, handleChange, setIsSubmitted }) => {
+const EquipmentForm: React.FC<EquipmentFormProps> = ({ currentStep, nextStep, prevStep, formData, handleChange, setIsSubmitted }) => {
   const formatEmailContent = (data: FormData) => {
     return `
-      New LTL/FTL Transport Lead From NTS-Broker-Profile - https://nts-noah.netlify.app/::
+      New Equipment Transport Lead NTS-Broker-Profile - https://nts-noah.netlify.app/:
 
-      Count: ${data.count}
-      Commodity: ${data.commodity}
-      LTL Value: ${data.ltl_value}
+      Year: ${data.e_year}
+      Make: ${data.e_make}
+      Model: ${data.e_model}
       Dimensions (LxWxH): ${data.length} x ${data.width} x ${data.height}
       Machine Weight: ${data.machine_weight}
       Origin: ${data.origin_zip}
@@ -79,19 +79,19 @@ const LtlForm: React.FC<LtlFormProps> = ({ currentStep, nextStep, prevStep, form
     <form onSubmit={sendEmail} className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">
       {currentStep === 1 && (
         <>
-          <h2 className='font-asterone w-full underline underline-offset-8 text-slate-800 text-lg font-bold text-center md:text-2xl mt-4'>LTL/FTL Transport Details</h2>
-          <div className="flex flex-col md:flex-row gap-2">
+          <h2 className='font-asterone w-full underline underline-offset-8 text-slate-800 text-lg font-bold text-center md:text-2xl mt-4'>Equipment/Freight Details</h2>
+          <div className="flex flex-row gap-2">
             <div className="mb-1 block">
-              <Label htmlFor="count" value="Count" />
-              <TextInput value={formData.count || ''} onChange={handleChange} name="count" id="count" type="text" placeholder="Count" required />
+              <Label htmlFor="year" value="Year (optional)" />
+              <TextInput value={formData.e_year || ''} onChange={handleChange} name="e_year" id="e_year" type="text" placeholder="2004" required />
             </div>
             <div className="mb-1 block">
-              <Label htmlFor="commodity" value="Commodity" />
-              <TextInput value={formData.commodity || ''} onChange={handleChange} name="commodity" id="commodity" type="text" placeholder="Commodity" required />
+              <Label htmlFor="make" value="Make" />
+              <TextInput value={formData.e_make || ''} onChange={handleChange} name="e_make" id="e_make" type="text" placeholder="Caterpillar" required />
             </div>
             <div className="mb-1 block">
-              <Label htmlFor="ltl_value" value="LTL Value" />
-              <TextInput value={formData.ltl_value || ''} onChange={handleChange} name="ltl_value" id="ltl_value" type="text" placeholder='LTL Value' />
+              <Label htmlFor="model" value="Model" />
+              <TextInput value={formData.e_model || ''} onChange={handleChange} name="e_model" id="e_model" type="text" placeholder='D8T' />
             </div>
           </div>
 
@@ -109,8 +109,8 @@ const LtlForm: React.FC<LtlFormProps> = ({ currentStep, nextStep, prevStep, form
               <TextInput value={formData.height || ''} onChange={handleChange} name="height" id="height" type="number" placeholder='ft' />
             </div>
             <div className="block">
-              <Label htmlFor="machine_weight" value="Machine Weight" />
-              <TextInput value={formData.machine_weight || ''} onChange={handleChange} name="machine_weight" id="machine_weight" type="number" placeholder='lbs' />
+              <Label htmlFor="weight" value="lbs" />
+              <TextInput value={formData.machine_weight || ''} onChange={handleChange} name="machine_weight" id="weight" type="number" placeholder='lbs' />
             </div>
           </div>
 
@@ -131,7 +131,7 @@ const LtlForm: React.FC<LtlFormProps> = ({ currentStep, nextStep, prevStep, form
               <DatepickerWrapper
                 onChange={handleChange}
                 name="date"
-                minDate={new Date()} 
+                minDate={new Date()} // Minimum selectable date is today
                 maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
               />
             </div>
@@ -178,7 +178,7 @@ const LtlForm: React.FC<LtlFormProps> = ({ currentStep, nextStep, prevStep, form
             </div>
             <div className="mb-1 block">
               <Label htmlFor="email" value="Best email" />
-              <TextInput value={formData.email || ''} onChange={handleChange} name="email" id="email" type="email" placeholder="Doe" required />
+              <TextInput value={formData.email || ''} onChange={handleChange} name="email" id="email" type="email" placeholder="Doe" />
             </div>
           </div>
           <div className="flex flex-row gap-2">
@@ -191,4 +191,4 @@ const LtlForm: React.FC<LtlFormProps> = ({ currentStep, nextStep, prevStep, form
   );
 };
 
-export default LtlForm;
+export default EquipmentForm;
