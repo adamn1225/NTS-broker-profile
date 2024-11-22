@@ -20,9 +20,10 @@ interface DatepickerWrapperProps {
       onChange(event);
     };
   
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      const date = new Date(e.target.value);
-      handleDateChange(date);
+    const handleChange = (date: Date | null) => {
+      if (date) {
+        handleDateChange(date);
+      }
     };
   
     return (
