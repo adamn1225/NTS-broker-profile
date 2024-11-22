@@ -47,12 +47,12 @@ const CreditApp = () => {
             <div className='flex flex-col items-center gap-5'>
                 <button className='main-btn xxs:text-sm  md:text-2xl text-lg font-bold font-mono text-nowrap z-50' onClick={() => setOpenModal(true)}>Request an NTS Account</button>
                 <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                    <Modal.Header>Credit Application</Modal.Header>
+                    <Modal.Header><span className='m-0 text-2xl text-zinc-950'>NTS Account Application</span></Modal.Header>
                     <Modal.Body>
                         {!isSubmitted ? (
-                            <form onSubmit={handleSubmit}>
+                            <form className='flex flex-col gap-2' onSubmit={handleSubmit}>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='text-stone-950 font-bold'>Name</Label>
+                                    <Label className='text-stone-950 font-bold'>Name
                                     <TextInput
                                         className='bg-stone-100'
                                         placeholder='Name'
@@ -60,10 +60,10 @@ const CreditApp = () => {
                                         onChange={handleChange}
                                         name="name"
                                         required
-                                    />
+                                        /></Label>
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='text-stone-950 font-bold'>Phone</Label>
+                                    <Label className='text-stone-950 font-bold'>Phone
                                     <TextInput
                                         className='bg-stone-100'
                                         placeholder='Phone'
@@ -71,10 +71,10 @@ const CreditApp = () => {
                                         onChange={handleChange}
                                         name="phone"
                                         required
-                                    />
+                                        /></Label>
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='text-stone-950 font-bold'>Email</Label>
+                                    <Label className='text-stone-950 font-bold'>Email
                                     <TextInput
                                         className='bg-stone-100'
                                         placeholder='Email'
@@ -82,10 +82,10 @@ const CreditApp = () => {
                                         onChange={handleChange}
                                         name="email"
                                         required
-                                    />
+                                        /></Label>
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='text-stone-950 font-bold'>Company</Label>
+                                    <Label className='text-stone-950 font-bold'>Company
                                     <TextInput
                                         className='bg-stone-100'
                                         placeholder='Company'
@@ -93,10 +93,10 @@ const CreditApp = () => {
                                         onChange={handleChange}
                                         name="company"
                                         required
-                                    />
+                                        /></Label>
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='text-stone-950 font-bold'>Years in Business</Label>
+                                    <Label className='text-stone-950 font-bold'>Years in Business
                                     <TextInput
                                         className='bg-stone-100'
                                         placeholder='Years in Business'
@@ -104,10 +104,10 @@ const CreditApp = () => {
                                         onChange={handleChange}
                                         name="years"
                                         required
-                                    />
+                                        /></Label>
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='text-stone-950 font-bold'>How often do you require shipping?</Label>
+                                    <Label className='text-stone-950 font-bold'>How often do you require shipping?
                                     <TextInput
                                         className='bg-stone-100'
                                         placeholder='1-5 times a week, month, etc.'
@@ -115,16 +115,16 @@ const CreditApp = () => {
                                         onChange={handleChange}
                                         name="frequency"
                                         required
-                                    />
+                                        /></Label>
                                 </div>
-                                <button className='bg-button hover:bg-amber-400 hover:text-mute-200' type='submit'>Submit</button>
+                                <button className='main-btn hover:bg-amber-400 hover:text-mute-200' type='submit'>Submit</button>
                             </form>
                         ) : (
                             <div className='flex pt-5 flex-col items-center justify-center gap-3'>
-                                <h2 className='font-asterone w-full underline underline-offset-8 text-slate-800 text-lg font-bold text-center md:text-2xl'>Got it, I'll get the application emailed over soon as possible!</h2>
-                                <h3 className='font-asterone w-full text-slate-950 text-lg font-bold text-center md:text-xl'>
+                                <h2 className='font-asterone w-full underline underline-offset-8 text-zinc-800 text-lg font-bold text-center md:text-2xl'>Got it, I'll get the application emailed over soon as possible!</h2>
+                                <h3 className='font-asterone w-full text-zinc-950 text-lg font-bold text-center md:text-xl'>
                                     If you have any additional questions you can always call or text me at
-                                    <span className="text-slate-950">
+                                    <span className="text-zinc-950">
                                         <Link href="tel:954-495-8184"> 954-826-4318</Link>
                                     </span>
                                 </h3>
@@ -132,8 +132,8 @@ const CreditApp = () => {
                         )}
                     </Modal.Body>
                 </Modal>
-                <div className='mt-6 '>
-                    <h3 className='text-xl font-bold mb-4 text-secondary-y'>Benefits of Getting an Account with NTS:</h3>
+                <div className='mt-6 flex flex-col items-center justify-center'>
+                    <h3 className='xxs:text-center md:text-normal text-xl font-bold mb-4 text-secondary-y'>Benefits of Getting an Account with NTS:</h3>
                     <ul className='list-none space-y-2'>
                         <li className='flex items-center text-zinc-900'>
                             <FaCheck className='text-secondary-y mr-2' />

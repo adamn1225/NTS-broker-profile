@@ -51,7 +51,7 @@ const AutoForm: React.FC<AutoFormProps> = ({ currentStep, nextStep, prevStep, fo
     <form onSubmit={sendEmail} className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">
       {currentStep === 1 && (
         <>
-          <h2 className='font-asterone w-full underline underline-offset-8 text-slate-800 text-lg font-bold text-center md:text-2xl mt-4'>Auto Transport Details</h2>
+          <h2 className='font-asterone w-full underline underline-offset-8 text-zinc-800 text-lg font-bold text-center md:text-2xl mt-4'>Auto Transport Details</h2>
           <div className="flex flex-col md:flex-row gap-2">
             <div className="mb-1 block">
               <Label htmlFor="year" value="Year (optional)" />
@@ -95,7 +95,7 @@ const AutoForm: React.FC<AutoFormProps> = ({ currentStep, nextStep, prevStep, fo
 
       {currentStep === 2 && (
         <>
-          <h2 className='font-asterone font-medium underline underline-offset-8 text-slate-800 text-2xl'>Contact Details</h2>
+          <h2 className='font-asterone font-medium underline underline-offset-8 text-zinc-800 text-2xl'>Contact Details</h2>
           <div className="flex flex-row gap-2">
             <div className="mb-1 block">
               <Label htmlFor="first_name" value="Your first name" />

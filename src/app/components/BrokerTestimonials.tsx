@@ -44,8 +44,8 @@ const BrokerTestimonials = () => {
     };
 
     return (
-        <div className='px-6 py-9 bg-zinc-900 text-white rounded-lg shadow-md flex flex-col'>
-            <h2 className="text-2xl font-bold mb-4 text-secondary-y text-center">Submit a Testimonial</h2>
+        <div className='px-6 py-9 bg-zinc-950 text-white rounded-lg shadow-md flex flex-col'>
+            <h2 className="text-4xl font-bold mb-4 text-secondary-y text-center tracking-tight">Submit a Review</h2>
             <div className="flex justify-center items-center">
                 <form onSubmit={handleSubmit} className="space-y-4 w-1/2">
                     <div>

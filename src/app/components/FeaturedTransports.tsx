@@ -10,7 +10,7 @@ const FeaturedTransports = (props: Props) => {
     return (
         <article className='flex flex-col text-center bg-stone-100 mt-1 px-2 md:px-28 py-6 mb-4'>
             
-            <h1 className='text-slate-800 text-4xl font-mono font-semibold mb-6 tracking-wider'>RECENT TRANSPORTS</h1>
+            <h1 className='text-zinc-800 text-4xl font-mono font-semibold mb-6 tracking-wider'>RECENT TRANSPORTS</h1>
             <div className='grid md:grid-cols-4 gap-3 md:gap-12 items-center'>
                 <div className='flex flex-col px-2 justify-center items-center gap-3 bg-stone-950 py-10 rounded-md drop-shadow-xl'>
                     <img className='rounded-md drop-shadow-lg w-96 h-80 object-cover' src='https://ntslogistics.com/wp-content/uploads/2023/05/thumbnail_20_ft_wide_pool_1.jpg' />

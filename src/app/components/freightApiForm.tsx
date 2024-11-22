@@ -46,7 +46,7 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
     <form onSubmit={(e) => { handleSubmit(e); sendEmail(e); }} className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">
       {currentStep === 1 && (
         <>
-          <h2 className='font-asterone font-medium underline underline-offset-8 text-slate-800 text-2xl'>Equipment/Freight Details</h2>
+          <h2 className='font-asterone font-medium underline underline-offset-8 text-zinc-800 text-2xl'>Equipment/Freight Details</h2>
           <div className="flex flex-row gap-2">
             <div className="mb-1 block">
               <Label htmlFor="year" value="Year (optional)" />
@@ -62,7 +62,7 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
             </div>
           </div>
 
-          <div className="flex flex-row gap-2 border-b border-slate-700/40 pb-3">
+          <div className="flex flex-row gap-2 border-b border-zinc-700/40 pb-3">
             <div className="mb-1 block">
               <Label htmlFor="length" value="Length" />
               <TextInput value={formData.length} onChange={handleChange} name="length" id="length" type="number" placeholder="ft" required />
@@ -105,7 +105,7 @@ const MyForm: React.FC<MyFormProps> = ({ currentStep, nextStep, prevStep, formDa
 
       {currentStep === 2 && (
         <>
-          <h2 className='font-asterone font-medium underline underline-offset-8 text-slate-800 text-2xl'>Contact Details</h2>
+          <h2 className='font-asterone font-medium underline underline-offset-8 text-zinc-800 text-2xl'>Contact Details</h2>
           <div className="flex flex-row gap-2">
             <div className="mb-1 block">
               <Label htmlFor="first_name" value="Your first name" />
