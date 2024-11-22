@@ -4,6 +4,7 @@ import React, { ReactNode, useEffect } from 'react';
 import Head from 'next/head';
 import PageFooter from '@components/PageFooter';
 import NavTop from '@/app/components/NavTop';
+import './globals.css';
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -28,7 +29,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <main className="flex-grow relative">
           {children}
         </main>
-       <PageFooter />
+        <PageFooter />
       </body>
     </html>
   );

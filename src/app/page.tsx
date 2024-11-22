@@ -1,6 +1,5 @@
 "use client";
 import './globals.css';
-import FreightForms from '@components/FreightForm';
 import AboutBroker from './components/aboutBroker';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import BrokerTestimonials from './components/BrokerTestimonials';
