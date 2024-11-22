@@ -1,7 +1,7 @@
 "use client";
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { Modal, Label, TextInput } from "flowbite-react";
-import { FaHandPointRight, FaCheckDouble } from "react-icons/fa";
+import { FaHandPointRight, FaCheckDouble, FaCheck } from "react-icons/fa";
 import { FaAnglesUp, FaAnglesRight } from "react-icons/fa6";
 import InputMask from 'react-input-mask';
 import DatepickerWrapper from './Datepickerwrapper';
@@ -42,95 +42,115 @@ const CreditApp = () => {
     };
 
     return (
-        <div>
-            <button onClick={() => setOpenModal(true)}>Open Credit App</button>
-            <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                <Modal.Header>Credit Application</Modal.Header>
-                <Modal.Body>
-                    {!isSubmitted ? (
-                        <form onSubmit={handleSubmit}>
-                            <div className='flex flex-col gap-2'>
-                                <Label className='text-stone-950 font-bold'>Name</Label>
-                                <TextInput
-                                    className='bg-stone-100'
-                                    placeholder='Name'
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    name="name"
-                                    required
-                                />
+        <section className='z-50 my-10'>
+            <h2 className='text-2xl my-4 text-zinc-900 text-center'>Ship often? Request an account application.</h2>
+            <div className='flex flex-col items-center gap-5'>
+                <button className='main-btn xxs:text-sm  md:text-2xl text-lg font-bold font-mono text-nowrap z-50' onClick={() => setOpenModal(true)}>Request an NTS Account</button>
+                <Modal show={openModal} onClose={() => setOpenModal(false)}>
+                    <Modal.Header>Credit Application</Modal.Header>
+                    <Modal.Body>
+                        {!isSubmitted ? (
+                            <form onSubmit={handleSubmit}>
+                                <div className='flex flex-col gap-2'>
+                                    <Label className='text-stone-950 font-bold'>Name</Label>
+                                    <TextInput
+                                        className='bg-stone-100'
+                                        placeholder='Name'
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        name="name"
+                                        required
+                                    />
+                                </div>
+                                <div className='flex flex-col gap-2'>
+                                    <Label className='text-stone-950 font-bold'>Phone</Label>
+                                    <TextInput
+                                        className='bg-stone-100'
+                                        placeholder='Phone'
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        name="phone"
+                                        required
+                                    />
+                                </div>
+                                <div className='flex flex-col gap-2'>
+                                    <Label className='text-stone-950 font-bold'>Email</Label>
+                                    <TextInput
+                                        className='bg-stone-100'
+                                        placeholder='Email'
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        name="email"
+                                        required
+                                    />
+                                </div>
+                                <div className='flex flex-col gap-2'>
+                                    <Label className='text-stone-950 font-bold'>Company</Label>
+                                    <TextInput
+                                        className='bg-stone-100'
+                                        placeholder='Company'
+                                        value={formData.company}
+                                        onChange={handleChange}
+                                        name="company"
+                                        required
+                                    />
+                                </div>
+                                <div className='flex flex-col gap-2'>
+                                    <Label className='text-stone-950 font-bold'>Years in Business</Label>
+                                    <TextInput
+                                        className='bg-stone-100'
+                                        placeholder='Years in Business'
+                                        value={formData.years}
+                                        onChange={handleChange}
+                                        name="years"
+                                        required
+                                    />
+                                </div>
+                                <div className='flex flex-col gap-2'>
+                                    <Label className='text-stone-950 font-bold'>How often do you require shipping?</Label>
+                                    <TextInput
+                                        className='bg-stone-100'
+                                        placeholder='1-5 times a week, month, etc.'
+                                        value={formData.frequency}
+                                        onChange={handleChange}
+                                        name="frequency"
+                                        required
+                                    />
+                                </div>
+                                <button className='bg-button hover:bg-amber-400 hover:text-mute-200' type='submit'>Submit</button>
+                            </form>
+                        ) : (
+                            <div className='flex pt-5 flex-col items-center justify-center gap-3'>
+                                <h2 className='font-asterone w-full underline underline-offset-8 text-slate-800 text-lg font-bold text-center md:text-2xl'>Got it, I'll get the application emailed over soon as possible!</h2>
+                                <h3 className='font-asterone w-full text-slate-950 text-lg font-bold text-center md:text-xl'>
+                                    If you have any additional questions you can always call or text me at
+                                    <span className="text-slate-950">
+                                        <Link href="tel:954-495-8184"> 954-826-4318</Link>
+                                    </span>
+                                </h3>
                             </div>
-                            <div className='flex flex-col gap-2'>
-                                <Label className='text-stone-950 font-bold'>Phone</Label>
-                                <TextInput
-                                    className='bg-stone-100'
-                                    placeholder='Phone'
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                    name="phone"
-                                    required
-                                />
-                            </div>
-                            <div className='flex flex-col gap-2'>
-                                <Label className='text-stone-950 font-bold'>Email</Label>
-                                <TextInput
-                                    className='bg-stone-100'
-                                    placeholder='Email'
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    name="email"
-                                    required
-                                />
-                            </div>
-                            <div className='flex flex-col gap-2'>
-                                <Label className='text-stone-950 font-bold'>Company</Label>
-                                <TextInput
-                                    className='bg-stone-100'
-                                    placeholder='Company'
-                                    value={formData.company}
-                                    onChange={handleChange}
-                                    name="company"
-                                    required
-                                />
-                            </div>
-                            <div className='flex flex-col gap-2'>
-                                <Label className='text-stone-950 font-bold'>Years in Business</Label>
-                                <TextInput
-                                    className='bg-stone-100'
-                                    placeholder='Years in Business'
-                                    value={formData.years}
-                                    onChange={handleChange}
-                                    name="years"
-                                    required
-                                />
-                            </div>
-                            <div className='flex flex-col gap-2'>
-                                <Label className='text-stone-950 font-bold'>How often do you require shipping?</Label>
-                                <TextInput
-                                    className='bg-stone-100'
-                                    placeholder='1-5 times a week, month, etc.'
-                                    value={formData.frequency}
-                                    onChange={handleChange}
-                                    name="frequency"
-                                    required
-                                />
-                            </div>
-                            <button className='bg-button hover:bg-amber-400 hover:text-mute-200' type='submit'>Submit</button>
-                        </form>
-                    ) : (
-                        <div className='flex pt-5 flex-col items-center justify-center gap-3'>
-                            <h2 className='font-asterone w-full underline underline-offset-8 text-slate-800 text-lg font-bold text-center md:text-2xl'>Got it, I'll get the application emailed over soon as possible!</h2>
-                            <h3 className='font-asterone w-full text-slate-950 text-lg font-bold text-center md:text-xl'>
-                                If you have any additional questions you can always call or text me at
-                                <span className="text-slate-950">
-                                    <Link href="tel:954-495-8184"> 954-826-4318</Link>
-                                </span>
-                            </h3>
-                        </div>
-                    )}
-                </Modal.Body>
-            </Modal>
-        </div>
+                        )}
+                    </Modal.Body>
+                </Modal>
+                <div className='mt-6 '>
+                    <h3 className='text-xl font-bold mb-4 text-secondary-y'>Benefits of Getting an Account with NTS:</h3>
+                    <ul className='list-none space-y-2'>
+                        <li className='flex items-center text-zinc-900'>
+                            <FaCheck className='text-secondary-y mr-2' />
+                            Pay later - net 30 invoicing
+                        </li>
+                        <li className='flex items-center text-zinc-900'>
+                            <FaCheck className='text-secondary-y mr-2' />
+                            Better transport rates and reduced fees
+                        </li>
+                        <li className='flex items-center text-zinc-900'>
+                            <FaCheck className='text-secondary-y mr-2' />
+                            Premium customer support
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     );
 };
 

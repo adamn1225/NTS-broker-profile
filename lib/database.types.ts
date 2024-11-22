@@ -1,3 +1,4 @@
+
 export type Json =
   | string
   | number
@@ -153,6 +154,27 @@ export type Database = {
           origin_zip?: string | null
           phone_number?: string | null
           width?: string | null
+        }
+        Relationships: []
+      }
+      testimonials: {
+        Row: {
+          description: string | null
+          id: string | null
+          name: string | null
+          rating: number | null
+        }
+        Insert: {
+          description?: string | null
+          id?: string | null
+          name?: string | null
+          rating?: number | null
+        }
+        Update: {
+          description?: string | null
+          id?: string | null
+          name?: string | null
+          rating?: number | null
         }
         Relationships: []
       }

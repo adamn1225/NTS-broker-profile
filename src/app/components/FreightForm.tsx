@@ -190,7 +190,7 @@ const FreightForms = () => {
 
     return (
         <>
-            <button className='main-btn xxs:text-sm  md:text-2xltext-lg font-bold font-mono text-nowrap flex items-center' onClick={() => setOpenModal(true)}>
+            <button className='main-btn xxs:text-sm  md:text-2xl text-lg font-bold font-mono text-nowrap flex items-center' onClick={() => setOpenModal(true)}>
                 Open Freight Forms
             </button>
             <Modal show={openModal} size="3xl" className='bg-stone-600' onClose={onCloseModal} popup>

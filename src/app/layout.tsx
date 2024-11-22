@@ -2,6 +2,8 @@
 
 import React, { ReactNode, useEffect } from 'react';
 import Head from 'next/head';
+import PageFooter from '@components/PageFooter';
+import NavTop from '@/app/components/NavTop';
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -17,16 +19,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" data-lt-installed="true">
       <Head>
-        <title>Your App Title</title>
+        <title>shipper-connect</title>
         <meta name="description" content="Your App Description" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <body suppressHydrationWarning={true} className="flex flex-col min-h-screen ">
-        <header>stuff</header>
+        <NavTop />
         <main className="flex-grow relative">
           {children}
         </main>
-        <footer>other stuff</footer>
+       <PageFooter />
       </body>
     </html>
   );

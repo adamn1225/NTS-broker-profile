@@ -125,8 +125,8 @@ const EquipmentForm: React.FC<EquipmentFormProps> = ({ currentStep, nextStep, pr
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-2 items-center justify-center">
-            <div className="mb-1 block text-center">
+          <div className="flex flex-col md:flex-row gap-2 items-stretch w-full justify-center">
+            <div className="mb-1 text-center font-semibold w-full">
               <Label htmlFor="date" value="Shipping Date" />
               <DatepickerWrapper
                 onChange={handleChange}
