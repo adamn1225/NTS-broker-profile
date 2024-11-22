@@ -1,12 +1,7 @@
 [build]
   command = "npm run build"
-  functions = "netlify/functions"
+  publish = "out"
 
 [functions]
   node_bundler = "esbuild"
   external_node_modules = ["fs", "path", "url"]
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
