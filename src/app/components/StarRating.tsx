@@ -7,7 +7,7 @@ interface StarRatingProps {
 }
 
 const StarRating: React.FC<StarRatingProps> = ({ rating, setRating }) => {
-    const [hover, setHover] = useState(0);
+    const [hover, setHover] = useState(4);
 
     return (
         <div className="flex">

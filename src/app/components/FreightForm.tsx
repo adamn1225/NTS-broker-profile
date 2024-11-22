@@ -1,6 +1,8 @@
 "use client";
-import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 import { Modal } from "flowbite-react";
+import { FaAnglesRight, FaAnglesLeft } from "react-icons/fa6";
+import { motion, useAnimation } from 'framer-motion';
 import EquipmentForm from './EquipmentForm';
 import AutoForm from './AutoForm';
 import LtlForm from './LtlForm';
@@ -11,6 +13,7 @@ const FreightForms = () => {
     const [openModal, setOpenModal] = useState(false);
     const [currentTab, setCurrentTab] = useState('equipment');
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [currentStep, setCurrentStep] = useState(1);
 
     const [equipmentFormData, setEquipmentFormData] = useState<Omit<Equipment, 'id'>>({
         e_year: '',
@@ -59,7 +62,6 @@ const FreightForms = () => {
     });
 
     const { width, height } = useWindowDimensions();
-
 
     const handleChange = (e: ChangeEvent<HTMLInputElement> | { target: { name: string, value: string } }, formType: string) => {
         const { name, value } = e.target;
@@ -148,14 +150,22 @@ const FreightForms = () => {
         setOpenModal(false);
     };
 
+    const nextStep = () => {
+        setCurrentStep((prevStep) => prevStep + 1);
+    };
+
+    const prevStep = () => {
+        setCurrentStep((prevStep) => prevStep - 1);
+    };
+
     const renderForm = () => {
         switch (currentTab) {
             case 'equipment':
                 return (
                     <EquipmentForm
-                        currentStep={1}
-                        nextStep={() => { }}
-                        prevStep={() => { }}
+                        currentStep={currentStep}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
                         formData={equipmentFormData}
                         handleChange={(e) => handleChange(e, 'equipment')}
                         setIsSubmitted={setIsSubmitted}
@@ -164,9 +174,9 @@ const FreightForms = () => {
             case 'auto':
                 return (
                     <AutoForm
-                        currentStep={1}
-                        nextStep={() => { }}
-                        prevStep={() => { }}
+                        currentStep={currentStep}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
                         formData={autoFormData}
                         handleChange={(e) => handleChange(e, 'auto')}
                         setIsSubmitted={setIsSubmitted}
@@ -175,9 +185,9 @@ const FreightForms = () => {
             case 'truckLoads':
                 return (
                     <LtlForm
-                        currentStep={1}
-                        nextStep={() => { }}
-                        prevStep={() => { }}
+                        currentStep={currentStep}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
                         formData={truckLoadsFormData}
                         handleChange={(e) => handleChange(e, 'truckLoads')}
                         setIsSubmitted={setIsSubmitted}
@@ -188,10 +198,45 @@ const FreightForms = () => {
         }
     };
 
+    const controls = useAnimation();
+
+    const iconVariants = {
+        initial: { color: "#000" },
+        animate: {
+            color: ["#000", "#f00", "#000"],
+            transition: {
+                duration: 1,
+                repeat: Infinity,
+                repeatType: 'loop' as const,
+            },
+        },
+    };
+
+    useEffect(() => {
+        controls.start('animate');
+    }, [controls]);
+
     return (
         <>
-            <button className='main-btn xxs:text-sm  md:text-2xl text-lg font-bold font-mono text-nowrap flex items-center' onClick={() => setOpenModal(true)}>
-                Open Freight Forms
+            <button
+                className='main-btn xxs:text-lg md:text-2xl text-lg font-bold font-mono text-nowrap flex items-center gap-2'
+                onClick={() => setOpenModal(true)}
+            >
+                <motion.div
+                    variants={iconVariants}
+                    initial="initial"
+                    animate={controls}
+                >
+                    <FaAnglesRight />
+                </motion.div>
+                Haul Rate Request Form
+                <motion.div
+                    variants={iconVariants}
+                    initial="initial"
+                    animate={controls}
+                >
+                    <FaAnglesLeft />
+                </motion.div>
             </button>
             <Modal show={openModal} size="3xl" className='bg-stone-600' onClose={onCloseModal} popup>
                 <Modal.Header className='bg-stone-100' />
@@ -205,11 +250,11 @@ const FreightForms = () => {
                         </div>
                     ) : (
                         <>
-                                <div className="flex justify-center mb-4 gap-2">
-                                    <button onClick={() => setCurrentTab('equipment')} className={`main-btn ${currentTab === 'equipment' ? 'active' : ''}`}>Equipment</button>
-                                    <button onClick={() => setCurrentTab('auto')} className={`main-btn ${currentTab === 'auto' ? 'active' : ''}`}>Auto</button>
-                                    <button onClick={() => setCurrentTab('truckLoads')} className={`main-btn ${currentTab === 'truckLoads' ? 'active' : ''}`}>LTL/FTL</button>
-                                </div>
+                            <div className="flex justify-center mb-4 gap-2">
+                                <button onClick={() => { setCurrentTab('equipment'); setCurrentStep(1); }} className={`main-btn ${currentTab === 'equipment' ? 'active' : 'bg-zinc-900'}`}>Equipment</button>
+                                <button onClick={() => { setCurrentTab('auto'); setCurrentStep(1); }} className={`main-btn ${currentTab === 'auto' ? 'active' : 'bg-zinc-900'}`}>Auto</button>
+                                <button onClick={() => { setCurrentTab('truckLoads'); setCurrentStep(1); }} className={`main-btn ${currentTab === 'truckLoads' ? 'active' : 'bg-zinc-900'}`}>LTL/FTL</button>
+                            </div>
                             {renderForm()}
                         </>
                     )}

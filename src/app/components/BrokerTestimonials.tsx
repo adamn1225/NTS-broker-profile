@@ -38,7 +38,7 @@ const BrokerTestimonials = () => {
                 setTestimonials([...testimonials, ...data]);
             }
             setName('');
-            setRating(1);
+            setRating(4);
             setDescription('');
         }
     };

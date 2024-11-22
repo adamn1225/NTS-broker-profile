@@ -38,9 +38,9 @@ function AboutBroker() {
                         <div className='flex justify-end items-end'><FaQuoteRight style={{ color: '#b18c2f' }} /></div>
                 </div>
             </div>
-                <div className='flex justify-center items-center mt-8 z-50'>       
+                {/* <div className='flex justify-center items-center mt-8 z-50'>       
                    <ScrollCta />
-                </div>
+                </div> */}
         </article>
         </>
     )

@@ -1,10 +1,10 @@
-// LtlForm.tsx
 "use client";
 import React, { ChangeEvent, FormEvent } from 'react';
 import { Button, Label, TextInput } from "flowbite-react";
-import InputMask from 'react-input-mask';
+import MaskedInput from 'react-text-mask';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import DatepickerWrapper from './Datepickerwrapper';
-import useWindowDimensions from '../../hooks/useWindowDimensions';
+import supabase from '../../../lib/supabaseClient';
 
 interface FormData {
   count: string | null;
@@ -32,48 +32,28 @@ interface LtlFormProps {
 }
 
 const LtlForm: React.FC<LtlFormProps> = ({ currentStep, nextStep, prevStep, formData, handleChange, setIsSubmitted }) => {
-  const formatEmailContent = (data: FormData) => {
-    return `
-      New LTL/FTL Transport Lead From NTS-Broker-Profile - https://nts-noah.netlify.app/::
-
-      Count: ${data.count}
-      Commodity: ${data.commodity}
-      LTL Value: ${data.ltl_value}
-      Dimensions (LxWxH): ${data.length} x ${data.width} x ${data.height}
-      Machine Weight: ${data.machine_weight}
-      Origin: ${data.origin_zip}
-      Destination: ${data.destination_zip}
-      First Name: ${data.first_name}
-      Last Name: ${data.last_name}
-      Phone Number: ${data.phone_number}
-      Email: ${data.email}
-    `;
-  };
-
   const sendEmail = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const emailContent = formatEmailContent(formData);
-
     try {
-      const response = await fetch('/api/sendEmail', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ formData: emailContent }),
-      });
+      const { error } = await supabase
+        .from('ftl_ltl')
+        .insert([formData]);
 
-      if (response.ok) {
-        console.log('Email sent successfully');
-        setIsSubmitted(true); // Set isSubmitted to true upon successful submission
-      } else {
-        console.error('Failed to send email');
+      if (error) {
+        throw new Error(error.message);
       }
+
+      console.log('Data inserted successfully');
+      setIsSubmitted(true); // Set isSubmitted to true upon successful submission
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('Error inserting data:', error);
     }
   };
+
+  const phoneMask = [
+    '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/
+  ];
 
   return (
     <form onSubmit={sendEmail} className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">
@@ -131,7 +111,7 @@ const LtlForm: React.FC<LtlFormProps> = ({ currentStep, nextStep, prevStep, form
               <DatepickerWrapper
                 onChange={handleChange}
                 name="date"
-                minDate={new Date()} 
+                minDate={new Date()}
                 maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
               />
             </div>
@@ -158,23 +138,13 @@ const LtlForm: React.FC<LtlFormProps> = ({ currentStep, nextStep, prevStep, form
           <div className="flex flex-row gap-2">
             <div className="mb-1 block">
               <Label htmlFor="phone_number" value="Best Number" />
-              <InputMask
-                mask="(999) 999-9999"
+              <MaskedInput
+                mask={phoneMask}
+                className="form-input"
+                placeholder="(---) --- ----"
                 value={formData.phone_number || ''}
                 onChange={handleChange}
-              >
-                {/* @ts-ignore */}
-                {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
-                  <TextInput
-                    {...inputProps}
-                    name="phone_number"
-                    id="phone_number"
-                    type="text"
-                    placeholder="(---) --- ----"
-                    required
-                  />
-                )}
-              </InputMask>
+              />
             </div>
             <div className="mb-1 block">
               <Label htmlFor="email" value="Best email" />

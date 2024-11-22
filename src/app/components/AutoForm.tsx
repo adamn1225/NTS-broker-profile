@@ -1,8 +1,9 @@
 "use client";
 import React, { ChangeEvent, FormEvent } from 'react';
 import { Button, Label, TextInput } from "flowbite-react";
-import InputMask from 'react-input-mask';
+import MaskedInput from 'react-text-mask';
 import DatepickerWrapper from './Datepickerwrapper';
+import supabase from '../../../lib/supabaseClient';
 
 interface FormData {
   e_year: string | null;
@@ -27,45 +28,22 @@ interface AutoFormProps {
 }
 
 const AutoForm: React.FC<AutoFormProps> = ({ currentStep, nextStep, prevStep, formData, handleChange, setIsSubmitted }) => {
-  const formatEmailContent = (data: FormData) => {
-    return `
-      New Auto Transport Lead From NTS-Broker-Profile - https://nts-noah.netlify.app/::
-
-      Year: ${data.e_year}
-      Make: ${data.e_make}
-      Model: ${data.e_model}
-      date: ${data.date}
-      Origin: ${data.origin_zip}
-      Destination: ${data.destination_zip}
-      First Name: ${data.first_name}
-      Last Name: ${data.last_name}
-      Phone Number: ${data.phone_number}
-      Email: ${data.email}
-    `;
-  };
-
   const sendEmail = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const emailContent = formatEmailContent(formData);
-
     try {
-      const response = await fetch('/api/sendEmail', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ formData: emailContent }),
-      });
+      const { error } = await supabase
+        .from('auto')
+        .insert([formData]);
 
-      if (response.ok) {
-        console.log('Email sent successfully');
-        setIsSubmitted(true); // Set isSubmitted to true upon successful submission
-      } else {
-        console.error('Failed to send email');
+      if (error) {
+        throw new Error(error.message);
       }
+
+      console.log('Data inserted successfully');
+      setIsSubmitted(true); // Set isSubmitted to true upon successful submission
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('Error inserting data:', error);
     }
   };
 
@@ -132,15 +110,14 @@ const AutoForm: React.FC<AutoFormProps> = ({ currentStep, nextStep, prevStep, fo
           <div className="flex flex-row gap-2">
             <div className="mb-1 block">
               <Label htmlFor="phone_number" value="Best Number" />
-              <InputMask
-                mask="(999) 999-9999"
+              <MaskedInput
+                mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                 value={formData.phone_number || ''}
                 onChange={handleChange}
-              >
-                {/* @ts-ignore */}
-                {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
+                render={(ref, props) => (
                   <TextInput
-                    {...inputProps}
+                    {...props}
+                    ref={ref as React.LegacyRef<HTMLInputElement>}
                     name="phone_number"
                     id="phone_number"
                     type="text"
@@ -148,7 +125,7 @@ const AutoForm: React.FC<AutoFormProps> = ({ currentStep, nextStep, prevStep, fo
                     required
                   />
                 )}
-              </InputMask>
+              />
             </div>
             <div className="mb-1 block">
               <Label htmlFor="email" value="Best email" />
