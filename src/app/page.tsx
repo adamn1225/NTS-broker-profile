@@ -21,7 +21,7 @@ export default function Home() {
         <CreditApp />
 
 
-    <div className='fixed bottom-10 left-1 w-full items-center my-10 z-50'>
+    <div className='fixed bottom-2 right-5 z-50'>
       <ScrollToTopButton />
       </div>
     </section>
