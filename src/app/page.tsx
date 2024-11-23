@@ -9,23 +9,16 @@ import FeaturedTransports from './components/FeaturedTransports';
 
 export default function Home() {
   return (
-
-<>
-    
+<>   
   <section className="max-w-max">
-        <Hero />
-        <AboutBroker />
-        <FeaturedTransports />
+     <Hero />
+     <AboutBroker />
+     <FeaturedTransports />
      <BrokerTestimonials />
-        <CreditApp />
-
-
-      
-          <ScrollToTopButton />
-      
-    </section>
-    
+     <CreditApp />
+     
+     <ScrollToTopButton />
+    </section>  
 </>
-
   );
 }
