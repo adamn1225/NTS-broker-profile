@@ -133,17 +133,17 @@ const CreditApp = () => {
                     </Modal.Body>
                 </Modal>
                 <div className='mt-6 flex flex-col items-center justify-center'>
-                    <h3 className='xxs:text-center md:text-normal text-xl font-bold mb-4 text-secondary-y'>Benefits of Getting an Account with NTS:</h3>
-                    <ul className='list-none space-y-2'>
-                        <li className='flex items-center text-zinc-900'>
+                    <h3 className='text-center md:text-normal text-xl font-bold mb-4 text-secondary-y'>Benefits of Getting an Account with NTS:</h3>
+                    <ul className='list-none space-y-2 w-full'>
+                        <li className='flex justify-center text-zinc-900'>
                             <FaCheck className='text-secondary-y mr-2' />
                             Pay later - net 30 invoicing
                         </li>
-                        <li className='flex items-center text-zinc-900'>
+                        <li className='flex justify-center text-zinc-900'>
                             <FaCheck className='text-secondary-y mr-2' />
-                            Better transport rates and reduced fees
+                            Better rates & reduced fees
                         </li>
-                        <li className='flex items-center text-zinc-900'>
+                        <li className='flex justify-center text-zinc-900'>
                             <FaCheck className='text-secondary-y mr-2' />
                             Premium customer support
                         </li>
