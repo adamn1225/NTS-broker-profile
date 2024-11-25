@@ -1,9 +1,6 @@
 import React from 'react';
 import { FaHandPointRight, FaCheckDouble, FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
-import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { GiArrowDunk } from "react-icons/gi";
-import { FaAnglesUp } from "react-icons/fa6";
-import ScrollCta from './ScrollCta';
 
 function AboutBroker() {
     return (
