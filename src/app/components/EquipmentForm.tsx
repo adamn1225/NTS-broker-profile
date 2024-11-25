@@ -37,6 +37,7 @@ const EquipmentForm: React.FC<EquipmentFormProps> = ({ currentStep, nextStep, pr
     e.preventDefault();
 
     try {
+      // Insert data into Supabase
       const { error } = await supabase
         .from('equipment')
         .insert([formData]);
@@ -46,11 +47,33 @@ const EquipmentForm: React.FC<EquipmentFormProps> = ({ currentStep, nextStep, pr
       }
 
       console.log('Data inserted successfully');
+
+      // Send email using the API endpoint
+      const response = await fetch('/api/sendemail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formData,
+          subject: 'Heavy Equipment Transport Inquiry',
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
+
+      console.log('Email sent successfully');
       setIsSubmitted(true); // Set isSubmitted to true upon successful submission
     } catch (error) {
-      console.error('Error inserting data:', error);
+      console.error('Error:', error);
     }
   };
+
+  const phoneMask = [
+    '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/
+  ];
 
   return (
     <form onSubmit={sendEmail} className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">
@@ -136,7 +159,7 @@ const EquipmentForm: React.FC<EquipmentFormProps> = ({ currentStep, nextStep, pr
             <div className="mb-1 block">
               <Label htmlFor="phone_number" value="Best Number" />
               <MaskedInput
-                mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                mask={phoneMask}
                 value={formData.phone_number || ''}
                 onChange={handleChange}
                 render={(ref, props) => (

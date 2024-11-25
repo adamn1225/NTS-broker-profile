@@ -41,9 +41,27 @@ const AutoForm: React.FC<AutoFormProps> = ({ currentStep, nextStep, prevStep, fo
       }
 
       console.log('Data inserted successfully');
+
+      // Send email using the API endpoint
+      const response = await fetch('/api/sendemail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          formData,
+          subject: 'Auto Transport Inquiry',
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
+
+      console.log('Email sent successfully');
       setIsSubmitted(true); // Set isSubmitted to true upon successful submission
     } catch (error) {
-      console.error('Error inserting data:', error);
+      console.error('Error:', error);
     }
   };
 
