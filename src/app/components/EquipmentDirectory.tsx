@@ -3,10 +3,11 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import RequestQuoteForm from './RequestQuoteForm';
 import supabase from '../../../lib/supabaseClient';
 import { Equipment } from '../../../lib/schema';
+import Link from 'next/link';
 
 interface Dimensions {
     Length: string;
-    Width: string | string[];
+    Width: string;
     Height: string;
 }
 
@@ -14,7 +15,9 @@ interface Excavator {
     "Manufacturer/Model": string;
     Weight: string;
     dimensions: Dimensions;
+    manufacturer: string;
     model: string;
+    slug: string;
 }
 
 interface FormData {
@@ -37,7 +40,7 @@ interface FormData {
 interface Props { }
 
 const EquipmentDirectory: React.FC<Props> = () => {
-    const [data, setData] = useState<Record<string, Excavator[]>>({});
+    const [data, setData] = useState<Excavator[]>([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedManufacturer, setSelectedManufacturer] = useState<string | null>(null);
     const [selectedModel, setSelectedModel] = useState<Excavator | null>(null);
@@ -65,7 +68,7 @@ const EquipmentDirectory: React.FC<Props> = () => {
             try {
                 const response = await fetch('/api/directory');
                 const result = await response.json();
-                setData(result);
+                setData(result["equipment-data"]);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -119,30 +122,28 @@ const EquipmentDirectory: React.FC<Props> = () => {
         e.preventDefault();
 
         try {
-            const { error } = await supabase
-                .from('equipment')
-                .insert([formData]);
+            const response = await fetch('/api/quote', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
 
-            if (error) {
-                throw new Error(error.message);
+            if (!response.ok) {
+                throw new Error('Error submitting quote request');
             }
 
-            console.log('Data inserted successfully');
+            console.log('Quote request submitted successfully');
             setShowForm(false); // Hide the form after successful submission
         } catch (error) {
-            console.error('Error inserting data:', error);
+            console.error('Error submitting quote request:', error);
         }
     };
 
-    const filteredData = Object.keys(data).reduce((acc, manufacturer) => {
-        const models = data[manufacturer].filter(item =>
-            item.model.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-        if (models.length > 0) {
-            acc[manufacturer] = models;
-        }
-        return acc;
-    }, {} as Record<string, Excavator[]>);
+    const filteredData = data.filter(item =>
+        item.model.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
         <div className="flex h-full">
@@ -156,25 +157,25 @@ const EquipmentDirectory: React.FC<Props> = () => {
                         className="mb-4 p-2 border border-gray-300 rounded w-full"
                     />
                     <ul>
-                        {Object.keys(filteredData).map(manufacturer => (
-                            <li key={manufacturer}>
-                                <details open={selectedManufacturer === manufacturer}>
+                        {filteredData.map((item, index) => (
+                            <li key={item.slug}>
+                                <details open={selectedManufacturer === item.manufacturer}>
                                     <summary
                                         className="cursor-pointer text-xl text-zinc-900"
-                                        onClick={() => handleManufacturerClick(manufacturer)}
+                                        onClick={() => handleManufacturerClick(item.manufacturer)}
                                     >
-                                        {manufacturer}
+                                        {item.manufacturer}
                                     </summary>
                                     <ul className="ml-4 text-zinc-900">
-                                        {filteredData[manufacturer].map((item, index) => (
-                                            <li
-                                                key={`${manufacturer}-${item.model}-${index}`}
-                                                className={`cursor-pointer text-zinc-900 ${selectedModel?.model === item.model ? 'font-bold' : ''}`}
-                                                onClick={() => handleModelClick(item)}
-                                            >
+                                        <li
+                                            key={`${item.manufacturer}-${item.model}-${index}`}
+                                            className={`cursor-pointer text-zinc-900 ${selectedModel?.model === item.model ? 'font-bold' : ''}`}
+                                            onClick={() => handleModelClick(item)}
+                                        >
+                                            <Link href={`/equipment/${item.slug}`}>
                                                 {item.model}
-                                            </li>
-                                        ))}
+                                            </Link>
+                                        </li>
                                     </ul>
                                 </details>
                             </li>

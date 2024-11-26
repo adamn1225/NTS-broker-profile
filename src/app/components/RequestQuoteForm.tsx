@@ -2,9 +2,7 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { Button, Label, TextInput } from "flowbite-react";
 import MaskedInput from 'react-text-mask';
-import DatepickerWrapper from './Datepickerwrapper';
-import supabase from '../../../lib/supabaseClient';
-import { Equipment } from '../../../lib/schema';
+import DateInput from './DateInput';
 
 interface FormData {
     e_year: string | null;
@@ -31,8 +29,8 @@ interface RequestQuoteFormProps {
 
 const RequestQuoteForm: React.FC<RequestQuoteFormProps> = ({ formData, handleChange, handleSubmit }) => {
     return (
-        <form onSubmit={handleSubmit} className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">
-            <h2 className='font-asterone w-full underline underline-offset-8 text-zinc-800 text-lg font-bold text-center md:text-2xl mt-4'>Equipment/Freight Details</h2>
+        <form onSubmit={handleSubmit} className="flex h-1/4 mb-5 min-w-screen flex-col align-middle items-center justify-center gap-6">
+            <h2 className='font-asterone w-full underline underline-offset-8 text-zinc-800 text-lg font-bold text-center md:text-2xl mt-4'>Get a Haul Rate</h2>
             <div className="flex flex-row gap-2">
                 <div className="mb-1 block">
                     <Label htmlFor="year" value="Year (optional)" />
@@ -79,13 +77,11 @@ const RequestQuoteForm: React.FC<RequestQuoteFormProps> = ({ formData, handleCha
             </div>
 
             <div className="flex flex-col md:flex-row gap-2 items-stretch w-full justify-center">
-                <div className="mb-1 text-center font-semibold w-full">
-                    <Label htmlFor="date" value="Shipping Date" />
-                    <DatepickerWrapper
+                <div className="mb-1 text-center font-semibold w-3/4 flex flex-col gap-1 md:w-1/6">
+                    <Label className='font-medium' htmlFor="date" value="Shipping Date" />
+                    <DateInput
+                        value={formData.date || ''}
                         onChange={handleChange}
-                        name="date"
-                        minDate={new Date()} // Minimum selectable date is today
-                        maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
                     />
                 </div>
             </div>

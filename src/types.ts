@@ -15,3 +15,18 @@ export interface FormData {
     phone_number: string | null;
     email: string | null;
 }
+
+export interface Dimensions {
+    Length: string;
+    Width: string;
+    Height: string;
+}
+
+export interface Equipment {
+    "Manufacturer/Model": string;
+    Weight: string;
+    dimensions: Dimensions;
+    manufacturer: string;
+    model: string;
+    slug: string;
+}
