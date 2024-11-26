@@ -1,8 +1,10 @@
 "use client";
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { ChangeEvent, FormEvent } from 'react';
 import { Button, Label, TextInput } from "flowbite-react";
 import MaskedInput from 'react-text-mask';
 import DatepickerWrapper from './Datepickerwrapper';
+import supabase from '../../../lib/supabaseClient';
+import { Equipment } from '../../../lib/schema';
 
 interface FormData {
     e_year: string | null;

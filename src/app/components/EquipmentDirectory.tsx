@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import RequestQuoteForm from './RequestQuoteForm';
+import supabase from '../../../lib/supabaseClient';
+import { Equipment } from '../../../lib/schema';
 
 interface Dimensions {
     Length: string;
@@ -117,10 +119,18 @@ const EquipmentDirectory: React.FC<Props> = () => {
         e.preventDefault();
 
         try {
-            // Replace with your email sending logic
-            console.log('Form data:', formData);
+            const { error } = await supabase
+                .from('equipment')
+                .insert([formData]);
+
+            if (error) {
+                throw new Error(error.message);
+            }
+
+            console.log('Data inserted successfully');
+            setShowForm(false); // Hide the form after successful submission
         } catch (error) {
-            console.error('Error sending email:', error);
+            console.error('Error inserting data:', error);
         }
     };
 
