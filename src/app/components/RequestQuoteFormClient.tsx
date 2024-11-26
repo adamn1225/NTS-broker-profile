@@ -51,12 +51,15 @@ const RequestQuoteFormClient: React.FC<RequestQuoteFormClientProps> = ({ equipme
         e.preventDefault();
 
         try {
-            const response = await fetch('/api/quote', {
+            const response = await fetch('/api/sendemail', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify({
+                    formData,
+                    subject: `New Quote Request for ${formData.e_make} ${formData.e_model}`
+                })
             });
 
             if (!response.ok) {
