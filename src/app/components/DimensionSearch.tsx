@@ -117,7 +117,7 @@ const DimensionSearch: React.FC<DimensionSearchProps> = ({ populateForm }) => {
                             <button onClick={() => setIsModalOpen(false)} className="close">&times;</button>
                         </div>
                         <div className="modal-body mt-4">
-                                <div className='flex gap-2 justify-center items-center'>
+                                <div className='flex flex-col md:flex-row gap-2 justify-center items-center'>
                                     <label>Select Manufacturer
                                     <select
                                         value={selectedManufacturer}
@@ -148,8 +148,8 @@ const DimensionSearch: React.FC<DimensionSearchProps> = ({ populateForm }) => {
                                 </div>
                             </div>
     
-                            <div className="flex gap-4 my-4 justify-center">
-                                <button onClick={handleSearch} className="main-btn w-2/3">Search</button>
+                            <div className="flex flex-col md:flex-row gap-4 my-4 justify-center">
+                                <button onClick={handleSearch} className="main-btn md:w-2/3">Search</button>
                                 <button onClick={handleClearSearch} className="secondary-btn">Clear Form</button>
                             </div>
 
