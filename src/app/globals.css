@@ -19,8 +19,6 @@ body {
 body {
   background-color: white !important;
   scroll-behavior: smooth;
-  /* overflow-x: hidden; */
-  /* Prevent horizontal scrolling */
   overflow-y: auto;
 }
 
@@ -41,7 +39,7 @@ body {
 
 p, h1, h2, h3, h4, h5, h6, button, span, a, li {
   @apply font-mono !important;
-  @apply text-stone-300;
+  @apply text-zinc-100;
 }
 
 @layer utilities {
@@ -49,14 +47,11 @@ p, h1, h2, h3, h4, h5, h6, button, span, a, li {
     text-wrap: balance;
   }
 
-  /* Custom hover styles for all buttons */
   .btn-hover-styles {
     @apply hover:text-stone-400;
   }
 }
 
-
-/* Apply the custom hover styles to all button elements, except Banner.CollapseButton */
 button:not(.banner-collapse-button) {
   @apply btn-hover-styles;
 }
@@ -65,7 +60,6 @@ button:not(.banner-collapse-button) {
   @apply text-stone-400 hover:text-secondary-y !important;
 }
 
-/* Custom styles for button with bg-button class */
 button.bg-button {
   background-color: var(--tw-bg-button, theme("colors.stone.800")) !important;
 }
@@ -96,7 +90,6 @@ button.bg-button:hover {
   @apply bg-zinc-600 px-3 py-2 rounded-md text-white font-bold;
 }
 
-/* Remove hover effect for Banner.CollapseButton */
 .banner-collapse-button,
 .banner-collapse-button:hover {
   background-color: transparent !important;
@@ -118,18 +111,15 @@ main {
 }
 
 .flowbite-datepicker button:hover {
-  /* Hover state */
   @apply bg-stone-700;
 }
 
 .flowbite-datepicker button:active {
-  /* Active state */
   @apply bg-stone-700;
 }
 
 .flowbite-datepicker button.selected,
 .flowbite-datepicker button.bg-cyan-700 {
-  /* Selected state */
   @apply bg-stone-700 !important;
 }
 
@@ -142,8 +132,6 @@ main {
 a {
   text-decoration: none !important;
 }
-
-/* Add this CSS to your global styles or a specific CSS file */
 
 .modal {
     display: flex;
