@@ -14,11 +14,11 @@ const NavTop = () => {
               <img src="https://www.heavyhaulers.com/images/hh-label-icons/hh-verticle-logo-final.png" className="md:mr-3 h-10" alt="Heavy Haulers Logo" />
             </a>
           </Link>
-          <div>
+          {/* <div>
             <Link href="/equipment-directory" legacyBehavior>
               <a className="text-xs text-nowrap md:text-lg px-3 py-1 rounded-md text-blue-500 shadow-xl font-bold hover:text-blue-400 flex gap-1 items-center"><FaAnglesRight className='text-blue-500' /> <span className='text-xs text-nowrap md:text-lg underline underline-offset-2 text-blue-400 shadow-xl font-bold hover:text-blue-300'>Equipment Directory - Get Dimensions</span> <FaAnglesLeft className='text-blue-500' /></a>
             </Link>
-          </div>
+          </div> */}
           <div className="text-center flex flex-col m-0 gap-0 md:flex-row md:items-center justify-center h-20 md:h-auto pb-5 md:pb-0 min-h-min">
 
             <Link href="mailto:noah@ntslogistics.com" legacyBehavior>
