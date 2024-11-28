@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation';
-import { Equipment } from '../../../types';
+import { Equipment } from '../../../../lib/schema';
 import Head from 'next/head';
-import fs from 'fs/promises';
-import path from 'path';
+import supabase from '../../../../lib/supabaseClient';
 import RequestQuoteFormClient from '@components/RequestQuoteFormClient';
 
 interface Props {
@@ -12,29 +11,25 @@ interface Props {
 const EquipmentPage = async ({ params }: Props) => {
     const { slug } = params;
 
-    // Read the data from the local file
-    const jsonFilePath = path.join(process.cwd(), 'public', 'organized_equipmentdata.json');
-    const jsonData = await fs.readFile(jsonFilePath, 'utf-8');
-    const data = JSON.parse(jsonData)["equipment-data"];
+    // Fetch data from Supabase
+    const { data, error } = await supabase
+        .from('equipment')
+        .select('*')
+        .eq('slug', slug)
+        .single();
 
-    if (!data) {
-        console.error('Data is undefined or null');
+    if (error || !data) {
+        console.error('Error fetching data:', error);
         notFound();
     }
 
-    // Find the equipment by slug
-    const equipment = data.find((item: Equipment & { slug: string }) => item.slug === slug);
-
-    if (!equipment) {
-        console.error(`Equipment not found for slug: ${slug}`);
-        notFound();
-    }
+    const equipment = data;
 
     return (
         <div className='h-full'>
             <Head>
-                <title>{equipment.manufacturer} {equipment.model} - Equipment Details</title>
-                <meta name="description" content={`Details and specifications for ${equipment.manufacturer} ${equipment.model}.`} />
+                <title>{equipment.e_make} {equipment.e_model} - Equipment Details</title>
+                <meta name="description" content={`Details and specifications for ${equipment.e_make} ${equipment.e_model}.`} />
                 <link rel="canonical" href={`https://shipping-connect/equipment/${equipment.slug}`} />
             </Head>
             <RequestQuoteFormClient equipment={equipment} />
@@ -43,18 +38,18 @@ const EquipmentPage = async ({ params }: Props) => {
 };
 
 export async function generateStaticParams() {
-    // Read the data from the local file
-    const jsonFilePath = path.join(process.cwd(), 'public', 'organized_equipmentdata.json');
-    const jsonData = await fs.readFile(jsonFilePath, 'utf-8');
-    const data = JSON.parse(jsonData)["equipment-data"];
+    // Fetch data from Supabase
+    const { data, error } = await supabase
+        .from('equipment')
+        .select('slug');
 
-    if (!data) {
-        console.error('Data is undefined or null');
+    if (error || !data) {
+        console.error('Error fetching data:', error);
         return [];
     }
 
     // Generate paths for each slug
-    const paths = data.map((item: Equipment & { slug: string }) => ({
+    const paths = data.map((item) => ({
         slug: item.slug,
     }));
 
