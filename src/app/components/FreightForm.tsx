@@ -29,7 +29,8 @@ const FreightForms = () => {
         first_name: '',
         last_name: '',
         phone_number: '',
-        email: ''
+        email: '',
+        slug: ''
     });
 
     const [autoFormData, setAutoFormData] = useState<Omit<Auto, 'id'>>({
@@ -42,7 +43,7 @@ const FreightForms = () => {
         first_name: '',
         last_name: '',
         phone_number: '',
-        email: ''
+        email: '',
     });
 
     const [truckLoadsFormData, setTruckLoadsFormData] = useState<Omit<TruckLoads, 'id'>>({
@@ -58,7 +59,7 @@ const FreightForms = () => {
         first_name: '',
         last_name: '',
         phone_number: '',
-        email: ''
+        email: '',
     });
 
     const { width, height } = useWindowDimensions();
