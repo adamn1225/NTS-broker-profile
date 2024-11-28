@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import LazyLoad from 'react-lazyload';
 import './globals.css';
 import AboutBroker from './components/aboutBroker';
 import ScrollToTopButton from './components/ScrollToTopButton';
@@ -13,15 +14,24 @@ export default function Home() {
   return (
     <>
       <section className="max-w-max">
-        <Hero />
-        <AboutBroker />
-        <DimensionSearchForm />
-        <FeaturedTransports />
-        <BrokerTestimonials />
-        <CreditApp />
-
-       
-
+        <LazyLoad height={200} offset={100} placeholder={<div>Loading...</div>}>
+          <Hero />
+        </LazyLoad>
+        <LazyLoad height={200} offset={100} placeholder={<div>Loading...</div>}>
+          <AboutBroker />
+        </LazyLoad>
+        <LazyLoad height={200} offset={100} placeholder={<div>Loading...</div>}>
+          <DimensionSearchForm />
+        </LazyLoad>
+        <LazyLoad height={200} offset={100} placeholder={<div>Loading...</div>}>
+          <FeaturedTransports />
+        </LazyLoad>
+        <LazyLoad height={200} offset={100} placeholder={<div>Loading...</div>}>
+          <BrokerTestimonials />
+        </LazyLoad>
+        <LazyLoad height={200} offset={100} placeholder={<div>Loading...</div>}>
+          <CreditApp />
+        </LazyLoad>
         <ScrollToTopButton />
       </section>
     </>
