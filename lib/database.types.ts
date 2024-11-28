@@ -1,4 +1,3 @@
-
 export type Json =
   | string
   | number
@@ -68,6 +67,7 @@ export type Database = {
           machine_weight: string | null
           origin_zip: string | null
           phone_number: string | null
+          slug: string | null
           width: string | null
         }
         Insert: {
@@ -85,6 +85,7 @@ export type Database = {
           machine_weight?: string | null
           origin_zip?: string | null
           phone_number?: string | null
+          slug?: string | null
           width?: string | null
         }
         Update: {
@@ -102,6 +103,7 @@ export type Database = {
           machine_weight?: string | null
           origin_zip?: string | null
           phone_number?: string | null
+          slug?: string | null
           width?: string | null
         }
         Relationships: []
