@@ -6,11 +6,11 @@ import path from 'path';
 import RequestQuoteFormClient from '@components/RequestQuoteFormClient';
 
 interface Props {
-    params: Promise<{ slug: string }>;
+    params: { slug: string };
 }
 
 const EquipmentPage = async ({ params }: Props) => {
-    const { slug } = await params;
+    const { slug } = params;
 
     // Read the data from the local file
     const jsonFilePath = path.join(process.cwd(), 'public', 'organized_equipmentdata.json');
@@ -59,6 +59,39 @@ export async function generateStaticParams() {
     }));
 
     return paths;
+}
+
+export async function getStaticProps({ params }: Props) {
+    const { slug } = params;
+
+    // Read the data from the local file
+    const jsonFilePath = path.join(process.cwd(), 'public', 'organized_equipmentdata.json');
+    const jsonData = await fs.readFile(jsonFilePath, 'utf-8');
+    const data = JSON.parse(jsonData)["equipment-data"];
+
+    if (!data) {
+        console.error('Data is undefined or null');
+        return {
+            notFound: true,
+        };
+    }
+
+    // Find the equipment by slug
+    const equipment = data.find((item: Equipment & { slug: string }) => item.slug === slug);
+
+    if (!equipment) {
+        console.error(`Equipment not found for slug: ${slug}`);
+        return {
+            notFound: true,
+        };
+    }
+
+    return {
+        props: {
+            equipment,
+        },
+        revalidate: 60, // Revalidate the page every 60 seconds
+    };
 }
 
 export default EquipmentPage;
