@@ -1,7 +1,7 @@
 "use client";
-import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { Equipment } from '../../types';
-import RequestQuoteForm from '@components/RequestQuoteForm';
+
+import { useState, ChangeEvent, FormEvent } from 'react';
+import { Equipment } from '../../../lib/schema';
 import supabase from '../../../lib/supabaseClient';
 
 interface FormData {
@@ -28,12 +28,12 @@ interface RequestQuoteFormClientProps {
 const RequestQuoteFormClient: React.FC<RequestQuoteFormClientProps> = ({ equipment }) => {
     const [formData, setFormData] = useState<FormData>({
         e_year: '',
-        e_make: equipment.manufacturer,
-        e_model: equipment.model,
-        length: equipment.dimensions.Length.replace(/[^\d.]/g, ''),
-        width: equipment.dimensions.Width.replace(/[^\d.]/g, ''),
-        height: equipment.dimensions.Height.replace(/[^\d.]/g, ''),
-        machine_weight: equipment.Weight.replace(/[^\d.]/g, ''),
+        e_make: equipment.e_make,
+        e_model: equipment.e_model,
+        length: equipment.length?.replace(/[^\d.]/g, '') || '',
+        width: equipment.width?.replace(/[^\d.]/g, '') || '',
+        height: equipment.height?.replace(/[^\d.]/g, '') || '',
+        machine_weight: equipment.machine_weight?.replace(/[^\d.]/g, '') || '',
         origin_zip: '',
         destination_zip: '',
         date: '',
@@ -69,18 +69,7 @@ const RequestQuoteFormClient: React.FC<RequestQuoteFormClientProps> = ({ equipme
     return (
         <div className='h-full'>
             <div className='flex flex-col justify-normal items-center h-full'>
-                <div className='h-full max-h-fit flex flex-col gap-2 justify-start py-12 bg-stone-100 items-center w-full'>
-                    <h1 className='text-center text-zinc-900 text-lg font-semibold md:text-3xl underline mt-4'>Dimensions of a {equipment.manufacturer} {equipment.model}</h1>
-                    <ul className='flex flex-col md:flex-row md:gap-8'>
-                        <li className='text-zinc-900 md:text-lg'><strong>Length:</strong>{equipment.dimensions.Length}</li>
-                        <li className='text-zinc-900 md:text-lg'><strong>Width:</strong>{equipment.dimensions.Width}</li>
-                        <li className='text-zinc-900 md:text-lg'><strong>Height:</strong>{equipment.dimensions.Height}</li>
-                    </ul>
-                    <p className='text-zinc-900 md:text-lg'><strong>Weight:</strong> {equipment.Weight}</p>
-                </div>
-                <div className='bg-zinc-300 flex justify-center items-baseline pb-6 w-full border border-t-zinc-800/20'>
-                    <RequestQuoteForm formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
-                </div>
+                {/* Add your form component here */}
             </div>
         </div>
     );

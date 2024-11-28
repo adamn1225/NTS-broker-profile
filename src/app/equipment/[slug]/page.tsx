@@ -6,11 +6,11 @@ import path from 'path';
 import RequestQuoteFormClient from '@components/RequestQuoteFormClient';
 
 interface Props {
-    params: Promise<{ slug: string }>;
+    params: { slug: string };
 }
 
 const EquipmentPage = async ({ params }: Props) => {
-    const { slug } = await params;
+    const { slug } = params;
 
     // Read the data from the local file
     const jsonFilePath = path.join(process.cwd(), 'public', 'organized_equipmentdata.json');
@@ -33,8 +33,8 @@ const EquipmentPage = async ({ params }: Props) => {
     return (
         <div className='h-full'>
             <Head>
-                <title>{equipment.manufacturer} {equipment.model} - Equipment Details</title>
-                <meta name="description" content={`Details and specifications for ${equipment.manufacturer} ${equipment.model}.`} />
+                <title>{equipment.e_make} {equipment.e_model} - Equipment Details</title>
+                <meta name="description" content={`Details and specifications for ${equipment.e_make} ${equipment.e_model}.`} />
                 <link rel="canonical" href={`https://shipping-connect/equipment/${equipment.slug}`} />
             </Head>
             <RequestQuoteFormClient equipment={equipment} />
@@ -60,5 +60,7 @@ export async function generateStaticParams() {
 
     return paths;
 }
+
+export const revalidate = 60; // Revalidate the page every 60 seconds
 
 export default EquipmentPage;
