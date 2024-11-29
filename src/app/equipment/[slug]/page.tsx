@@ -4,6 +4,9 @@ import Head from 'next/head';
 import fs from 'fs/promises';
 import path from 'path';
 import RequestQuoteFormClient from '@components/RequestQuoteFormClient';
+import NodeCache from 'node-cache';
+
+const cache = new NodeCache({ stdTTL: 3600 }); // Cache for 1 hour
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -14,8 +17,13 @@ const EquipmentPage = async ({ params }: Props) => {
 
     // Read the data from the local file
     const jsonFilePath = path.join(process.cwd(), 'public', 'organized_equipmentdata.json');
-    const jsonData = await fs.readFile(jsonFilePath, 'utf-8');
-    const data = JSON.parse(jsonData)["equipment-data"];
+    let data: Equipment[] | undefined = cache.get("equipment-data");
+
+    if (!data) {
+        const jsonData = await fs.readFile(jsonFilePath, 'utf-8');
+        data = JSON.parse(jsonData)["equipment-data"];
+        cache.set("equipment-data", data);
+    }
 
     if (!data) {
         console.error('Data is undefined or null');
@@ -69,8 +77,13 @@ export async function generateStaticParams() {
 
     // Read the data from the local file
     const jsonFilePath = path.join(process.cwd(), 'public', 'organized_equipmentdata.json');
-    const jsonData = await fs.readFile(jsonFilePath, 'utf-8');
-    const data = JSON.parse(jsonData)["equipment-data"];
+    let data: Equipment[] | undefined = cache.get("equipment-data");
+
+    if (!data) {
+        const jsonData = await fs.readFile(jsonFilePath, 'utf-8');
+        data = JSON.parse(jsonData)["equipment-data"];
+        cache.set("equipment-data", data);
+    }
 
     if (!data) {
         console.error('Data is undefined or null');
