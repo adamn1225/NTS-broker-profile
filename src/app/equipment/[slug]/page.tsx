@@ -6,11 +6,11 @@ import path from 'path';
 import RequestQuoteFormClient from '@components/RequestQuoteFormClient';
 
 interface Props {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 }
 
 const EquipmentPage = async ({ params }: Props) => {
-    const { slug } = params;
+    const { slug } = await params;
 
     // Read the data from the local file
     const jsonFilePath = path.join(process.cwd(), 'public', 'organized_equipmentdata.json');
@@ -33,8 +33,8 @@ const EquipmentPage = async ({ params }: Props) => {
     return (
         <div className='h-full'>
             <Head>
-                <title>{equipment.e_make} {equipment.e_model} - Equipment Details</title>
-                <meta name="description" content={`Details and specifications for ${equipment.e_make} ${equipment.e_model}.`} />
+                <title>{equipment.manufacturer} {equipment.model} - Equipment Details</title>
+                <meta name="description" content={`Details and specifications for ${equipment.manufacturer} ${equipment.model}.`} />
                 <link rel="canonical" href={`https://shipping-connect/equipment/${equipment.slug}`} />
             </Head>
             <RequestQuoteFormClient equipment={equipment} />
