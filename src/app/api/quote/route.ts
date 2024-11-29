@@ -35,7 +35,9 @@ export async function GET(req: NextRequest) {
             return acc;
         }, {} as Record<string, Excavator[]>);
 
-        return NextResponse.json(parsedData);
+        const response = NextResponse.json(parsedData);
+        response.headers.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=59');
+        return response;
     } catch (error) {
         console.error('Error reading or parsing JSON file:', error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

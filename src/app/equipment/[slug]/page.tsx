@@ -47,16 +47,20 @@ const EquipmentPage = async ({ params }: Props) => {
                 <title>{equipment.manufacturer} {equipment.model} - Equipment Details</title>
                 <meta name="description" content={`Details and specifications for ${equipment.manufacturer} ${equipment.model}.`} />
                 <link rel="canonical" href={`https://shipping-connect/equipment/${equipment.slug}`} />
-            </Head>
-            <Script id="google-analytics" strategy="afterInteractive">
-                {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+                <Script
+                    src="https://www.googletagmanager.com/gtag/js?id=G-178VD9EM9D"
+                    strategy="afterInteractive"
+                />
+                <Script id="google-analytics" strategy="afterInteractive">
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
 
-            gtag('config', 'G-178VD9EM9D');
-          `}
-            </Script>
+                        gtag('config', 'G-178VD9EM9D');
+                    `}
+                </Script>
+            </Head>
             <RequestQuoteFormClient equipment={equipment} />
         </div>
     );

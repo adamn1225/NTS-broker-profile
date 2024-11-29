@@ -23,8 +23,9 @@ const config: Config = {
       backgroundImage: {
         'dump-bg': "url('/two_International_DumpTrucks.jpg')",
         'hero-bg': "url('https://www.heavyhaulers.com/alabama.jpg')",
-        'form-bg': "url('/empty-road-bg.jpg')",
+        'form-bg': "url('/empty-road-bg.webp')",
         'concrete': "url('/concrete.png')",
+        'hh-logo': "url('/hh-verticle-logo-final.webp')",
       },
       colors: {
         amber: {

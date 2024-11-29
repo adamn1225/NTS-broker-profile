@@ -24,9 +24,13 @@ export async function POST(req: NextRequest) {
 
         // Send email
         await transporter.sendMail(mailOptions);
-        return NextResponse.json({ message: 'Email sent successfully' });
+        const response = NextResponse.json({ message: 'Email sent successfully' });
+        response.headers.set('Cache-Control', 'no-store');
+        return response;
     } catch (error) {
         console.error('Error sending email:', error);
-        return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
+        const response = NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
+        response.headers.set('Cache-Control', 'no-store');
+        return response;
     }
 }

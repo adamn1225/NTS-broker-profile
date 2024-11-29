@@ -39,7 +39,7 @@ body {
 
 p, h1, h2, h3, h4, h5, h6, button, span, a, li {
   @apply font-mono !important;
-  @apply text-zinc-100;
+  @apply text-zinc-50;
 }
 
 @layer utilities {
@@ -57,7 +57,7 @@ button:not(.banner-collapse-button) {
 }
 
 .navbar-link-hover {
-  @apply text-stone-400 hover:text-secondary-y !important;
+  @apply text-secondary-y hover:text-stone-100 !important;
 }
 
 button.bg-button {
