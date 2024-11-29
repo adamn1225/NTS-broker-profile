@@ -6,11 +6,11 @@ import path from 'path';
 import RequestQuoteFormClient from '@components/RequestQuoteFormClient';
 
 interface Props {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 }
 
-const EquipmentPage = async ({ params }: { params: { slug: string } }) => {
-    const { slug } = params;
+const EquipmentPage = async ({ params }: Props) => {
+    const { slug } = await params;
 
     // Read the data from the local file
     const jsonFilePath = path.join(process.cwd(), 'public', 'organized_equipmentdata.json');
