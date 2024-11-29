@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { MdEmail, MdPermPhoneMsg } from 'react-icons/md';
+import { FaArrowsAltH as MoveHorizontal } from 'react-icons/fa';
 import Link from 'next/link';
 import { FaAnglesRight, FaAnglesLeft } from "react-icons/fa6";
 
@@ -11,7 +12,8 @@ const NavTop = () => {
         <div className="flex flex-col md:flex-row justify-center px-2 w-full items-center md:justify-between md:items-center">
           <Link href="/" legacyBehavior>
             <a>
-              <img src="https://www.heavyhaulers.com/images/hh-label-icons/hh-verticle-logo-final.png" className="md:mr-3 h-10" alt="Heavy Haulers Logo" />
+              <span className='flex mt-5 lg:mt-2 2xl:mt-0 items-center justify-center font-bold  flex-nowrap'> <h2 className='text-lg md:mt-0  self-center font-extrabold tracking-tighter flex gap-0.5'>SHIPPING<MoveHorizontal className='size-6 text-orange-500' />CONNECT</h2></span>
+              <span className='text-xs md:text-base font-bold text-center text-orange-500'>A Division of NTS Logistics</span>
             </a>
           </Link>
           {/* <div>

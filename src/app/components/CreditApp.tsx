@@ -45,7 +45,7 @@ const CreditApp = () => {
         <section className='z-50 my-10'>
             <h2 className='text-2xl my-4 text-zinc-900 text-center'>Ship often? Request an account application.</h2>
             <div className='flex flex-col items-center gap-5'>
-                <button className='main-btn xxs:text-sm  md:text-2xl text-lg font-bold font-mono text-nowrap z-50' onClick={() => setOpenModal(true)}>Request an NTS Account</button>
+                <button className='main-btn xxs:text-sm  md:text-2xl text-lg font-bold font-mono text-nowrap z-50' onClick={() => setOpenModal(true)}>Request an NTS Shipper&apos;s Account</button>
                 <Modal show={openModal} onClose={() => setOpenModal(false)}>
                     <Modal.Header><span className='m-0 text-2xl text-zinc-950'>NTS Account Application</span></Modal.Header>
                     <Modal.Body>
@@ -133,7 +133,7 @@ const CreditApp = () => {
                     </Modal.Body>
                 </Modal>
                 <div className='mt-6 flex flex-col items-center justify-center'>
-                    <h3 className='text-center md:text-normal text-xl font-bold mb-4 text-secondary-y'>Benefits of Getting an Account with NTS:</h3>
+                    <h3 className='text-center md:text-normal text-xl font-bold mb-4 text-zinc-900'>Benefits of Getting an Account with NTS:</h3>
                     <ul className='list-none space-y-2 w-full'>
                         <li className='flex justify-center text-zinc-900'>
                             <FaCheck className='text-secondary-y mr-2' />

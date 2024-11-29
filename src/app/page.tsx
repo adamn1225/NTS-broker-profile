@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import './globals.css';
-import AboutBroker from './components/aboutBroker';
+import AboutShippingConnect from './components/AboutShippingConnect';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import BrokerTestimonials from './components/BrokerTestimonials';
 import CreditApp from './components/CreditApp';
@@ -14,11 +14,10 @@ export default function Home() {
     <>
       <section className="max-w-max">
         <Hero />
-        <AboutBroker />
-        <DimensionSearchForm />
-        <FeaturedTransports />
-        <BrokerTestimonials />
+        <AboutShippingConnect />
         <CreditApp />
+        <FeaturedTransports />
+        <DimensionSearchForm />
 
        
 

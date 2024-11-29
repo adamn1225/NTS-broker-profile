@@ -55,7 +55,7 @@ const ScrollToTopButton = () => {
     return (
         <>
             {isVisible && (
-                <div className='fixed bottom-2 left-1/2 transform -translate-x-1/2 md:left-auto md:right-5 z-50'>
+                <div className='fixed bottom-10 left-1/2 transform -translate-x-1/2 md:left-auto md:right-5 z-50'>
                     <button
                         onClick={scrollToTop}
                         className='px-4 py-2 bg-zinc-950 flex gap-2 justify-center items-center text-lg text-sky-300 font-bold rounded-full shadow-lg z-50 border border-white text-nowrap'

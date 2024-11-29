@@ -65,7 +65,7 @@ button.bg-button {
 }
 
 button.bg-button:hover {
-  background-color: #b18c2f !important;
+  background-color: #ff5a1f !important;
   color: #0f172a !important;
   font-weight: bold;
 }

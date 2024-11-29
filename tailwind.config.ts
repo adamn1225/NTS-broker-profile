@@ -33,7 +33,7 @@ const config: Config = {
         mute: {
           200: '#e5e7eb',
         },
-        'secondary-y': '#b18c2f',
+        'secondary-y': '#ff5a1f',
       },
       backgroundColor: {
         'button': 'var(--tw-bg-button, theme("colors.slate.800"))',
