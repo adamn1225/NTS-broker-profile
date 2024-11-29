@@ -46,7 +46,6 @@ export async function generateStaticParams() {
     // List of manufacturers to include
     const manufacturers = [
         "Caterpillar",
-        "Cat",
         "John Deere",
         "Case",
         "Komatsu",
@@ -79,11 +78,13 @@ export async function generateStaticParams() {
     }
 
     // Filter data to include only specified manufacturers
-    const filteredData = data.filter((item: Equipment) => manufacturers.includes(item.manufacturer));
+    const filteredData = data.filter((item: Equipment) => 
+        manufacturers.some(manufacturer => item.manufacturer.toLowerCase().includes(manufacturer.toLowerCase()))
+    );
 
     // Generate paths for each slug
     const paths = filteredData.map((item: Equipment & { slug: string }) => ({
-        params: { slug: item.slug },
+        slug: item.slug,
     }));
 
     return paths;

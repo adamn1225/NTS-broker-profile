@@ -5,15 +5,13 @@ import Head from 'next/head';
 import PageFooter from '@components/PageFooter';
 import NavTop from '@/app/components/NavTop';
 import './globals.css';
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 interface RootLayoutProps {
   children: ReactNode;
 }
 
-
 export default function RootLayout({ children }: RootLayoutProps) {
-
   return (
     <html lang="en">
       <Head>
@@ -27,8 +25,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
           {children}
         </main>
         <PageFooter />
+        <GoogleAnalytics gaId='G-D01KELFDWG' />
       </body>
-      <GoogleAnalytics gaId='G-D01KELFDWG'/>
     </html>
   );
 }
