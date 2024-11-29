@@ -4,8 +4,8 @@ import Head from 'next/head';
 import fs from 'fs/promises';
 import path from 'path';
 import RequestQuoteFormClient from '@components/RequestQuoteFormClient';
-import { GoogleAnalytics } from '@next/third-parties/google';
 import NodeCache from 'node-cache';
+import Script from 'next/script';
 
 const cache = new NodeCache({ stdTTL: 3600 }); // Cache for 1 hour
 
@@ -48,7 +48,15 @@ const EquipmentPage = async ({ params }: Props) => {
                 <meta name="description" content={`Details and specifications for ${equipment.manufacturer} ${equipment.model}.`} />
                 <link rel="canonical" href={`https://shipping-connect/equipment/${equipment.slug}`} />
             </Head>
-            <GoogleAnalytics gaId='G-D01KELFDWG' />
+            <Script id="google-analytics" strategy="afterInteractive">
+                {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-178VD9EM9D');
+          `}
+            </Script>
             <RequestQuoteFormClient equipment={equipment} />
         </div>
     );

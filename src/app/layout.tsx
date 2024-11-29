@@ -5,7 +5,7 @@ import Head from 'next/head';
 import PageFooter from '@components/PageFooter';
 import NavTop from '@/app/components/NavTop';
 import './globals.css';
-import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from 'next/script';
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -25,7 +25,19 @@ export default function RootLayout({ children }: RootLayoutProps) {
           {children}
         </main>
         <PageFooter />
-        <GoogleAnalytics gaId='G-D01KELFDWG' />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-178VD9EM9D"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-178VD9EM9D');
+          `}
+        </Script>
       </body>
     </html>
   );
