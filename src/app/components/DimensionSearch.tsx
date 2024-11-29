@@ -96,8 +96,8 @@ const DimensionSearch: React.FC<DimensionSearchProps> = ({ populateForm }) => {
     const handleRequestQuote = (result: Excavator) => {
         const [make, model] = result["Manufacturer/Model"].split(' ');
         populateForm({
-            e_make: make,
-            e_model: model,
+            manufacturer: make,
+            model: model,
             length: result.dimensions.Length,
             width: Array.isArray(result.dimensions.Width) ? result.dimensions.Width.join(', ') : result.dimensions.Width,
             height: result.dimensions.Height,

@@ -10,8 +10,8 @@ import DatepickerWrapper
  
 interface FormData {
   e_year: string | null;
-  e_make: string | null;
-  e_model: string | null;
+  manufacturer: string | null;
+  model: string | null;
   length: string | null;
   width: string | null;
   height: string | null;
@@ -89,11 +89,11 @@ const EquipmentForm: React.FC<EquipmentFormProps> = ({ currentStep, nextStep, pr
             </div>
             <div className="mb-1 block">
               <Label htmlFor="make" value="Make" />
-              <TextInput value={formData.e_make || ''} onChange={handleChange} name="e_make" id="e_make" type="text" placeholder="Caterpillar" required />
+              <TextInput value={formData.manufacturer || ''} onChange={handleChange} name="e_make" id="e_make" type="text" placeholder="Caterpillar" required />
             </div>
             <div className="mb-1 block">
               <Label htmlFor="model" value="Model" />
-              <TextInput value={formData.e_model || ''} onChange={handleChange} name="e_model" id="e_model" type="text" placeholder='D8T' />
+              <TextInput value={formData.model || ''} onChange={handleChange} name="e_model" id="e_model" type="text" placeholder='D8T' />
             </div>
           </div>
 

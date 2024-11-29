@@ -17,8 +17,8 @@ const FreightForms = () => {
 
     const [equipmentFormData, setEquipmentFormData] = useState<Omit<Equipment, 'id'>>({
         e_year: '',
-        e_make: '',
-        e_model: '',
+        manufacturer: '',
+        model: '',
         length: '',
         width: '',
         height: '',

@@ -19,8 +19,8 @@ interface Excavator {
 
 interface FormData {
     e_year: string | null;
-    e_make: string | null;
-    e_model: string | null;
+    manufacturer: string | null;
+    model: string | null;
     length: string | null;
     width: string | null;
     height: string | null;
@@ -45,8 +45,8 @@ const EquipmentSpecs: React.FC<Props> = () => {
     const [showSideNav, setShowSideNav] = useState(true);
     const [formData, setFormData] = useState<FormData>({
         e_year: '',
-        e_make: '',
-        e_model: '',
+        manufacturer: '',
+        model: '',
         length: '',
         width: '',
         height: '',
@@ -92,8 +92,8 @@ const EquipmentSpecs: React.FC<Props> = () => {
         if (selectedModel) {
             setFormData({
                 e_year: '',
-                e_make: selectedManufacturer,
-                e_model: selectedModel.model,
+                manufacturer: selectedManufacturer,
+                model: selectedModel.model,
                 length: selectedModel.dimensions.Length.replace(/[^\d.]/g, ''),
                 width: Array.isArray(selectedModel.dimensions.Width) ? selectedModel.dimensions.Width.join(', ').replace(/[^\d.]/g, '') : selectedModel.dimensions.Width.replace(/[^\d.]/g, ''),
                 height: selectedModel.dimensions.Height.replace(/[^\d.]/g, ''),

@@ -55,8 +55,6 @@ export type Database = {
         Row: {
           date: string | null
           destination_zip: string | null
-          e_make: string | null
-          e_model: string | null
           e_year: string | null
           email: string | null
           first_name: string | null
@@ -65,6 +63,8 @@ export type Database = {
           last_name: string | null
           length: string | null
           machine_weight: string | null
+          manufacturer: string | null
+          model: string | null
           origin_zip: string | null
           phone_number: string | null
           slug: string | null
@@ -73,8 +73,6 @@ export type Database = {
         Insert: {
           date?: string | null
           destination_zip?: string | null
-          e_make?: string | null
-          e_model?: string | null
           e_year?: string | null
           email?: string | null
           first_name?: string | null
@@ -83,6 +81,8 @@ export type Database = {
           last_name?: string | null
           length?: string | null
           machine_weight?: string | null
+          manufacturer?: string | null
+          model?: string | null
           origin_zip?: string | null
           phone_number?: string | null
           slug?: string | null
@@ -91,8 +91,6 @@ export type Database = {
         Update: {
           date?: string | null
           destination_zip?: string | null
-          e_make?: string | null
-          e_model?: string | null
           e_year?: string | null
           email?: string | null
           first_name?: string | null
@@ -101,6 +99,8 @@ export type Database = {
           last_name?: string | null
           length?: string | null
           machine_weight?: string | null
+          manufacturer?: string | null
+          model?: string | null
           origin_zip?: string | null
           phone_number?: string | null
           slug?: string | null

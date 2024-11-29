@@ -12,11 +12,11 @@ const cache = new NodeCache({ stdTTL: 3600 }); // Cache for 1 hour
 type Equipment = Database['public']['Tables']['equipment']['Row'];
 
 interface Props {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 }
 
 const EquipmentPage = async ({ params }: Props) => {
-    const { slug } = params;
+    const { slug } = await params;
 
     // Read the data from the local file
     const jsonFilePath = path.join(process.cwd(), 'public', 'organized_equipmentdata.json');
@@ -44,8 +44,8 @@ const EquipmentPage = async ({ params }: Props) => {
     return (
         <div className='h-full'>
             <Head>
-                <title>{equipment.e_make} {equipment.e_model} - Equipment Details</title>
-                <meta name="description" content={`Details and specifications for ${equipment.e_make} ${equipment.e_model}.`} />
+                <title>{equipment.manufacturer} {equipment.model} - Equipment Details</title>
+                <meta name="description" content={`Details and specifications for ${equipment.manufacturer} ${equipment.model}.`} />
                 <link rel="canonical" href={`https://shipping-connect/equipment/${equipment.slug}`} />
             </Head>
             <GoogleAnalytics gaId='G-D01KELFDWG' />
@@ -96,7 +96,7 @@ export async function generateStaticParams() {
 
     // Filter data to include only specified manufacturers
     const filteredData = data.filter((item: Equipment) =>
-        manufacturers.some(manufacturer => item.e_make?.toLowerCase().includes(manufacturer.toLowerCase()))
+        manufacturers.some(manufacturer => item.manufacturer?.toLowerCase().includes(manufacturer.toLowerCase()))
     );
 
     // Generate paths for each slug

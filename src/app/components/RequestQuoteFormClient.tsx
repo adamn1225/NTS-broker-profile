@@ -9,8 +9,8 @@ type Equipment = Database['public']['Tables']['equipment']['Row'];
 interface FormData {
     date: string | null;
     destination_zip: string | null;
-    e_make: string | null;
-    e_model: string | null;
+    manufacturer: string | null;
+    model: string | null;
     e_year: string | null;
     email: string | null;
     first_name: string | null;
@@ -31,8 +31,8 @@ const RequestQuoteFormClient: React.FC<RequestQuoteFormClientProps> = ({ equipme
     const [formData, setFormData] = useState<FormData>({
         date: '',
         destination_zip: '',
-        e_make: equipment.e_make,
-        e_model: equipment.e_model,
+        manufacturer: equipment.manufacturer,
+        model: equipment.model,
         e_year: equipment.e_year,
         email: '',
         first_name: '',
@@ -92,8 +92,8 @@ const RequestQuoteFormClient: React.FC<RequestQuoteFormClientProps> = ({ equipme
     return (
         <div className='h-full'>
             <div className='flex flex-col justify-normal items-center h-full'>
-                <div className='h-full max-h-fit flex flex-col gap-2 justify-start py-12 bg-stone-100 mt-4 items-center w-full'>
-                    <h1 className='text-center text-zinc-900 text-lg font-semibold md:text-3xl underline mt-4'>Dimensions of a {equipment.e_make} {equipment.e_model}</h1>
+                <div className='h-full max-h-fit flex flex-col gap-2 justify-start py-12 bg-stone-100 items-center w-full'>
+                    <h1 className='text-center text-zinc-900 text-lg font-semibold md:text-3xl underline mt-4'>Dimensions of a {equipment.manufacturer} {equipment.model}</h1>
                     <ul className='flex flex-col md:flex-row md:gap-8'>
                         <li className='text-zinc-900 md:text-lg'><strong>Length:</strong>{equipment.length}</li>
                         <li className='text-zinc-900 md:text-lg'><strong>Width:</strong>{equipment.width}</li>
