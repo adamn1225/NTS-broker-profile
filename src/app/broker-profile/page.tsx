@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import './globals.css';
+import '../globals.css';
 import AboutBroker from '@components/aboutBroker';
 import ScrollToTopButton from '@components/ScrollToTopButton';
 import BrokerTestimonials from '@components/BrokerTestimonials';
