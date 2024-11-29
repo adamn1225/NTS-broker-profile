@@ -6,11 +6,11 @@ import path from 'path';
 import RequestQuoteFormClient from '@components/RequestQuoteFormClient';
 
 interface Props {
-    params: Promise<{ slug: string }>;
+    params: { slug: string };
 }
 
-const EquipmentPage = async ({ params }: Props) => {
-    const { slug } = await params;
+const EquipmentPage = async ({ params }: { params: { slug: string } }) => {
+    const { slug } = params;
 
     // Read the data from the local file
     const jsonFilePath = path.join(process.cwd(), 'public', 'organized_equipmentdata.json');
@@ -43,6 +43,31 @@ const EquipmentPage = async ({ params }: Props) => {
 };
 
 export async function generateStaticParams() {
+    // List of manufacturers to include
+    const manufacturers = [
+        "Caterpillar",
+        "Cat",
+        "John Deere",
+        "Case",
+        "Komatsu",
+        "Terex",
+        "Ford",
+        "Volvo",
+        "Hitachi",
+        "JCB",
+        "Kubota",
+        "New Holland",
+        "Bobcat",
+        "Yanmar",
+        "Doosan",
+        "Kobelco",
+        "Hyundai",
+        "Takeuchi",
+        "Kawasaki",
+        "Liebherr",
+        "Sany"
+    ];
+
     // Read the data from the local file
     const jsonFilePath = path.join(process.cwd(), 'public', 'organized_equipmentdata.json');
     const jsonData = await fs.readFile(jsonFilePath, 'utf-8');
@@ -53,12 +78,17 @@ export async function generateStaticParams() {
         return [];
     }
 
+    // Filter data to include only specified manufacturers
+    const filteredData = data.filter((item: Equipment) => manufacturers.includes(item.manufacturer));
+
     // Generate paths for each slug
-    const paths = data.map((item: Equipment & { slug: string }) => ({
-        slug: item.slug,
+    const paths = filteredData.map((item: Equipment & { slug: string }) => ({
+        params: { slug: item.slug },
     }));
 
     return paths;
 }
+
+export const revalidate = 60; // Revalidate the page every 60 seconds
 
 export default EquipmentPage;
