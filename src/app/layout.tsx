@@ -32,9 +32,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           `}
         </Script>
       </Head>
-      <body suppressHydrationWarning={true} className="flex flex-col min-h-screen">
+      <body suppressHydrationWarning={true} className="flex flex-col min-h-screen w-screen">
         <NavTop />
-        <main className="flex-grow relative">
+        <main className="flex-grow relative w-full">
           {children}
         </main>
         <PageFooter />

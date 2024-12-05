@@ -9,7 +9,18 @@ import Script from 'next/script';
 
 const cache = new NodeCache({ stdTTL: 3600 }); // Cache for 1 hour
 
-type Equipment = Database['public']['Tables']['equipment']['Row'];
+type Equipment = {
+    "Manufacturer/Model": string;
+    Weight: string;
+    dimensions: {
+        Length: string;
+        Width: string;
+        Height: string;
+    };
+    manufacturer: string;
+    model: string;
+    slug: string;
+};
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -61,6 +72,7 @@ const EquipmentPage = async ({ params }: Props) => {
                     `}
                 </Script>
             </Head>
+            
             <RequestQuoteFormClient equipment={equipment} />
         </div>
     );

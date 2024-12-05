@@ -4,7 +4,18 @@ import { Database } from '../../../lib/database.types';
 import RequestQuoteForm from './RequestQuoteForm';
 import supabase from '../../../lib/supabaseClient';
 
-type Equipment = Database['public']['Tables']['equipment']['Row'];
+type Equipment = {
+    "Manufacturer/Model": string;
+    Weight: string;
+    dimensions: {
+        Length: string;
+        Width: string;
+        Height: string;
+    };
+    manufacturer: string;
+    model: string;
+    slug: string;
+};
 
 interface FormData {
     date: string | null;
@@ -33,16 +44,16 @@ const RequestQuoteFormClient: React.FC<RequestQuoteFormClientProps> = ({ equipme
         destination_zip: '',
         manufacturer: equipment.manufacturer,
         model: equipment.model,
-        e_year: equipment.e_year,
+        e_year: '',
         email: '',
         first_name: '',
-        height: equipment.height,
-        length: equipment.length,
-        machine_weight: equipment.machine_weight,
+        height: equipment.dimensions.Height,
+        length: equipment.dimensions.Length,
+        machine_weight: equipment.Weight,
         origin_zip: '',
         phone_number: '',
         last_name: '',
-        width: equipment.width,
+        width: equipment.dimensions.Width,
     });
 
     const [submitted, setSubmitted] = useState(false);
@@ -92,24 +103,27 @@ const RequestQuoteFormClient: React.FC<RequestQuoteFormClientProps> = ({ equipme
     return (
         <div className='h-full'>
             <div className='flex flex-col justify-normal items-center h-full'>
-                <div className='h-full max-h-fit flex flex-col gap-2 justify-start py-12 bg-stone-100 items-center w-full'>
-                    <h1 className='text-center text-zinc-900 text-lg font-semibold md:text-3xl underline mt-4'>Dimensions of a {equipment.manufacturer} {equipment.model}</h1>
+                <div className='h-full max-h-fit flex flex-col gap-2 justify-start py-12 bg-zinc-100 items-center w-full'>
+                    <h1 className='text-center text-zinc-900 text-2xl mb-4 font-semibold md:text-3xl underline mt-4'>Dimensions of a {equipment.manufacturer} {equipment.model}</h1>
                     <ul className='flex flex-col md:flex-row md:gap-8'>
-                        <li className='text-zinc-900 md:text-lg'><strong>Length:</strong>{equipment.length}</li>
-                        <li className='text-zinc-900 md:text-lg'><strong>Width:</strong>{equipment.width}</li>
-                        <li className='text-zinc-900 md:text-lg'><strong>Height:</strong>{equipment.height}</li>
+                        <li className='text-zinc-900 md:text-lg'><strong>Length:</strong>{equipment.dimensions.Length}</li>
+                        <li className='text-zinc-900 md:text-lg'><strong>Width:</strong>{equipment.dimensions.Width}</li>
+                        <li className='text-zinc-900 md:text-lg'><strong>Height:</strong>{equipment.dimensions.Height}</li>
                     </ul>
-                    <p className='text-zinc-900 md:text-lg'><strong>Weight:</strong> {equipment.machine_weight}</p>
+                    <p className='text-zinc-900 md:text-lg'><strong>Weight:</strong> {equipment.Weight}</p>
                 </div>
-                <div className='bg-zinc-300 flex justify-center items-baseline pb-6 w-full border border-t-zinc-800/20'>
-                    {submitted ? (
-                        <div className="text-center text-green-600 text-lg font-semibold">
-                            Thank you! Your quote request has been submitted.
-                        </div>
-                    ) : (
-                        <RequestQuoteForm formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
-                    )}
-                </div>
+                <div className='relative bg-form-bg bg-cover flex justify-center items-baseline pb-6 w-full border border-t-zinc-800/20'>
+                    <div className="absolute inset-0 bg-black opacity-50"></div>
+                    <div className='z-10 w-fit my-6 flex justify-center'>
+                        {submitted ? (
+                            <div className="text-center text-green-600 text-lg font-semibold">
+                                Thank you! Your quote request has been submitted.
+                            </div>
+                        ) : (
+                            <RequestQuoteForm formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
+                        )}
+                    </div>
+                    </div>
             </div>
         </div>
     );
