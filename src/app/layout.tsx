@@ -17,6 +17,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <Head>
         <title>shipper-connect</title>
         <meta name="description" content="Your App Description" />
+        <meta name="google-site-verification" content="googlea528ab2650b23b4b.html" />
         <link rel="icon" href="/favicon.ico" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-178VD9EM9D"
