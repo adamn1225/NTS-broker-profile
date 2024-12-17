@@ -27,7 +27,7 @@ const NavTop = () => {
             </a>
           </Link>
 
-          <div className="text-center flex flex-col gap-2 md:flex-row md:items-center justify-center h-20 md:h-auto pb-5 md:pb-0 min-h-min">
+          <div className="text-center flex flex-col gap-2 items-center md:flex-row md:items-center justify-center h-20 md:h-auto pb-5 md:pb-0 min-h-min">
           <Link href="tel:954-826-4318" legacyBehavior>
             <a className='text-orange-500 flex gap-1 items-center font-semibold'>
               <MdPermPhoneMsg /> 954-826-4318
