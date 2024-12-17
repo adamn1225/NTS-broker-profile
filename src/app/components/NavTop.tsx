@@ -28,7 +28,17 @@ const NavTop = () => {
           </Link>
 
           <div className="text-center flex flex-col gap-2 md:flex-row md:items-center justify-center h-20 md:h-auto pb-5 md:pb-0 min-h-min">
-            {isClient && (
+          <Link href="tel:954-826-4318" legacyBehavior>
+            <a className='text-orange-500 flex gap-1 items-center font-semibold'>
+              <MdPermPhoneMsg /> 954-826-4318
+            </a>
+          </Link>
+          <Link href="mailto:noah@ntslogistics.com" legacyBehavior>
+            <a className='text-orange-500 flex gap-1 items-center font-semibold'>
+              <MdEmail /> noah@ntslogistics.com
+            </a>
+          </Link>
+            {/* {isClient && (
               <>
                 <Link href="https://shipper-connect.com/signup" legacyBehavior>
                 <a className="px-3 py-1 rounded-sm bg-secondary-y text-zinc-900 text-lg hover:bg-orange-400/90 transition-colors duration-300 hover:underline underline-offset-4 font-bold">
@@ -41,7 +51,7 @@ const NavTop = () => {
                   </a>
                 </Link>
               </>
-            )}
+            )} */}
           </div>
         </div>
       </nav>

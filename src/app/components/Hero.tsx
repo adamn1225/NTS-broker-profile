@@ -9,8 +9,8 @@ const Hero = () => {
                 <Image
                     src="/empty-road-bg.webp"
                     alt="Background"
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    style={{ objectFit: 'cover' }}
                     quality={75}
                     className="opacity-50"
                 />

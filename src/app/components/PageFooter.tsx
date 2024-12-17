@@ -52,7 +52,11 @@ export default function PageFooter() {
                 </a>
               </Link>
             </div>
-            
+            <div className="text-center text-gray-400 mt-4">
+              <Link href="/api/sitemap" legacyBehavior>
+                <a className="text-gray-400 underline">Sitemap</a>
+              </Link>
+            </div>
           </div>
         </div>
         <div className="w-full border-t border-gray-700 my-4"></div>
