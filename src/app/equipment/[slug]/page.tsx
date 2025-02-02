@@ -20,6 +20,18 @@ type Equipment = {
     manufacturer: string;
     model: string;
     slug: string;
+    date: string | null;
+    destination_zip: string | null;
+    e_year: string | null;
+    email: string | null;
+    first_name: string | null;
+    height: string | null;
+    id: number;
+    last_name: string | null;
+    length: string | null;
+    phone: string | null;
+    state: string | null;
+    width: string | null;
 };
 
 interface Props {
@@ -72,7 +84,7 @@ const EquipmentPage = async ({ params }: Props) => {
                     `}
                 </Script>
             </Head>
-            
+
             <RequestQuoteFormClient equipment={equipment} />
         </div>
     );

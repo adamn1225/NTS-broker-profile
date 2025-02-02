@@ -43,6 +43,9 @@
       ],
       "@utils/*": [
         "./src/backend/utils/*"
+      ],
+      "@lib/*": [
+        "./lib/*"
       ]
     },
     "target": "ES2017"
