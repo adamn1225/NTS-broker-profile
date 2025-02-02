@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { Button, Label, TextInput } from "flowbite-react";
+import { Button, Label, TextInput, TextInputProps } from "flowbite-react";
 import MaskedInput from 'react-text-mask';
 import DatepickerWrapper from './Datepickerwrapper';
 import DimensionSearch from './DimensionSearch';
@@ -158,7 +158,7 @@ const DimensionSearchForm: React.FC = () => {
                                 mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                                 value={formData.phone_number || ''}
                                 onChange={handleChange}
-                                render={(ref, props) => (
+                                render={(ref: React.LegacyRef<HTMLInputElement>, props: React.JSX.IntrinsicAttributes & TextInputProps & React.RefAttributes<HTMLInputElement>) => (
                                     <TextInput
                                         {...props}
                                         ref={ref as React.LegacyRef<HTMLInputElement>}

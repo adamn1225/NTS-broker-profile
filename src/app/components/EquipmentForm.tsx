@@ -1,13 +1,13 @@
 "use client";
 
-import { ChangeEvent, FormEvent } from 'react';
-import { Button, Label, TextInput } from "flowbite-react";
+import { ChangeEvent, FormEvent, JSX, LegacyRef, RefAttributes } from 'react';
+import { Button, Label, TextInput, TextInputProps } from "flowbite-react";
 import MaskedInput from 'react-text-mask';
 import DateInput from './DateInput';
 import supabase from '../../../lib/supabaseClient';
 import DatepickerWrapper
- from './Datepickerwrapper';
- 
+  from './Datepickerwrapper';
+
 interface FormData {
   e_year: string | null;
   manufacturer: string | null;
@@ -164,7 +164,7 @@ const EquipmentForm: React.FC<EquipmentFormProps> = ({ currentStep, nextStep, pr
                 mask={phoneMask}
                 value={formData.phone_number || ''}
                 onChange={handleChange}
-                render={(ref, props) => (
+                render={(ref: LegacyRef<HTMLInputElement>, props: JSX.IntrinsicAttributes & TextInputProps & RefAttributes<HTMLInputElement>) => (
                   <TextInput
                     {...props}
                     ref={ref as React.LegacyRef<HTMLInputElement>}

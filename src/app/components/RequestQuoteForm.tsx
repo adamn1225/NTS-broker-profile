@@ -74,14 +74,14 @@ const RequestQuoteForm: React.FC<RequestQuoteFormProps> = ({ formData, handleCha
                     <input value={formData.destination_zip || ''} onChange={handleChange} name="destination_zip" id="destination_zip" type="text" placeholder="ZIP Code" className="p-2 border border-gray-300 rounded-lg shadow-md" required />
                 </div>
 
-            <div className="flex flex-col w-full">
-                <label htmlFor="date" className="font-semibold">Shipping Date</label>
-                <DateInput
-                    value={formData.date || ''}
-                    onChange={handleChange}
+                <div className="flex flex-col w-full">
+                    <label htmlFor="date" className="font-semibold">Shipping Date</label>
+                    <DateInput
+                        value={formData.date || ''}
+                        onChange={handleChange}
                     />
+                </div>
             </div>
-                    </div>
 
             <div className="flex flex-col md:flex-row gap-4 w-full">
                 <div className="flex flex-col w-full">
@@ -101,7 +101,7 @@ const RequestQuoteForm: React.FC<RequestQuoteFormProps> = ({ formData, handleCha
                         mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                         value={formData.phone_number || ''}
                         onChange={handleChange}
-                        render={(ref, props) => (
+                        render={(ref: (instance: HTMLInputElement | null) => void, props: any) => (
                             <input
                                 {...props}
                                 ref={ref as React.LegacyRef<HTMLInputElement>}
