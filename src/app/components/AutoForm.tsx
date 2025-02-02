@@ -48,7 +48,7 @@ const AutoForm: React.FC<AutoFormProps> = ({ currentStep, nextStep, prevStep, fo
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           formData,
           subject: 'Auto Transport Inquiry',
         }),
@@ -132,7 +132,7 @@ const AutoForm: React.FC<AutoFormProps> = ({ currentStep, nextStep, prevStep, fo
                 mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                 value={formData.phone_number || ''}
                 onChange={handleChange}
-                render={(ref, props) => (
+                render={(ref: (instance: HTMLInputElement | null) => void, props: any) => (
                   <TextInput
                     {...props}
                     ref={ref as React.LegacyRef<HTMLInputElement>}
