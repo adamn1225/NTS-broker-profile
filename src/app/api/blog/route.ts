@@ -1,21 +1,17 @@
-import { NextResponse } from 'next/server';
-import supabase from '../../../../lib/supabaseClient';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-interface ErrorResponse {
-    error: string;
-}
-
 interface BlogPost {
-    // Define the structure of a blog post based on the expected response
-    id: number;
     title: string;
+    featured_image: string;
     content: string;
-    // Add other fields as necessary
 }
 
 interface BlogResponse {
     posts: BlogPost[];
+}
+
+interface ErrorResponse {
+    error: string;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<BlogResponse | ErrorResponse>) {
