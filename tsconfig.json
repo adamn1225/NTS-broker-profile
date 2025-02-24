@@ -58,6 +58,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/types/react-lazyload.d.ts"
+    "src/types/react-lazyload.d.ts",
+    "src/types/react-scroll.d.ts"
   ]
 }
