@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import supabase from '../../../lib/supabaseClient';
+import React, { useState } from 'react';
 import StarRating from './StarRating';
 
 interface Testimonial {
@@ -10,44 +9,19 @@ interface Testimonial {
 }
 
 const BrokerTestimonials = () => {
-    const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+    const [testimonials] = useState<Testimonial[]>([]);
     const [name, setName] = useState('');
     const [rating, setRating] = useState(1);
     const [description, setDescription] = useState('');
 
-    useEffect(() => {
-        fetchTestimonials();
-    }, []);
 
-    const fetchTestimonials = async () => {
-        const { data, error } = await supabase.from('testimonials').select('*');
-        if (error) {
-            console.error('Error fetching testimonials:', error);
-        } else {
-            setTestimonials(data);
-        }
-    };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        const { data, error } = await supabase.from('testimonials').insert([{ name, rating, description }]);
-        if (error) {
-            console.error('Error submitting testimonial:', error);
-        } else {
-            if (data) {
-                setTestimonials([...testimonials, ...data]);
-            }
-            setName('');
-            setRating(4);
-            setDescription('');
-        }
-    };
 
     return (
         <div className='px-6 py-9 bg-zinc-950 text-white rounded-lg shadow-md flex flex-col'>
             <h2 className="text-4xl font-bold mb-4 text-secondary-y text-center tracking-tight">Submit a Review</h2>
             <div className="flex justify-center items-center">
-                <form onSubmit={handleSubmit} className="xxs:w-2/3 space-y-4 md:w-1/2">
+                <form className="xxs:w-2/3 space-y-4 md:w-1/2">
                     <div>
                         <label className="block text-secondary-y font-bold mb-1">How was my service? <br /> select a rating:</label>
                         <StarRating rating={rating} setRating={setRating} />

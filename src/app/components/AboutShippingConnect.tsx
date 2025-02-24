@@ -1,6 +1,6 @@
 import React from 'react';
-import { FaHandPointRight, FaCheckDouble, FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
-import { GiArrowDunk } from "react-icons/gi";
+import Image from 'next/image';
+import { FaCheckDouble, FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
 function AboutShippingConnect() {
     return (
@@ -8,8 +8,7 @@ function AboutShippingConnect() {
             <article className='xxs:px-4 bg-stone-950 py-12'>
                 <div className='flex flex-col md:flex-row md:justify-evenly justify-center items-center text-mute-200'>
                     <div className='flex flex-col gap-2'>
-                        <GiArrowDunk style={{ color: '#ff5a1f', width: '80px', height: 'auto', position: 'relative', left: '50' }} />
-                        <img className='w-52 h-auto self-center' src="/nts-pro-profile.png" alt="" />
+                        <Image className='w-52 h-auto self-center' src="/nts-pro-profile.png" alt="" width={208} height={0} />
                         <h3 className='text-3xl text-center font-bold font-mono tracking-wider'>MEET NOAH</h3>
                         <div className='my-2' style={{ border: 'solid', borderColor: '#ff5a1f', borderRight: 'none', borderLeft: 'none', borderWidth: '1px' }}></div>
                         <ul className='flex flex-col w-full items-center justify-center gap-2'>

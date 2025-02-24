@@ -3,10 +3,7 @@
 import { ChangeEvent, FormEvent, JSX, LegacyRef, RefAttributes } from 'react';
 import { Button, Label, TextInput, TextInputProps } from "flowbite-react";
 import MaskedInput from 'react-text-mask';
-import DateInput from './DateInput';
-import supabase from '../../../lib/supabaseClient';
-import DatepickerWrapper
-  from './Datepickerwrapper';
+import DatepickerWrapper from './Datepickerwrapper';
 
 interface FormData {
   e_year: string | null;
@@ -39,16 +36,7 @@ const EquipmentForm: React.FC<EquipmentFormProps> = ({ currentStep, nextStep, pr
     e.preventDefault();
 
     try {
-      // Insert data into Supabase
-      const { error } = await supabase
-        .from('equipment')
-        .insert([formData]);
-
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      console.log('Data inserted successfully');
+      console.log('Data ready to be inserted');
 
       // Send email using the API endpoint
       const response = await fetch('/api/sendemail', {
@@ -89,11 +77,11 @@ const EquipmentForm: React.FC<EquipmentFormProps> = ({ currentStep, nextStep, pr
             </div>
             <div className="mb-1 block">
               <Label htmlFor="make" value="Make" />
-              <TextInput value={formData.manufacturer || ''} onChange={handleChange} name="e_make" id="e_make" type="text" placeholder="Caterpillar" required />
+              <TextInput value={formData.manufacturer || ''} onChange={handleChange} name="manufacturer" id="manufacturer" type="text" placeholder="Caterpillar" required />
             </div>
             <div className="mb-1 block">
               <Label htmlFor="model" value="Model" />
-              <TextInput value={formData.model || ''} onChange={handleChange} name="e_model" id="e_model" type="text" placeholder='D8T' />
+              <TextInput value={formData.model || ''} onChange={handleChange} name="model" id="model" type="text" placeholder='D8T' />
             </div>
           </div>
 

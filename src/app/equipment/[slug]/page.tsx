@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation';
-import { Database } from '../../../../lib/database.types';
 import Head from 'next/head';
 import fs from 'fs/promises';
 import path from 'path';
@@ -70,7 +69,9 @@ const EquipmentPage = async ({ params }: Props) => {
                 <title>{equipment.manufacturer} {equipment.model} - Equipment Details</title>
                 <meta name="description" content={`Details and specifications for ${equipment.manufacturer} ${equipment.model}.`} />
                 <link rel="canonical" href={`https://shipping-connect/equipment/${equipment.slug}`} />
-                <Script
+
+            </Head>
+            <Script
                     src="https://www.googletagmanager.com/gtag/js?id=G-178VD9EM9D"
                     strategy="afterInteractive"
                 />
@@ -83,8 +84,6 @@ const EquipmentPage = async ({ params }: Props) => {
                         gtag('config', 'G-178VD9EM9D');
                     `}
                 </Script>
-            </Head>
-
             <RequestQuoteFormClient equipment={equipment} />
         </div>
     );

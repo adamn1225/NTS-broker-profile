@@ -2,9 +2,7 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { Button, Label, TextInput } from "flowbite-react";
 import MaskedInput from 'react-text-mask';
-import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import DatepickerWrapper from './Datepickerwrapper';
-import supabase from '../../../lib/supabaseClient';
 
 interface FormData {
   count: string | null;
@@ -34,15 +32,7 @@ interface LtlFormProps {
 const LtlForm: React.FC<LtlFormProps> = ({ currentStep, nextStep, prevStep, formData, handleChange, setIsSubmitted }) => {
   const sendEmail = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     try {
-      const { error } = await supabase
-        .from('ftl_ltl')
-        .insert([formData]);
-
-      if (error) {
-        throw new Error(error.message);
-      }
 
       console.log('Data inserted successfully');
 

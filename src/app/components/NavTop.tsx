@@ -1,15 +1,10 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { MdEmail, MdPermPhoneMsg } from 'react-icons/md';
 import { FaArrowsAltH as MoveHorizontal } from 'react-icons/fa';
 import Link from 'next/link';
 
 const NavTop = () => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   return (
 

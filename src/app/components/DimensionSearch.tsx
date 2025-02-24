@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Fuse from 'fuse.js';
-import { Equipment } from '../../../lib/schema'; // Import the shared type
-import { Search } from 'lucide-react';
+import { Equipment } from '../../../lib/schema'; 
 
 interface Dimensions {
     Length: string;

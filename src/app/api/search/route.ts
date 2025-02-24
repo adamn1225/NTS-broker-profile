@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -12,10 +12,10 @@ interface Excavator {
     "Manufacturer/Model": string;
     Weight: string;
     dimensions: Dimensions;
-    [key: string]: any; // Allow for additional properties
+    [key: string]: string | number | boolean | object; // Allow for additional properties
 }
 
-export async function GET(req: NextRequest) {
+export async function GET() {
     try {
         const jsonFilePath = path.join(process.cwd(), 'public', 'equipmentdata.json');
         const jsonData = await fs.readFile(jsonFilePath, 'utf-8');

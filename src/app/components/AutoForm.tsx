@@ -3,7 +3,6 @@ import React, { ChangeEvent, FormEvent } from 'react';
 import { Button, Label, TextInput } from "flowbite-react";
 import MaskedInput from 'react-text-mask';
 import DatepickerWrapper from './Datepickerwrapper';
-import supabase from '../../../lib/supabaseClient';
 
 interface FormData {
   e_year: string | null;
@@ -32,13 +31,6 @@ const AutoForm: React.FC<AutoFormProps> = ({ currentStep, nextStep, prevStep, fo
     e.preventDefault();
 
     try {
-      const { error } = await supabase
-        .from('auto')
-        .insert([formData]);
-
-      if (error) {
-        throw new Error(error.message);
-      }
 
       console.log('Data inserted successfully');
 
@@ -132,7 +124,7 @@ const AutoForm: React.FC<AutoFormProps> = ({ currentStep, nextStep, prevStep, fo
                 mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                 value={formData.phone_number || ''}
                 onChange={handleChange}
-                render={(ref: (instance: HTMLInputElement | null) => void, props: any) => (
+                render={(ref: (instance: HTMLInputElement | null) => void, props: React.InputHTMLAttributes<HTMLInputElement>) => (
                   <TextInput
                     {...props}
                     ref={ref as React.LegacyRef<HTMLInputElement>}

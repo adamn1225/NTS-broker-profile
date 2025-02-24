@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -17,7 +17,7 @@ interface Excavator {
     slug: string;
 }
 
-export async function GET(req: NextRequest) {
+export async function GET() {
     try {
         const jsonFilePath = path.join(process.cwd(), 'public', 'organized_equipmentdata.json');
         const jsonData = await fs.readFile(jsonFilePath, 'utf-8');

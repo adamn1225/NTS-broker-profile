@@ -101,7 +101,7 @@ const RequestQuoteForm: React.FC<RequestQuoteFormProps> = ({ formData, handleCha
                         mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                         value={formData.phone_number || ''}
                         onChange={handleChange}
-                        render={(ref: (instance: HTMLInputElement | null) => void, props: any) => (
+                        render={(ref: (instance: HTMLInputElement | null) => void, props: React.InputHTMLAttributes<HTMLInputElement>) => (
                             <input
                                 {...props}
                                 ref={ref as React.LegacyRef<HTMLInputElement>}

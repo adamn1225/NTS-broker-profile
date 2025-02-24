@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 interface BlogPost {
     id: number;
@@ -8,7 +8,7 @@ interface BlogPost {
     slug: string;
 }
 
-export async function GET(req: NextRequest) {
+export async function GET() {
     const client_id = process.env.DG_CLIENT_ID; // Ensure CLIENT_ID is set in your environment
     if (!client_id) {
         console.error('Client ID not set');
@@ -34,6 +34,6 @@ export async function GET(req: NextRequest) {
     }
 }
 
-export async function POST(req: NextRequest) {
+export async function POST() {
     return NextResponse.json({ error: "Method Not Allowed" }, { status: 405 });
 }

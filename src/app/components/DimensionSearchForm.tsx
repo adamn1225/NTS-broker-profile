@@ -4,7 +4,6 @@ import { Button, Label, TextInput, TextInputProps } from "flowbite-react";
 import MaskedInput from 'react-text-mask';
 import DatepickerWrapper from './Datepickerwrapper';
 import DimensionSearch from './DimensionSearch';
-import { Equipment } from '../../../lib/schema';
 
 interface FormData {
     e_year: string | null;

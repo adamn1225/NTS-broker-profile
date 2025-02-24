@@ -3,10 +3,9 @@
 import React from 'react';
 import LazyLoad from 'react-lazyload';
 import { ClipLoader } from 'react-spinners';
+import Image from 'next/image';
 
-interface Props {}
-
-const FeaturedTransports = (props: Props) => {
+const FeaturedTransports = (props: object) => {
     const {} = props;
 
     return (
@@ -33,7 +32,7 @@ const FeaturedTransports = (props: Props) => {
                         specs: ['Length: 47.58 ft', 'Width: 10.34 ft', 'Height: 10.50 ft', 'Weight: 83,776 lbs']
                     },
                     {
-                        src: './chamber-crane.jpeg',
+                        src: '/chamber-crane.jpeg',
                         title: '110k lb. Combustion Chamber',
                         route: 'GREEN BAY, WI to CHANDLER, AZ',
                         specs: ['Length: 53 ft', 'Width: 13.3 ft', 'Height: 13.75 ft', 'Weight: 110,276 lbs']
@@ -41,7 +40,7 @@ const FeaturedTransports = (props: Props) => {
                 ].map((item, index) => (
                     <div key={index} className='flex flex-col px-2 justify-center items-center gap-3 bg-stone-950 py-10 rounded-md drop-shadow-xl'>
                         <LazyLoad height={320} offset={100} placeholder={<ClipLoader color="#ffffff" />}>
-                            <img className='rounded-md drop-shadow-lg w-96 h-80 object-cover' src={item.src} alt={item.title} />
+                            <Image className='rounded-md drop-shadow-lg w-96 h-80 object-cover' src={item.src} alt={item.title} width={320} height={240} />
                         </LazyLoad>
                         <h1 className='text-stone-100 text-xl font-semibold'>{item.title}</h1>
                         <div className='w-1/3 border border-y-1 border-secondary-y'> </div>

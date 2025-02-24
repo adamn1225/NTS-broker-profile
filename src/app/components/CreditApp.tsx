@@ -1,10 +1,7 @@
 "use client";
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { Modal, Label, TextInput } from "flowbite-react";
-import { FaHandPointRight, FaCheckDouble, FaCheck } from "react-icons/fa";
-import { FaAnglesUp, FaAnglesRight } from "react-icons/fa6";
-import InputMask from 'react-input-mask';
-import DatepickerWrapper from './Datepickerwrapper';
+import { FaCheck } from "react-icons/fa";
 import Link from 'next/link';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 
@@ -29,7 +26,7 @@ const CreditApp = () => {
         frequency: '',
     });
 
-    const { width, height } = useWindowDimensions();
+    useWindowDimensions();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -121,7 +118,7 @@ const CreditApp = () => {
                             </form>
                         ) : (
                             <div className='flex pt-5 flex-col items-center justify-center gap-3'>
-                                <h2 className='font-asterone w-full underline underline-offset-8 text-zinc-800 text-lg font-bold text-center md:text-2xl'>Got it, I'll get the application emailed over soon as possible!</h2>
+                                <h2 className='font-asterone w-full underline underline-offset-8 text-zinc-800 text-lg font-bold text-center md:text-2xl'>Got it, I&apos;ll get the application emailed over soon as possible!</h2>
                                 <h3 className='font-asterone w-full text-zinc-950 text-lg font-bold text-center md:text-xl'>
                                     If you have any additional questions you can always call or text me at
                                     <span className="text-zinc-950">

@@ -1,8 +1,6 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { Database } from '../../../lib/database.types';
 import RequestQuoteForm from './RequestQuoteForm';
-import supabase from '../../../lib/supabaseClient';
 
 type Equipment = {
     "Manufacturer/Model": string;
@@ -67,16 +65,6 @@ const RequestQuoteFormClient: React.FC<RequestQuoteFormClientProps> = ({ equipme
         e.preventDefault();
 
         try {
-            const { error } = await supabase
-                .from('equipment')
-                .insert([formData]);
-
-            if (error) {
-                throw new Error('Error inserting data into Supabase');
-            }
-
-            console.log('Quote request submitted successfully');
-
             // Send email notification
             const response = await fetch('/api/sendemail', {
                 method: 'POST',

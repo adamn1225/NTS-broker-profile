@@ -1,8 +1,6 @@
 "use client";
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import RequestQuoteForm from './RequestQuoteForm';
-import supabase from '../../../lib/supabaseClient';
-import { Equipment } from '../../../lib/schema';
 
 interface Dimensions {
     Length: string;
@@ -34,7 +32,7 @@ interface FormData {
     email: string | null;
 }
 
-interface Props { }
+type Props = object;
 
 const EquipmentSpecs: React.FC<Props> = () => {
     const [data, setData] = useState<Record<string, Excavator[]>>({});
@@ -119,15 +117,8 @@ const EquipmentSpecs: React.FC<Props> = () => {
         e.preventDefault();
 
         try {
-            const { error } = await supabase
-                .from('equipment')
-                .insert([formData]);
-
-            if (error) {
-                throw new Error(error.message);
-            }
-
-            console.log('Data inserted successfully');
+            // Replace supabase insert logic with appropriate logic or API call
+            console.log('Form data ready to be submitted:', formData);
             setShowForm(false); // Hide the form after successful submission
         } catch (error) {
             console.error('Error inserting data:', error);

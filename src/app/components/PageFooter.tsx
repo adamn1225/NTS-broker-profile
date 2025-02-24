@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
-import { FaLinkedin, FaLink } from "react-icons/fa";
+import { FaLink } from "react-icons/fa";
 import { MdEmail, MdPermPhoneMsg } from 'react-icons/md';
+import Image from 'next/image';
 
 export default function PageFooter() {
   return (
@@ -12,17 +13,17 @@ export default function PageFooter() {
           <div className="flex md:flex-row flex-col items-center gap-1 md:gap-2">
             <Link href="https://www.heavyhaulers.com" legacyBehavior>
               <a className="flex items-center">
-                <img src="/hh-logo.webp" alt="Heavy Haulers Logo" width={'auto'} height={40} className="h-10" />
+                <Image src="/hh-logo.webp" alt="Heavy Haulers Logo" width={300} height={40} layout="intrinsic" className="h-10" />
               </a>
             </Link>
             <Link href="https://heavyequipmenttransport.com/" legacyBehavior>
               <a className="flex items-center">
-                <img src="https://heavyequipmenttransport.com/images/logo.png" width={'auto'} height={40} alt="Heavy Haulers Logo" className="h-10" />
+                <Image src="https://heavyequipmenttransport.com/images/logo.png" width={300} height={40} layout="intrinsic" alt="Heavy Haulers Logo" className="h-10" />
               </a>
             </Link>
             <Link href="https://www.tractortransport.com/" legacyBehavior>
               <a className="flex items-center">
-                <img src="https://www.tractortransport.com/images/tractor-transport-transparent-logo.png" width={'auto'} height={40} alt="Heavy Haulers Logo" className="h-10" />
+                <Image src="https://www.tractortransport.com/images/tractor-transport-transparent-logo.png" width={300} height={40} layout="intrinsic" alt="Heavy Haulers Logo" className="h-10" />
               </a>
             </Link>
             <div className="md:hidden block w-full border-t border-gray-700 my-4"></div>
@@ -34,16 +35,13 @@ export default function PageFooter() {
                 <a className="text-3xl text-center footer-links m-0 font-bold text-secondary-y flex items-center justify-center gap-2 px-1">
                     <FaLink className="h-5 w-5" />
                     NTS PROFILE
-                
                 </a>
               </Link>
               <span className="w-full border border-y-1 border-x-1 border-secondary-y"> </span>
             </div>
             <div className="flex gap-2 mt-2">
-              <span>
-                <span className="text-lg h-6 text-white text-center font-bold border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4 flex justify-center items-center gap-1">
-                  <MdEmail />noah(@)ntslogistics.com
-                </span>
+              <span className="text-lg h-6 text-white text-center font-bold border-gray-200 md:mb-0 md:mr-4 md:border-r md:pr-4 flex justify-center items-center gap-1">
+                <MdEmail />noah(@)ntslogistics.com
               </span>
 
               <Link href="tel:1-954-495-8184" legacyBehavior>

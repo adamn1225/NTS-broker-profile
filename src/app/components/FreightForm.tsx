@@ -62,7 +62,7 @@ const FreightForms = () => {
         email: '',
     });
 
-    const { width, height } = useWindowDimensions();
+    useWindowDimensions();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement> | { target: { name: string, value: string } }, formType: string) => {
         const { name, value } = e.target;
@@ -244,8 +244,8 @@ const FreightForms = () => {
                 <Modal.Body className='bg-stone-100'>
                     {isSubmitted ? (
                         <div className='flex flex-col items-center justify-center gap-3'>
-                            <h2 className=' w-full underline underline-offset-8 text-zinc-800 text-lg font-bold text-center md:text-2xl'>Thanks! I'll get working on it!</h2>
-                            <h3 className=' w-full text-zinc-800 text-lg font-bold text-center md:text-xl'>I'll get the shipping rate you requested ASAP </h3>
+                            <h2 className=' w-full underline underline-offset-8 text-zinc-800 text-lg font-bold text-center md:text-2xl'>Thanks! I&apos;ll get working on it!</h2>
+                            <h3 className=' w-full text-zinc-800 text-lg font-bold text-center md:text-xl'>I&apos;ll get the shipping rate you requested ASAP </h3>
                             <h3 className=' w-full text-zinc-800 text-lg font-bold text-center md:text-xl'> Need faster? Call or text me at 954-495-8184</h3>
                             <h3 className=' w-full text-zinc-800 text-lg font-bold text-center md:text-xl'> You can also email me at noah@ntslogistics.com</h3>
                         </div>
