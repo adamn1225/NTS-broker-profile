@@ -22,19 +22,19 @@ const FeaturedTransports = (props: object) => {
                     {
                         src: 'https://ntslogistics.com/wp-content/uploads/2023/05/Komatsu-D61PX-12-Crawler-Tractor.png',
                         title: 'BOKEELIA, FL to PORTSMOUTH, VA',
-                        route: 'HARVEY, LA to INDIANTOWN, FL',
+                        route: 'Harvey, LA to Indiantown, FL',
                         specs: ['Length: 36.75 ft', 'Width: 11.10 ft', 'Height: 11.92 ft', 'Weight: 79,700 lbs']
                     },
                     {
                         src: 'https://ntslogistics.com/wp-content/uploads/2023/05/Caterpillar-PM565B-Cold-Planer.png',
                         title: 'Caterpillar PM565B Cold Planer',
-                        route: 'FAIRFIELD, NJ to BAKERSFIELD, CA',
+                        route: 'Southard, OK to FreePort, TX',
                         specs: ['Length: 47.58 ft', 'Width: 10.34 ft', 'Height: 10.50 ft', 'Weight: 83,776 lbs']
                     },
                     {
                         src: '/chamber-crane.jpeg',
                         title: '110k lb. Combustion Chamber',
-                        route: 'GREEN BAY, WI to CHANDLER, AZ',
+                        route: 'Kaukauna, WI to Chandler, AZ',
                         specs: ['Length: 53 ft', 'Width: 13.3 ft', 'Height: 13.75 ft', 'Weight: 110,276 lbs']
                     }
                 ].map((item, index) => (

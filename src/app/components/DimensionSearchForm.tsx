@@ -76,7 +76,7 @@ const DimensionSearchForm: React.FC = () => {
             <h1 className='text-zinc-900 font-semibold text-center text-3xl mb-2'>Construction Equipment Dimension Search</h1>
             <h2 className='text-zinc-900 font-semibold text-center text-lg'>Select any Manufacturer and put in the model to get machine dimensions - over 10,000 machines!</h2>
             <p className='text-zinc-900 font-medium text-center text-md'>Click the button below to get started</p>
-            <span className='flex justify-center mt-4'><button className='main-btn text-2xl shadow-xl' onClick={() => setOpenModal(true)}>Open Equipment Directory</button></span>
+            <span className='flex justify-center mt-4'><button className='main-btn text-2xl shadow-xl' onClick={() => setOpenModal(true)}>Equipment Directory</button></span>
             {openModal && <DimensionSearch populateForm={populateForm} />}
             {showForm && (
                 <form onSubmit={sendEmail} className="flex h-1/4 min-w-screen flex-col align-middle items-center justify-center gap-6">

@@ -10,7 +10,7 @@ export default function PageFooter() {
       <div className="w-full text-start">
         <h2 className="md:text-start text-center underline underline-offset-4 md:mb-0 font-bold tracking-tighter text-3xl text-mute-200 mb-7">NTS BRANDS</h2>
         <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
-          <div className="flex md:flex-row flex-col items-center gap-1 md:gap-2">
+          <div className="flex md:flex-row flex-col items-center gap-2 md:gap-2">
             <Link href="https://www.heavyhaulers.com" legacyBehavior>
               <a className="flex items-center">
                 <Image src="/hh-logo.webp" alt="Heavy Haulers Logo" width={300} height={40} layout="intrinsic" className="h-10" />
