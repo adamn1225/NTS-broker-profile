@@ -50,7 +50,7 @@ function AboutShippingConnect() {
                             <FaQuoteLeft style={{ color: '#ff5a1f' }} />
                         </div>
                         <p className="font-thin">
-                            With 15 years of proven experience, Shipping Connect is your trusted partner in streamlining logistics across all freight types. From agricultural machinery to full truckloads, and even specialized transport like RVs and containers, we deliver efficient solutions tailored to your needs. Our priority is ensuring our shippers and clients receive exceptional service, transparency, and reliable support every step of the way.
+                            With 10 years of proven experience, Shipping Connect is your trusted partner in streamlining logistics across all freight types. From agricultural machinery to full truckloads, and even specialized transport like RVs and containers, we deliver efficient solutions tailored to your needs. Our priority is ensuring our shippers and clients receive exceptional service, transparency, and reliable support every step of the way.
                         </p>
                         <div className='flex justify-end items-end'>
                             <FaQuoteRight style={{ color: '#ff5a1f' }} />
